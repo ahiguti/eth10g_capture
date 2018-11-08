@@ -1,0 +1,5 @@
+
+- IWDATA_TDATAがunconnectedであるとcritical warningがでる。個別に繋ぐと直った。
+- 4GB boundary (done)
+- 相手の電源が落ちているとゴミを読む。FCSエラーにするように(done)
+

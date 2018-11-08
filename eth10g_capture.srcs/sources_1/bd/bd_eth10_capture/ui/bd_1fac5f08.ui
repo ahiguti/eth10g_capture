@@ -1,0 +1,55 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port pci_express_x8 -pg 1 -y 680 -defaultsOSRD
+preplace port XGMII_RESETN -pg 1 -y 540 -defaultsOSRD
+preplace port S_AXI_S2MM -pg 1 -y 680 -defaultsOSRD
+preplace port M_AXI_REGS -pg 1 -y 520 -defaultsOSRD
+preplace port default_300mhz_clk0 -pg 1 -y 210 -defaultsOSRD
+preplace port XGMII_CLK -pg 1 -y 520 -defaultsOSRD
+preplace port ddr4_sdram_c0 -pg 1 -y 180 -defaultsOSRD
+preplace port pcie_refclk -pg 1 -y 610 -defaultsOSRD
+preplace port clk_100 -pg 1 -y 320 -defaultsOSRD
+preplace port pcie_perstn -pg 1 -y 800 -defaultsOSRD
+preplace port led_8bits -pg 1 -y 600 -defaultsOSRD
+preplace portBus resetn -pg 1 -y 270 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 1 -y 860 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 3 -y 790 -defaultsOSRD
+preplace inst xdma_0_axi_periph -pg 1 -lvl 3 -y 500 -defaultsOSRD
+preplace inst reset_ddr4_0_300m -pg 1 -lvl 2 -y 100 -defaultsOSRD
+preplace inst util_vector_logic_0 -pg 1 -lvl 3 -y 270 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 4 -y 600 -defaultsOSRD
+preplace inst util_ds_buf -pg 1 -lvl 1 -y 610 -defaultsOSRD
+preplace inst ddr4_0 -pg 1 -lvl 4 -y 250 -defaultsOSRD
+preplace inst xdma_0 -pg 1 -lvl 2 -y 830 -defaultsOSRD
+preplace netloc Conn1 1 0 4 NJ 210 NJ 210 NJ 210 NJ
+preplace netloc Conn2 1 4 1 NJ
+preplace netloc Conn3 1 2 3 730J 680 NJ 680 NJ
+preplace netloc xdma_0_axi_periph_M01_AXI 1 3 1 1080
+preplace netloc reset_ddr4_0_300m_peripheral_aresetn 1 2 2 770 200 1130
+preplace netloc util_ds_buf_IBUF_DS_ODIV2 1 1 1 330
+preplace netloc util_ds_buf_IBUF_OUT 1 1 1 340
+preplace netloc Conn4 1 0 1 NJ
+preplace netloc Conn5 1 4 1 NJ
+preplace netloc axi_smc_M00_AXI 1 3 1 1110
+preplace netloc ddr4_0_c0_ddr4_ui_clk_sync_rst 1 1 4 340 340 NJ 340 1090J 390 1530
+preplace netloc util_vector_logic_0_Res 1 3 1 1120J
+preplace netloc xdma_0_axi_aclk 1 2 2 750 660 1080J
+preplace netloc Conn6 1 0 3 NJ 680 NJ 680 710J
+preplace netloc ddr4_0_addn_ui_clkout1 1 4 1 NJ
+preplace netloc xdma_0_axi_aresetn 1 2 2 760 670 1130J
+preplace netloc pcie_perstn_1 1 0 2 NJ 800 320J
+preplace netloc xdma_0_axi_periph_M00_AXI 1 3 1 1070
+preplace netloc M02_ARESETN_1 1 0 3 NJ 540 NJ 540 730J
+preplace netloc resetn_1 1 0 3 NJ 270 NJ 270 NJ
+preplace netloc aclk2_1 1 0 3 NJ 520 NJ 520 720
+preplace netloc xlconstant_0_dout 1 1 1 NJ
+preplace netloc xdma_0_M_AXI 1 2 1 N
+preplace netloc xdma_0_M_AXI_LITE 1 2 1 700
+preplace netloc xdma_0_axi_periph_M02_AXI 1 3 2 NJ 520 NJ
+preplace netloc ddr4_0_c0_ddr4_ui_clk 1 1 4 320 200 740 330 1100J 380 1540
+levelinfo -pg 1 0 170 520 920 1330 1560 -top 0 -bot 980
+",
+}
+0

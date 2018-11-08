@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_test_xgmii_to_axis_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="sim_test_xgmii_to_axis" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="969889646fs"></ZoomStartTime>
+      <ZoomEndTime time="1006022071fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="338"></NameColumnWidth>
+      <ValueColumnWidth column_width="177"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="27" />
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/CLK">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/RESETN">
+      <obj_property name="ElementShortName">RESETN</obj_property>
+      <obj_property name="ObjectShortName">RESETN</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/XGMII_D">
+      <obj_property name="ElementShortName">XGMII_D[63:0]</obj_property>
+      <obj_property name="ObjectShortName">XGMII_D[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/XGMII_LEN">
+      <obj_property name="ElementShortName">XGMII_LEN[3:0]</obj_property>
+      <obj_property name="ObjectShortName">XGMII_LEN[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/FCS_EN">
+      <obj_property name="ElementShortName">FCS_EN</obj_property>
+      <obj_property name="ObjectShortName">FCS_EN</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/FCS_CORRECT">
+      <obj_property name="ElementShortName">FCS_CORRECT</obj_property>
+      <obj_property name="ObjectShortName">FCS_CORRECT</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/DATA_TDATA">
+      <obj_property name="ElementShortName">DATA_TDATA[63:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_TDATA[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/DATA_TVALID">
+      <obj_property name="ElementShortName">DATA_TVALID</obj_property>
+      <obj_property name="ObjectShortName">DATA_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/DATA_TREADY">
+      <obj_property name="ElementShortName">DATA_TREADY</obj_property>
+      <obj_property name="ObjectShortName">DATA_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/INFO_TDATA">
+      <obj_property name="ElementShortName">INFO_TDATA[23:0]</obj_property>
+      <obj_property name="ObjectShortName">INFO_TDATA[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/INFO_TVALID">
+      <obj_property name="ElementShortName">INFO_TVALID</obj_property>
+      <obj_property name="ObjectShortName">INFO_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/INFO_TREADY">
+      <obj_property name="ElementShortName">INFO_TREADY</obj_property>
+      <obj_property name="ObjectShortName">INFO_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/ERR_DROP">
+      <obj_property name="ElementShortName">ERR_DROP</obj_property>
+      <obj_property name="ObjectShortName">ERR_DROP</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/get_packet_info_0/ERR_INCOMPLETE">
+      <obj_property name="ElementShortName">ERR_INCOMPLETE</obj_property>
+      <obj_property name="ObjectShortName">ERR_INCOMPLETE</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/CLK">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/RESETN">
+      <obj_property name="ElementShortName">RESETN</obj_property>
+      <obj_property name="ObjectShortName">RESETN</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/DATA_TDATA">
+      <obj_property name="ElementShortName">DATA_TDATA[63:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_TDATA[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/DATA_TVALID">
+      <obj_property name="ElementShortName">DATA_TVALID</obj_property>
+      <obj_property name="ObjectShortName">DATA_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/DATA_TREADY">
+      <obj_property name="ElementShortName">DATA_TREADY</obj_property>
+      <obj_property name="ObjectShortName">DATA_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/INFO_TDATA">
+      <obj_property name="ElementShortName">INFO_TDATA[23:0]</obj_property>
+      <obj_property name="ObjectShortName">INFO_TDATA[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/INFO_TVALID">
+      <obj_property name="ElementShortName">INFO_TVALID</obj_property>
+      <obj_property name="ObjectShortName">INFO_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/INFO_TREADY">
+      <obj_property name="ElementShortName">INFO_TREADY</obj_property>
+      <obj_property name="ObjectShortName">INFO_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/PKT_TDATA">
+      <obj_property name="ElementShortName">PKT_TDATA[63:0]</obj_property>
+      <obj_property name="ObjectShortName">PKT_TDATA[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/PKT_TVALID">
+      <obj_property name="ElementShortName">PKT_TVALID</obj_property>
+      <obj_property name="ObjectShortName">PKT_TVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/PKT_TREADY">
+      <obj_property name="ElementShortName">PKT_TREADY</obj_property>
+      <obj_property name="ObjectShortName">PKT_TREADY</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_test_xgmii_to_axis/i0/add_packet_header_0/PKT_TLAST">
+      <obj_property name="ElementShortName">PKT_TLAST</obj_property>
+      <obj_property name="ObjectShortName">PKT_TLAST</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_test_xgmii_to_axis/i0/axis_fifo_pdata/inst/FIFO_REG">
+      <obj_property name="ElementShortName">FIFO_REG[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FIFO_REG[31:0]</obj_property>
+   </wvobject>
+</wave_config>

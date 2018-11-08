@@ -1,0 +1,39 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port XGMII_RESETN -pg 1 -y 130 -defaultsOSRD
+preplace port FCS_CORRECT -pg 1 -y 210 -defaultsOSRD
+preplace port OV_TREADY -pg 1 -y 320 -defaultsOSRD
+preplace port XGMII_CLK -pg 1 -y 20 -defaultsOSRD
+preplace port FCS_EN -pg 1 -y 190 -defaultsOSRD
+preplace portBus XGMII_D -pg 1 -y 150 -defaultsOSRD
+preplace portBus XGMII_LEN -pg 1 -y 170 -defaultsOSRD
+preplace inst axis_fifo_0 -pg 1 -lvl 4 -y 460 -defaultsOSRD
+preplace inst add_packet_header_0 -pg 1 -lvl 3 -y 440 -defaultsOSRD
+preplace inst get_packet_info_0 -pg 1 -lvl 1 -y 160 -defaultsOSRD
+preplace inst axis_fifo_pdata -pg 1 -lvl 2 -y 430 -defaultsOSRD
+preplace inst axis_fifo_pinfo -pg 1 -lvl 2 -y 200 -defaultsOSRD
+preplace netloc axis_fifo_pdata_IV_TREADY 1 1 1 390
+preplace netloc axis_fifo_0_OV 1 2 1 N
+preplace netloc OV_TREADY_0_1 1 0 5 10J 330 430J 310 NJ 310 NJ 310 1450
+preplace netloc FCS_EN_0_1 1 0 1 NJ
+preplace netloc get_packet_info_0_INFO_TVALID 1 1 1 400
+preplace netloc XGMII_CLK_1 1 0 4 20 0 420 320 790 540 1100
+preplace netloc get_packet_info_0_DATA_TDATA 1 1 1 440
+preplace netloc axis_fifo_pinfo_OV 1 2 1 800
+preplace netloc XGMII_RESETN_1 1 0 4 20 320 400 540 780 550 1110
+preplace netloc get_packet_info_0_DATA_TVALID 1 1 1 410
+preplace netloc axis_fifo_pinfo_IV_TREADY 1 1 1 380
+preplace netloc XGMII_D_0_1 1 0 1 NJ
+preplace netloc FCS_CORRECT_0_1 1 0 1 NJ
+preplace netloc add_packet_header_0_PKT_TVALID 1 3 1 N
+preplace netloc axis_fifo_0_IV_TREADY 1 3 1 N
+preplace netloc add_packet_header_0_PKT_TLAST 1 3 1 N
+preplace netloc add_packet_header_0_PKT_TDATA 1 3 1 N
+preplace netloc XGMII_LEN_0_1 1 0 1 NJ
+preplace netloc get_packet_info_0_INFO_TDATA 1 1 1 430
+levelinfo -pg 1 -10 200 610 950 1280 1470 -top -10 -bot 580
+",
+}
+0

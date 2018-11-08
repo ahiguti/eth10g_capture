@@ -1,0 +1,35 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port XGMII_RESET -pg 1 -y 360 -defaultsOSRD
+preplace port FCS_CORRECT_0 -pg 1 -y 420 -defaultsOSRD
+preplace port SFP1_RX_N -pg 1 -y 290 -defaultsOSRD
+preplace port FCS_EN_0 -pg 1 -y 440 -defaultsOSRD
+preplace port SFP1_RX_P -pg 1 -y 270 -defaultsOSRD
+preplace port SFP1_TX_N -pg 1 -y 320 -defaultsOSRD
+preplace port MGTCLK0 -pg 1 -y 210 -defaultsOSRD
+preplace port SFP1_TX_P -pg 1 -y 300 -defaultsOSRD
+preplace port XGMII_CLK -pg 1 -y 280 -defaultsOSRD
+preplace port dclk -pg 1 -y 250 -defaultsOSRD
+preplace port reset -pg 1 -y 230 -defaultsOSRD
+preplace portBus RXLEN_0 -pg 1 -y 400 -defaultsOSRD
+preplace portBus RXD_0 -pg 1 -y 380 -defaultsOSRD
+preplace inst eth_0 -pg 1 -lvl 1 -y 250 -defaultsOSRD
+preplace netloc Conn1 1 0 1 NJ
+preplace netloc SFP1_RX_N_1 1 0 1 NJ
+preplace netloc eth_0_RXD 1 1 1 NJ
+preplace netloc eth_0_FCS_EN_0 1 1 1 NJ
+preplace netloc SFP1_RX_P_1 1 0 1 NJ
+preplace netloc eth_0_RXLEN 1 1 1 NJ
+preplace netloc eth_0_SFP1_TX_N 1 1 1 NJ
+preplace netloc dclk_1 1 0 1 NJ
+preplace netloc eth_0_FCS_CORRECT 1 1 1 NJ
+preplace netloc eth_0_SFP1_TX_P 1 1 1 NJ
+preplace netloc eth_0_txusrclk2_out 1 1 1 NJ
+preplace netloc reset_1 1 0 1 NJ
+preplace netloc eth_0_areset_datapathclk_out 1 1 1 NJ
+levelinfo -pg 1 0 180 360 -top 0 -bot 490
+",
+}
+0

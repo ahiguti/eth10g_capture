@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 12 07:03:30 2018" VIVADOVERSION="2018.2">
+
+  <SYSTEMINFO ARCH="kintexu" BOARD="xilinx.com:kcu1500:part0:1.1" DEVICE="xcku115" NAME="test_xgmii_to_axis" PACKAGE="flvb2104" SPEEDGRADE="-2"/>
+
+  <EXTERNALPORTS>
+    <PORT CLKFREQUENCY="156250000" DIR="I" NAME="XGMII_CLK" SIGIS="clk" SIGNAME="External_Ports_XGMII_CLK">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_fifo_pdata" PORT="CLK"/>
+        <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="CLK"/>
+        <CONNECTION INSTANCE="axis_fifo_0" PORT="CLK"/>
+        <CONNECTION INSTANCE="add_packet_header_0" PORT="CLK"/>
+        <CONNECTION INSTANCE="get_packet_info_0" PORT="CLK"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="XGMII_RESETN" SIGIS="rst" SIGNAME="External_Ports_XGMII_RESETN">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_fifo_pdata" PORT="RESETN"/>
+        <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="RESETN"/>
+        <CONNECTION INSTANCE="axis_fifo_0" PORT="RESETN"/>
+        <CONNECTION INSTANCE="add_packet_header_0" PORT="RESETN"/>
+        <CONNECTION INSTANCE="get_packet_info_0" PORT="RESETN"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="XGMII_D" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_XGMII_D">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="get_packet_info_0" PORT="XGMII_D"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="3" NAME="XGMII_LEN" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_XGMII_LEN">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="get_packet_info_0" PORT="XGMII_LEN"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="FCS_EN" SIGIS="undef" SIGNAME="External_Ports_FCS_EN">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="get_packet_info_0" PORT="FCS_EN"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="FCS_CORRECT" SIGIS="undef" SIGNAME="External_Ports_FCS_CORRECT">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="get_packet_info_0" PORT="FCS_CORRECT"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="OV_TREADY" SIGIS="undef" SIGNAME="External_Ports_OV_TREADY">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_fifo_0" PORT="OV_TREADY"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE FULLNAME="/add_packet_header_0" HWVERSION="1.0" INSTANCE="add_packet_header_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="add_packet_header" VLNV="xilinx.com:module_ref:add_packet_header:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="test_xgmii_to_axis_add_packet_header_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="156250000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_XGMII_CLK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_CLK"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="RESETN" SIGIS="rst" SIGNAME="External_Ports_XGMII_RESETN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_RESETN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="DATA_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_DATA_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pdata" PORT="OV_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="DATA_TVALID" SIGIS="undef" SIGNAME="add_packet_header_0_DATA_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pdata" PORT="OV_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="DATA_TREADY" SIGIS="undef" SIGNAME="add_packet_header_0_DATA_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pdata" PORT="OV_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="23" NAME="INFO_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_INFO_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="OV_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="INFO_TVALID" SIGIS="undef" SIGNAME="add_packet_header_0_INFO_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="OV_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="INFO_TREADY" SIGIS="undef" SIGNAME="add_packet_header_0_INFO_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="OV_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="PKT_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_PKT_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_0" PORT="IV_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="PKT_TVALID" SIGIS="undef" SIGNAME="add_packet_header_0_PKT_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_0" PORT="IV_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PKT_TREADY" SIGIS="undef" SIGNAME="axis_fifo_0_IV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_0" PORT="IV_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="PKT_TLAST" SIGIS="undef" SIGNAME="add_packet_header_0_PKT_TLAST">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_0" PORT="IV_TLAST"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="axis_fifo_pdata_OV" NAME="DATA" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="DATA_TDATA"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="DATA_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="DATA_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="axis_fifo_pinfo_OV" NAME="INFO" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="INFO_TDATA"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="INFO_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="INFO_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="PKT" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="PKT_TDATA"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="PKT_TLAST"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="PKT_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="PKT_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/axis_fifo_0" HWVERSION="1.0" INSTANCE="axis_fifo_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axis_fifo" VLNV="xilinx.com:module_ref:axis_fifo:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WIDTH_DATA" VALUE="64"/>
+        <PARAMETER NAME="WIDTH_LAST" VALUE="1"/>
+        <PARAMETER NAME="WIDTH_KEEP" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_USER" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_ID" VALUE="0"/>
+        <PARAMETER NAME="FIFO_SIZE_L2" VALUE="0"/>
+        <PARAMETER NAME="FIFO_REG" VALUE="4"/>
+        <PARAMETER NAME="FIFO_DELAY" VALUE="2"/>
+        <PARAMETER NAME="Component_Name" VALUE="test_xgmii_to_axis_axis_fifo_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="156250000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_XGMII_CLK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_CLK"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="RESETN" SIGIS="rst" SIGNAME="External_Ports_XGMII_RESETN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_RESETN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="IV_TVALID" SIGIS="undef" SIGNAME="add_packet_header_0_PKT_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="PKT_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="IV_TREADY" SIGIS="undef" SIGNAME="axis_fifo_0_IV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="PKT_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="IV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_PKT_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="PKT_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="IV_TLAST" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_PKT_TLAST">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="PKT_TLAST"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="IV_TKEEP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TUSER" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TID" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="OV_TVALID" SIGIS="undef"/>
+        <PORT DIR="I" NAME="OV_TREADY" SIGIS="undef" SIGNAME="External_Ports_OV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="OV_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="OV_TDATA" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TLAST" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TKEEP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TUSER" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TID" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="2" NAME="CAP_PUSH" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="2" NAME="CAP_POP" RIGHT="0" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="IV" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TID" PHYSICAL="IV_TID"/>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="IV_TDATA"/>
+            <PORTMAP LOGICAL="TKEEP" PHYSICAL="IV_TKEEP"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="IV_TLAST"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="IV_TUSER"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="IV_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="IV_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="OV" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TID" PHYSICAL="OV_TID"/>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="OV_TDATA"/>
+            <PORTMAP LOGICAL="TKEEP" PHYSICAL="OV_TKEEP"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="OV_TLAST"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="OV_TUSER"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="OV_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="OV_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/axis_fifo_pdata" HWVERSION="1.0" INSTANCE="axis_fifo_pdata" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axis_fifo" VLNV="xilinx.com:module_ref:axis_fifo:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WIDTH_DATA" VALUE="64"/>
+        <PARAMETER NAME="WIDTH_LAST" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_KEEP" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_USER" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_ID" VALUE="0"/>
+        <PARAMETER NAME="FIFO_SIZE_L2" VALUE="11"/>
+        <PARAMETER NAME="FIFO_REG" VALUE="5"/>
+        <PARAMETER NAME="FIFO_DELAY" VALUE="2"/>
+        <PARAMETER NAME="Component_Name" VALUE="test_xgmii_to_axis_axis_fifo_pdata_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="156250000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_XGMII_CLK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_CLK"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="RESETN" SIGIS="rst" SIGNAME="External_Ports_XGMII_RESETN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_RESETN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="IV_TVALID" SIGIS="undef" SIGNAME="get_packet_info_0_DATA_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="get_packet_info_0" PORT="DATA_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="IV_TREADY" SIGIS="undef" SIGNAME="axis_fifo_pdata_IV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="get_packet_info_0" PORT="DATA_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="IV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="get_packet_info_0_DATA_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="get_packet_info_0" PORT="DATA_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="IV_TLAST" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TKEEP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TUSER" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TID" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="OV_TVALID" SIGIS="undef" SIGNAME="add_packet_header_0_DATA_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="DATA_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="OV_TREADY" SIGIS="undef" SIGNAME="add_packet_header_0_DATA_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="DATA_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="OV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_DATA_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="DATA_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="OV_TLAST" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TKEEP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TUSER" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TID" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="11" NAME="CAP_PUSH" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="11" NAME="CAP_POP" RIGHT="0" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="IV" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TID" PHYSICAL="IV_TID"/>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="IV_TDATA"/>
+            <PORTMAP LOGICAL="TKEEP" PHYSICAL="IV_TKEEP"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="IV_TLAST"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="IV_TUSER"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="IV_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="IV_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="axis_fifo_pdata_OV" NAME="OV" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TID" PHYSICAL="OV_TID"/>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="OV_TDATA"/>
+            <PORTMAP LOGICAL="TKEEP" PHYSICAL="OV_TKEEP"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="OV_TLAST"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="OV_TUSER"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="OV_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="OV_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/axis_fifo_pinfo" HWVERSION="1.0" INSTANCE="axis_fifo_pinfo" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axis_fifo" VLNV="xilinx.com:module_ref:axis_fifo:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WIDTH_DATA" VALUE="24"/>
+        <PARAMETER NAME="WIDTH_LAST" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_KEEP" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_USER" VALUE="0"/>
+        <PARAMETER NAME="WIDTH_ID" VALUE="0"/>
+        <PARAMETER NAME="FIFO_SIZE_L2" VALUE="10"/>
+        <PARAMETER NAME="FIFO_REG" VALUE="4"/>
+        <PARAMETER NAME="FIFO_DELAY" VALUE="2"/>
+        <PARAMETER NAME="Component_Name" VALUE="test_xgmii_to_axis_axis_fifo_pinfo_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="156250000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_XGMII_CLK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_CLK"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="RESETN" SIGIS="rst" SIGNAME="External_Ports_XGMII_RESETN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_RESETN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="IV_TVALID" SIGIS="undef" SIGNAME="get_packet_info_0_INFO_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="get_packet_info_0" PORT="INFO_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="IV_TREADY" SIGIS="undef" SIGNAME="axis_fifo_pinfo_IV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="get_packet_info_0" PORT="INFO_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="23" NAME="IV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="get_packet_info_0_INFO_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="get_packet_info_0" PORT="INFO_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="IV_TLAST" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TKEEP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TUSER" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="IV_TID" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="OV_TVALID" SIGIS="undef" SIGNAME="add_packet_header_0_INFO_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="INFO_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="OV_TREADY" SIGIS="undef" SIGNAME="add_packet_header_0_INFO_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="INFO_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="23" NAME="OV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="add_packet_header_0_INFO_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="add_packet_header_0" PORT="INFO_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="OV_TLAST" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TKEEP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TUSER" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="OV_TID" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="10" NAME="CAP_PUSH" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="10" NAME="CAP_POP" RIGHT="0" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="IV" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TID" PHYSICAL="IV_TID"/>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="IV_TDATA"/>
+            <PORTMAP LOGICAL="TKEEP" PHYSICAL="IV_TKEEP"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="IV_TLAST"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="IV_TUSER"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="IV_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="IV_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="axis_fifo_pinfo_OV" NAME="OV" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TID" PHYSICAL="OV_TID"/>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="OV_TDATA"/>
+            <PORTMAP LOGICAL="TKEEP" PHYSICAL="OV_TKEEP"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="OV_TLAST"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="OV_TUSER"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="OV_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="OV_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/get_packet_info_0" HWVERSION="1.0" INSTANCE="get_packet_info_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="get_packet_info" VLNV="xilinx.com:module_ref:get_packet_info:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="test_xgmii_to_axis_get_packet_info_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="156250000" DIR="I" NAME="CLK" SIGIS="clk" SIGNAME="External_Ports_XGMII_CLK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_CLK"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="RESETN" SIGIS="rst" SIGNAME="External_Ports_XGMII_RESETN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_RESETN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="XGMII_D" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_XGMII_D">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_D"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="XGMII_LEN" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_XGMII_LEN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="XGMII_LEN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="FCS_EN" SIGIS="undef" SIGNAME="External_Ports_FCS_EN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="FCS_EN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="FCS_CORRECT" SIGIS="undef" SIGNAME="External_Ports_FCS_CORRECT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="FCS_CORRECT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="DATA_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="get_packet_info_0_DATA_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pdata" PORT="IV_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="DATA_TVALID" SIGIS="undef" SIGNAME="get_packet_info_0_DATA_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pdata" PORT="IV_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="DATA_TREADY" SIGIS="undef" SIGNAME="axis_fifo_pdata_IV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pdata" PORT="IV_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="23" NAME="INFO_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="get_packet_info_0_INFO_TDATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="IV_TDATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="INFO_TVALID" SIGIS="undef" SIGNAME="get_packet_info_0_INFO_TVALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="IV_TVALID"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="INFO_TREADY" SIGIS="undef" SIGNAME="axis_fifo_pinfo_IV_TREADY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_fifo_pinfo" PORT="IV_TREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="ERR_DROP" SIGIS="undef"/>
+        <PORT DIR="O" NAME="ERR_INCOMPLETE" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="DATA" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="DATA_TDATA"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="DATA_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="DATA_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="INFO" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="156250000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="test_xgmii_to_axis_XGMII_CLK"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="INFO_TDATA"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="INFO_TVALID"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="INFO_TREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

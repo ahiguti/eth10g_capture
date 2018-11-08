@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root MajorVersion="0" MinorVersion="36">
+  <CompositeFile CompositeFileTopName="bd_eth10_capture" CanBeSetAsTop="false" CanDisplayChildGraph="true">
+    <Description>Composite Fileset</Description>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1540533709"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1540533709"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1540533709"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1540533709"/>
+    <FileCollection Name="SOURCES" Type="SOURCES">
+      <File Name="synth/bd_eth10_capture.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim/bd_eth10_capture.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_reset_100M_0/bd_eth10_capture_reset_100M_0.xci" Type="IP">
+        <Instance HierarchyPath="reset_100M"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_util_vector_logic_0_0/bd_eth10_capture_util_vector_logic_0_0.xci" Type="IP">
+        <Instance HierarchyPath="util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_dwidth_converter_0_0/bd_eth10_capture_axis_dwidth_converter_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_dwidth_converter_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_vio_0_0/bd_eth10_capture_vio_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/vio_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_rx_wrmem_regs_0_0/bd_eth10_capture_rx_wrmem_regs_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/rx_wrmem_regs_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axilite_regs_0_0/bd_eth10_capture_axilite_regs_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axilite_regs_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axi_datamover_0_0/bd_eth10_capture_axi_datamover_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axi_datamover_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_update_packet_delim_1_0/bd_eth10_capture_update_packet_delim_1_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/update_packet_delim_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_groupify_wordcnt_0_0/bd_eth10_capture_groupify_wordcnt_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/groupify_wordcnt_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_get_word_count_0_0/bd_eth10_capture_get_word_count_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/get_word_count_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xlconstant_1_0/bd_eth10_capture_xlconstant_1_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/xlconstant_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_gen_datamover_wcmd_0_0/bd_eth10_capture_gen_datamover_wcmd_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/gen_datamover_wcmd_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_rx_wrmem_status_0_0/bd_eth10_capture_rx_wrmem_status_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/rx_wrmem_status_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_wcmd_0/bd_eth10_capture_axis_fifo_wcmd_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fifo_wcmd"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_wcmd_cnt_0/bd_eth10_capture_axis_fifo_wcmd_cnt_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fifo_wcmd_cnt"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_wcmd_delim_0/bd_eth10_capture_axis_fifo_wcmd_delim_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fifo_wcmd_delim"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_wdata_0/bd_eth10_capture_axis_fifo_wdata_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fifo_wdata"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_wordcnt_0/bd_eth10_capture_axis_fifo_wordcnt_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fifo_wordcnt"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fork_0_0/bd_eth10_capture_axis_fork_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fork_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fork_1_0/bd_eth10_capture_axis_fork_1_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/axis_wrmem/axis_fork_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_testpat_rx_0_0/bd_eth10_capture_testpat_rx_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/testpat_rx_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xlconstant_0_0/bd_eth10_capture_xlconstant_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/xlconstant_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_pdata_0/bd_eth10_capture_axis_fifo_pdata_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/axis_fifo_pdata"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_pkt_0/bd_eth10_capture_axis_fifo_pkt_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/axis_fifo_pkt"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_fifo_pinfo_0/bd_eth10_capture_axis_fifo_pinfo_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/axis_fifo_pinfo"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_add_packet_header_0_0/bd_eth10_capture_add_packet_header_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/add_packet_header_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_get_packet_info_0_0/bd_eth10_capture_get_packet_info_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/get_packet_info_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_err_counter_fcs_0/bd_eth10_capture_err_counter_fcs_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/err_counter_fcs"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_err_counter_full_0/bd_eth10_capture_err_counter_full_0.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/err_counter_full"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_util_vector_logic_0_1/bd_eth10_capture_util_vector_logic_0_1.xci" Type="IP">
+        <Instance HierarchyPath="rx_wrmem/xgmii_to_axis/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xdma_0_0/bd_eth10_capture_xdma_0_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/xdma_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_util_ds_buf_0/bd_eth10_capture_util_ds_buf_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/util_ds_buf"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xlconstant_0_1/bd_eth10_capture_xlconstant_0_1.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/xlconstant_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axi_gpio_0_0/bd_eth10_capture_axi_gpio_0_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/axi_gpio_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_ddr4_0_0/bd_eth10_capture_ddr4_0_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/ddr4_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_util_vector_logic_0_2/bd_eth10_capture_util_vector_logic_0_2.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_reset_ddr4_0_300m_0/bd_eth10_capture_reset_ddr4_0_300m_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/reset_ddr4_0_300m"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xdma_0_axi_periph_0/bd_eth10_capture_xdma_0_axi_periph_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/xdma_0_axi_periph"/>
+        <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axi_smc_0/bd_eth10_capture_axi_smc_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/axi_smc"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xbar_0/bd_eth10_capture_xbar_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/xdma_0_axi_periph/xbar"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_fanctrl_init_0_0/bd_eth10_capture_fanctrl_init_0_0.xci" Type="IP">
+        <Instance HierarchyPath="fanctrl/fanctrl_init_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_i2c_master_0_0/bd_eth10_capture_i2c_master_0_0.xci" Type="IP">
+        <Instance HierarchyPath="fanctrl/i2c_master_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/ten_gig_eth_pcs_pma_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xlconstant_0_2/bd_eth10_capture_xlconstant_0_2.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/xlconstant_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xgmii_test_server_0_0/bd_eth10_capture_xgmii_test_server_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/xgmii_test_server_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_xgmii_fcs_0_0/bd_eth10_capture_xgmii_fcs_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/xgmii_fcs_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_address_mac_ip_0_0/bd_eth10_capture_address_mac_ip_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/address_mac_ip_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_eth_ctrl_0_0/bd_eth10_capture_eth_ctrl_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/eth_ctrl_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_system_ila_0_0/bd_eth10_capture_system_ila_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth_quad0/eth_0/system_ila_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_auto_cc_1/bd_eth10_capture_auto_cc_1.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/xdma_0_axi_periph/m02_couplers/auto_cc"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_auto_cc_0/bd_eth10_capture_auto_cc_0.xci" Type="IP">
+        <Instance HierarchyPath="pcie_dram/xdma_0_axi_periph/m01_couplers/auto_cc"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="bd_eth10_capture_ooc.xdc" Type="XDC">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="OUT_OF_CONTEXT"/>
+      </File>
+      <File Name="hw_handoff/bd_eth10_capture.hwh" Type="HwHandoff">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="HW_HANDOFF"/>
+      </File>
+      <File Name="hw_handoff/bd_eth10_capture_bd.tcl">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="HW_HANDOFF"/>
+      </File>
+      <File Name="synth/bd_eth10_capture.hwdef">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="HW_HANDOFF"/>
+      </File>
+    </FileCollection>
+  </CompositeFile>
+</Root>

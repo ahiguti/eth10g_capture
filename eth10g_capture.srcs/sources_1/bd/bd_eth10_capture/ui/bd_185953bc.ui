@@ -1,0 +1,27 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port I2C_SDA -pg 1 -y 80 -defaultsOSRD
+preplace port CLK -pg 1 -y 30 -defaultsOSRD
+preplace port I2C_SCL -pg 1 -y 60 -defaultsOSRD
+preplace port RESET_N -pg 1 -y 50 -defaultsOSRD
+preplace inst fanctrl_init_0 -pg 1 -lvl 1 -y 160 -defaultsOSRD
+preplace inst i2c_master_0 -pg 1 -lvl 2 -y 130 -defaultsOSRD
+preplace netloc i2c_master_0_READY 1 0 3 20 280 NJ 280 790
+preplace netloc i2c_master_0_ERROR 1 0 3 40 300 NJ 300 770
+preplace netloc CLK_1 1 0 2 20 30 430J
+preplace netloc fanctrl_init_0_I2CM_VALID 1 1 1 N
+preplace netloc fanctrl_init_0_I2CM_WDATA 1 1 1 N
+preplace netloc RESET_N_1 1 0 2 40 40 420J
+preplace netloc i2c_master_0_RDATA 1 0 3 30 290 NJ 290 780
+preplace netloc fanctrl_init_0_I2CM_REGADDR 1 1 1 N
+preplace netloc fanctrl_init_0_I2CM_DEVADDR 1 1 1 N
+preplace netloc fanctrl_init_0_I2CM_WBYTES 1 1 1 N
+preplace netloc Net1 1 2 1 NJ
+preplace netloc Net 1 2 1 NJ
+preplace netloc fanctrl_init_0_I2CM_RBYTES 1 1 1 N
+levelinfo -pg 1 0 230 600 810 -top 0 -bot 310
+",
+}
+
