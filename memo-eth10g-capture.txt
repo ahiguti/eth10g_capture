@@ -3,3 +3,16 @@
 - 4GB boundary (done)
 - 相手の電源が落ちているとゴミを読む。FCSエラーにするように(done)
 
+vio_0_probe_out3 = 000C (interframe gap)
+vio_0_probe_out2 = 0040 (ethernetフレームサイズ)
+vio_0_probe_out4 = 1 (FCSが一致しなくてもキャプチャする)
+vio_0_probe_out1 = 1 (テストデータ生成開始)
+root@O-11943-LIN:/var/tmp# ./xdma_mm -v 0
+err=00000000 err2=000000ff pre=0000001cb2b6feca post=0000001cb2b6e04d capa0=07f9000f capa1=0000656e pkts=0 bytes=0
+err=00000000 err2=000000ff pre=0000001cb7265393 post=0000001cb7265393 capa0=07f9000f capa1=0000656e pkts=14879452 bytes=892767120
+err=00000000 err2=000000ff pre=0000001cbb99597f post=0000001cbb99597f capa0=07f9000f capa1=0000656e pkts=14868525 bytes=892111500
+err=00000000 err2=000000ff pre=0000001cc0062e07 post=0000001cc0062e07 capa0=07f9000f capa1=0000656e pkts=14829672 bytes=889780320
+err=00000000 err2=000000ff pre=0000001cc474ea5f post=0000001cc474cbe2 capa0=07f9000f capa1=0000656e pkts=14922988 bytes=895379280
+err=00000000 err2=000000ff pre=0000001cc8e49a9f post=0000001cc8e47c22 capa0=07f9000f capa1=0000656e pkts=14904428 bytes=894265680
+err=00000000 err2=000000ff pre=0000001ccd542c62 post=0000001ccd542c62 capa0=07f9000f capa1=0000656e pkts=14837305 bytes=890238300
+

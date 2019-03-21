@@ -14,8 +14,14 @@
 #include <string.h>
 #include <stdexcept>
 #include <thread>
+#include <chrono>
+#include <signal.h>
 
 using namespace std;
+
+int verbose = 1;
+int save_raw = 0;
+int no_write = 0;
 
 struct scoped_fd {
   scoped_fd(int fd0 = -1) : fd(fd0) { }
@@ -68,8 +74,8 @@ struct xdma_aximm {
   int get_dma() const { return fd_dma; }
   void *get_user() const { return mm_user.get(); }
 private:
-  scoped_fd fd_dma;
-  scoped_mmap mm_user;
+  scoped_fd fd_dma;     // cardとhost間DMA転送   /dev/xdma0_c2h_0
+  scoped_mmap mm_user;  // 制御用レジスタ        /dev/xdma0_user
 };
 
 struct eth_capture {
@@ -90,26 +96,29 @@ struct eth_capture {
 private:
   xdma_aximm xdma;
   uint64_t cur_addr = 0;
-  const uint64_t addr_mask = 0x0fffffffu;
-  const uint64_t addr_word_l2 = 4;
+  const uint64_t addr_mask = 0x0fffffffu; // ワード単位のDRAMバッファの大きさ
+  const uint64_t addr_word_l2 = 4; // フレームはワード(16byte)境界にalign
   scoped_fd ofile;
   uint32_t err = 0;
   std::vector<uint8_t> buf_dma;
   uint32_t buf_dma_offset = 0;
   std::vector<uint8_t> buf_pcap;
   uint32_t overrun_count = 0;
+  uint64_t interval_nbytes = 0;
+  uint64_t interval_npackets = 0;
 private:
-  /* (rx_wrmem_regs.v)
-  wire [31:0] rd0 = { ERR_FULL[7:0], ERR_LONG[7:0], ERR_STS[7:0],
-      5'b0, ERR_DELIM, ERR_WCMD, ERR_S2MM };
-  wire [31:0] rd1 = 0;
-  wire [31:0] rd2 = { WADDR_PRE[35:4] };
-  wire [31:0] rd3 = { 4'b0, WADDR_PRE[63:36] };
-  wire [31:0] rd4 = { WADDR_POST[35:4] };
-  wire [31:0] rd5 = { 4'b0, WADDR_POST[63:36] };;
-  wire [31:0] rd6 = { cap_pkt[15:0], cap_wdata[15:0] };
-  wire [31:0] rd7 = { 16'b0, cap_delim, cap_cnt, cap_wcmd, cap_wordcnt };
-  */
+  /*
+   * 制御用レジスタマップ (rx_wrmem_regs.v)
+   * wire [31:0] rd0 = { ERR_FULL[7:0], ERR_LONG[7:0], ERR_STS[7:0],
+        5'b0, ERR_DELIM, ERR_WCMD, ERR_S2MM };
+   * wire [31:0] rd1 = 0;
+   * wire [31:0] rd2 = { WADDR_PRE[35:4] };
+   * wire [31:0] rd3 = { 4'b0, WADDR_PRE[63:36] };
+   * wire [31:0] rd4 = { WADDR_POST[35:4] };
+   * wire [31:0] rd5 = { 4'b0, WADDR_POST[63:36] };;
+   * wire [31:0] rd6 = { cap_pkt[15:0], cap_wdata[15:0] };
+   * wire [31:0] rd7 = { 16'b0, cap_delim, cap_cnt, cap_wcmd, cap_wordcnt };
+   */
   uint32_t get_err_stat() const {
     return ((volatile uint32_t *)xdma.get_user())[0];
   }
@@ -120,11 +129,14 @@ private:
     // 下位32bitを読むと上位32bitがラッチされるようにしてあるので下位から読む
     uint32_t al = ((volatile uint32_t *)xdma.get_user())[2];
     uint32_t ah = ((volatile uint32_t *)xdma.get_user())[3];
+    // waddr_pre: 書き込む前に、書き込む領域の次のアドレスがセットされる。
     return (uint64_t(ah) << 32u) | al;
   }
   uint64_t get_waddr_post() const {
+    // 下位32bitを読むと上位32bitがラッチされるようにしてあるので下位から読む
     uint32_t al = ((volatile uint32_t *)xdma.get_user())[4];
     uint32_t ah = ((volatile uint32_t *)xdma.get_user())[5];
+    // waddr_post: 書き込んだ後に、書き込んだ領域の次のアドレスがセットされる。
     return (uint64_t(ah) << 32u) | al;
   }
   uint32_t get_capa0() const {
@@ -140,9 +152,14 @@ void
 eth_capture::show_stat()
 {
   fprintf(stderr,
-    "err=%08x err2=%08x pre=%016llx post=%016llx capa0=%08x capa1=%08x\n",
+    "err=%08x err2=%08x pre=%016llx post=%016llx capa0=%08x capa1=%08x "
+    "pkts=%llu bytes=%llu\n",
     get_err_stat(), get_err2_stat(), (unsigned long long)get_waddr_pre(),
-    (unsigned long long)get_waddr_post(), get_capa0(), get_capa1());
+    (unsigned long long)get_waddr_post(), get_capa0(), get_capa1(),
+    (unsigned long long)interval_npackets,
+    (unsigned long long)interval_nbytes);
+  interval_npackets = 0;
+  interval_nbytes = 0;
 }
 
 void
@@ -170,23 +187,30 @@ void
 eth_capture::write_pcap()
 {
   size_t const len = buf_dma_offset;
-  size_t i = 0;
-  size_t j = 0;
+  size_t i = 0; // buf_dma上の読み出しオフセット
+  size_t j = 0; // buf_pcap上の書き込みオフセット
   while (i + 8 <= len) {
+    /*
+     * buf_dmaのフォーマット(フレーム境界はワード(16byte)にalign)
+     * (+00) plen
+     * (+02) 未使用
+     * (+04) マジック 0xdeadbeef
+     * (+08) パケット(長さplen)
+     */
     uint64_t phdr = *(uint64_t const *)(buf_dma.data() + i);
     if ((phdr >> 32u) != 0xdeadbeef) {
       fprintf(stderr, "unexpected packet header %llx\n",
         (unsigned long long)phdr);
       throw std::runtime_error("unexpected packet header");
     }
-    i += 8;
+    i += 8; // パケットヘッダ8byteの次へ移動
     uint32_t plen = phdr & 0xffffu;
     if (i + plen > len) {
-      /* not an error */
-      /*
-      fprintf(stderr, "incomplete packet data plen=%u i=%zu len=%zu\n",
-        (unsigned)plen, i, len);
-      */
+      /* まだパケット全体を読み込み終わっていない(エラーではない) */
+      if (verbose > 2) {
+        fprintf(stderr, "incomplete packet data plen=%u i=%zu len=%zu\n",
+          (unsigned)plen, i, len);
+      }
       i -= 8;
       break;
     }
@@ -197,22 +221,28 @@ eth_capture::write_pcap()
     *(uint32_t *)(buf_pcap.data() + j + 4) = 0;
     *(uint32_t *)(buf_pcap.data() + j + 8) = plen;
     *(uint32_t *)(buf_pcap.data() + j + 12) = plen;
-    j += 16;
-    memcpy(buf_pcap.data() + j, buf_dma.data() + i, plen);
+    j += 16; // pcapヘッダの次へ移動
+    memcpy(buf_pcap.data() + j, buf_dma.data() + i, plen); // パケット本体
     uint32_t idelta =
       ((plen + (1u << addr_word_l2) + 7u) >> addr_word_l2) << addr_word_l2;
-    // fprintf(stderr, "plen=%u idelta=%u\n", plen, idelta);
+    if (verbose > 1) {
+      fprintf(stderr, "write_pcap: plen=%u idelta=%u\n", plen, idelta);
+    }
     i += idelta - 8;
     j += plen;
+    interval_npackets += 1;
+    interval_nbytes += plen;
   }
   if (j != 0) {
-#if 1
-    if (::write(ofile, buf_pcap.data(), j) != (ssize_t)j) {
-      fprintf(stderr, "failed to write pcap data\n");
+    if (!no_write) {
+      if (::write(ofile, buf_pcap.data(), j) != (ssize_t)j) {
+        fprintf(stderr, "failed to write pcap data\n");
+      }
     }
-#endif
   }
-  fprintf(stderr, "examined %zu bytes\n", i);
+  if (verbose > 0) {
+    fprintf(stderr, "examined %zu bytes\n", i);
+  }
   buf_dma_offset = len - i;
   if (buf_dma_offset != 0) {
     memmove(buf_dma.data(), buf_dma.data() + i, buf_dma_offset);
@@ -229,35 +259,42 @@ eth_capture::capture_one()
   uint32_t const cur_addr_low = cur_addr & addr_mask;
   uint32_t const waddr_post_low = waddr_post & addr_mask;
   off_t const off_start = off_t(cur_addr_low) << addr_word_l2;
+  // 一度にpread()するサイズ。リングバッファの末尾を跨ぐことはできないので
+  // 末尾まで達するときはそこで切る。
   size_t len = (waddr_post_low < cur_addr_low)
     ? ((addr_mask - cur_addr_low + 1) << addr_word_l2)
     : ((waddr_post_low - cur_addr_low) << addr_word_l2);
   if (len > buf_dma.size() - buf_dma_offset) {
     len = buf_dma.size() - buf_dma_offset;
   }
-  fprintf(stderr, "addr=%llx waddr_post=%llx len=%zx\n",
-    (unsigned long long)cur_addr, (unsigned long long)waddr_post, len);
+  if (verbose > 0) {
+    fprintf(stderr, "addr=%llx waddr_post=%llx len=%zx\n",
+      (unsigned long long)cur_addr, (unsigned long long)waddr_post, len);
+  }
   ssize_t const e = ::pread(xdma.get_dma(), buf_dma.data() + buf_dma_offset,
     len, off_start);
   if (e != ssize_t(len)) {
-    fprintf(stderr, "pread len=%zu r=%zd\n", len, e);
+    if (verbose > 1) {
+      fprintf(stderr, "pread len=%zu r=%zd\n", len, e);
+    }
     return 0;
   }
   uint64_t const waddr_pre = get_waddr_pre();
-  //uint32_t const waddr_pre_low = waddr_pre & addr_mask;
   uint64_t const waddr_diff = waddr_pre - cur_addr;
   if (waddr_diff > uint64_t(addr_mask + 1)) {
     fprintf(stderr, "overrun %llx\n", (unsigned long long)waddr_diff);
     buf_dma_offset = 0;
     cur_addr = get_waddr_post();
-    if (overrun_count <= 0xffffffffu) {
+    if (overrun_count < 0xffffffffu) {
       overrun_count += 1;
     }
     return len;
   }
-  fprintf(stderr, "waddr_diff=%llx mask=%llx pre=%llx\n",
-    (unsigned long long)waddr_diff, (unsigned long long)addr_mask,
-    (unsigned long long)waddr_pre);
+  if (verbose > 0) {
+    fprintf(stderr, "waddr_diff=%llx mask=%llx pre=%llx\n",
+      (unsigned long long)waddr_diff, (unsigned long long)addr_mask,
+      (unsigned long long)waddr_pre);
+  }
   buf_dma_offset += len;
   write_pcap();
   cur_addr += len >> addr_word_l2;
@@ -266,16 +303,50 @@ eth_capture::capture_one()
 
 int main(int argc, char **argv)
 {
+  for (int i = 1; i < argc; ++i) {
+    std::string const s(argv[i]);
+    if (s == "-v" && i + 1 < argc) {
+      verbose = atoi(argv[i + 1]);
+    }
+    if (s == "-r") {
+      save_raw = 1;
+    }
+    if (s == "-n") {
+      no_write = 1;
+    }
+  }
+  /* シグナルで割り込むとxdmaドライバがおかしくなることがある。そのため
+   * SIGINT等では止められないようにする。標準入力が閉じられると終了する。
+   * xdmaドライバがおかしくなったときはinsmodしなおすと直る。
+   */
+  signal(SIGINT, SIG_IGN);
+  signal(SIGTERM, SIG_IGN);
+  typedef std::chrono::system_clock clock_type;
   try {
+    auto prev_stat_time = clock_type::now();
     eth_capture capt;
     capt.show_stat();
     capt.capture_start();
     while (true) {
+      auto now = clock_type::now();
+      if (now - prev_stat_time >= std::chrono::seconds(1)) {
+        prev_stat_time += std::chrono::seconds(1);
+        capt.show_stat();
+      }
       size_t len = capt.capture_one();
       if (len == 0) {
         std::this_thread::sleep_for(std::chrono::microseconds(10000));
       } else {
-        fprintf(stderr, "capture len=%zu\n", len);
+        if (verbose > 0) {
+          fprintf(stderr, "capture len=%zu\n", len);
+        }
+      }
+      {
+        fcntl(0, F_SETFL, O_NONBLOCK);
+        char ch = 0;
+        if (read(0, &ch, 1) == 0) {
+          break;
+        }
       }
     }
     return 0;

@@ -1,6 +1,6 @@
 
 // Copyright (C) Akira Higuchi  ( https://github.com/ahiguti )
-// Copyright (C) DeNA Co., Ltd. ( https://dena.com )
+// Copyright (C) DeNA Co.,Ltd. ( https://dena.com )
 // All rights reserved.
 // See COPYRIGHT.txt for details
 
@@ -98,7 +98,7 @@ always @(posedge CLK) begin
         info_tvalid <= 1;
         info_tdata <= { !packet_incomplete_next, fcs_correct, packet_len_next };
         err_incomplete <= packet_incomplete_next;
-        err_fcs = !fcs_correct;
+        err_fcs <= !fcs_correct;
         if (data_out_ready && xgmii_len_r != 0) begin
           data_tvalid <= 1;
           data_tdata <= xgmii_d_r;

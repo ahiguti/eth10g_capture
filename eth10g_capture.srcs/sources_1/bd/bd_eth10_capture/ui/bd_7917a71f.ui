@@ -1,0 +1,69 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port ERR_WCMD -pg 1 -y 90 -defaultsOSRD
+preplace port KEEP_ERROR_PACKET -pg 1 -y 400 -defaultsOSRD
+preplace port RESETN -pg 1 -y 180 -defaultsOSRD
+preplace port s_axi_AXILiteS -pg 1 -y 160 -defaultsOSRD
+preplace port CLEAR_ERR -pg 1 -y 320 -defaultsOSRD
+preplace port TEST_PKT -pg 1 -y 340 -defaultsOSRD
+preplace port CLK -pg 1 -y 520 -defaultsOSRD
+preplace port ERR_S2MM -pg 1 -y 60 -defaultsOSRD
+preplace port ERR_DELIM -pg 1 -y 20 -defaultsOSRD
+preplace portBus CAP_WDATA -pg 1 -y 420 -defaultsOSRD
+preplace portBus WADDR_POST -pg 1 -y 110 -defaultsOSRD
+preplace portBus CAP_DELIM -pg 1 -y 500 -defaultsOSRD
+preplace portBus ERR_LONG -pg 1 -y 340 -defaultsOSRD
+preplace portBus ERR_STS -pg 1 -y 40 -defaultsOSRD
+preplace portBus CAP_WCMD -pg 1 -y 460 -defaultsOSRD
+preplace portBus WADDR_PRE -pg 1 -y 320 -defaultsOSRD
+preplace portBus TEST_GAP_SIZE -pg 1 -y 380 -defaultsOSRD
+preplace portBus TEST_PKT_SIZE -pg 1 -y 360 -defaultsOSRD
+preplace portBus CAP_CNT -pg 1 -y 480 -defaultsOSRD
+preplace portBus CAP_PKT -pg 1 -y 400 -defaultsOSRD
+preplace portBus ERR_FULL -pg 1 -y 380 -defaultsOSRD
+preplace portBus CAP_WORDCNT -pg 1 -y 440 -defaultsOSRD
+preplace portBus ERR_FCS -pg 1 -y 360 -defaultsOSRD
+preplace inst vio_0 -pg 1 -lvl 1 -y 600 -defaultsOSRD
+preplace inst axilite_regs_0 -pg 1 -lvl 1 -y 200 -defaultsOSRD
+preplace inst rx_wrmem_regs_0 -pg 1 -lvl 2 -y 340 -defaultsOSRD
+preplace netloc Conn1 1 0 1 NJ
+preplace netloc ERR_WCMD_1 1 0 2 NJ 90 480J
+preplace netloc axilite_regs_0_RD_ADDR_EN 1 1 1 390
+preplace netloc rx_wrmem_regs_0_TEST_GAP_SIZE 1 2 1 NJ
+preplace netloc ERR_FCS_1 1 0 2 NJ 360 NJ
+preplace netloc CLK_1 1 0 2 30 80 NJ
+preplace netloc rx_wrmem_regs_0_RD_DATA_EN 1 0 3 40 300 420J 10 940
+preplace netloc CAP_CNT_1 1 0 2 NJ 480 NJ
+preplace netloc CAP_WCMD_1 1 0 2 NJ 460 NJ
+preplace netloc CAP_WDATA_1 1 0 2 NJ 420 NJ
+preplace netloc ERR_S2MM_1 1 0 2 NJ 60 510J
+preplace netloc CAP_WORDCNT_1 1 0 2 NJ 440 NJ
+preplace netloc WADDR_PRE_1 1 0 2 NJ 320 430J
+preplace netloc axilite_regs_0_WR_EN 1 1 1 430
+preplace netloc CAP_DELIM_1 1 0 2 NJ 500 NJ
+preplace netloc vio_0_probe_out0 1 1 1 410
+preplace netloc rx_wrmem_regs_0_KEEP_ERROR_PACKET 1 2 1 NJ
+preplace netloc ERR_STS_1 1 0 2 NJ 40 490J
+preplace netloc ERR_LONG_1 1 0 2 NJ 340 NJ
+preplace netloc rx_wrmem_regs_0_RD_DATA 1 0 3 50 310 450J 20 930
+preplace netloc axilite_regs_0_WR_ADDR 1 1 1 460
+preplace netloc rx_wrmem_regs_0_CLEAR_ERR 1 2 1 NJ
+preplace netloc rx_wrmem_regs_0_TEST_PKT_SIZE 1 2 1 NJ
+preplace netloc ERR_DELIM_1 1 0 2 NJ 20 400J
+preplace netloc vio_0_probe_out1 1 1 1 450
+preplace netloc vio_0_probe_out2 1 1 1 480
+preplace netloc vio_0_probe_out3 1 1 1 500
+preplace netloc CAP_PKT_1 1 0 2 NJ 400 NJ
+preplace netloc ERR_FULL_1 1 0 2 NJ 380 NJ
+preplace netloc axilite_regs_0_WR_DATA 1 1 1 470
+preplace netloc vio_0_probe_out4 1 1 1 510
+preplace netloc WADDR_POST_1 1 0 2 50J 100 440J
+preplace netloc rx_wrmem_regs_0_TEST_PKT 1 2 1 NJ
+preplace netloc RESETN_1 1 0 2 20 70 500J
+preplace netloc axilite_regs_0_RD_ADDR 1 1 1 410
+levelinfo -pg 1 0 220 720 960 -top 0 -bot 700
+",
+}
+0

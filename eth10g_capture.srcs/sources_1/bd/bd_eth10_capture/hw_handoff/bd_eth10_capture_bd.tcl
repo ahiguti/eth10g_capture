@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# fanctrl_init, i2c_master, axilite_regs, rx_wrmem_regs, address_mac_ip, eth_ctrl, xgmii_fcs, xgmii_test_server, axis_fifo, axis_fifo, axis_fifo, axis_fifo, axis_fifo, axis_fork, axis_fork, gen_datamover_wcmd, get_word_count, groupify_wordcnt, rx_wrmem_status, update_packet_delim, add_packet_header, axis_fifo, axis_fifo, axis_fifo, err_counter, err_counter, get_packet_info, testpat_rx
+# axis_fifo, axis_fifo, axis_fifo, axis_fifo, axis_fifo, axis_fork, axis_fork, gen_datamover_wcmd, get_word_count, groupify_wordcnt, rx_wrmem_status, update_packet_delim, axilite_regs, rx_wrmem_regs, fanctrl_init, i2c_master, add_packet_header, axis_fifo, axis_fifo, axis_fifo, err_counter, err_counter, get_packet_info, testpat_rx, address_mac_ip, eth_ctrl, testpat_xgmii_rx, xgmii_fcs, xgmii_test_server
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -129,6 +129,207 @@ if { $nRet != 0 } {
 ##################################################################
 
 
+# Hierarchical cell: eth_0
+proc create_hier_cell_eth_0 { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_eth_0() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 MGTCLK0
+
+  # Create pins
+  create_bd_pin -dir O -type clk DBG_CLK
+  create_bd_pin -dir O -from 1 -to 0 DEBUG_OUT
+  create_bd_pin -dir O FCS_CORRECT
+  create_bd_pin -dir O FCS_EN
+  create_bd_pin -dir I -from 15 -to 0 GAPLEN
+  create_bd_pin -dir I -from 15 -to 0 PKTLEN
+  create_bd_pin -dir O -from 63 -to 0 RXD
+  create_bd_pin -dir O -from 3 -to 0 RXLEN
+  create_bd_pin -dir I SFP1_RX_N
+  create_bd_pin -dir I SFP1_RX_P
+  create_bd_pin -dir O SFP1_TX_N
+  create_bd_pin -dir O SFP1_TX_P
+  create_bd_pin -dir I STARTBTN
+  create_bd_pin -dir O -type rst areset_coreclk_out
+  create_bd_pin -dir O -type rst areset_datapathclk_out
+  create_bd_pin -dir O -type clk coreclk_out
+  create_bd_pin -dir I -type clk dclk
+  create_bd_pin -dir O -type rst gtrxreset_out
+  create_bd_pin -dir O -type rst gttxreset_out
+  create_bd_pin -dir O qpll0lock_out
+  create_bd_pin -dir O -type clk qpll0outclk_out
+  create_bd_pin -dir O -type clk qpll0outrefclk_out
+  create_bd_pin -dir I -type rst reset
+  create_bd_pin -dir O reset_counter_done_out
+  create_bd_pin -dir O txuserrdy_out
+  create_bd_pin -dir O -type clk txusrclk2_out
+  create_bd_pin -dir O -type clk txusrclk_out
+
+  # Create instance: address_mac_ip_0, and set properties
+  set block_name address_mac_ip
+  set block_cell_name address_mac_ip_0
+  if { [catch {set address_mac_ip_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $address_mac_ip_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: eth_ctrl_0, and set properties
+  set block_name eth_ctrl
+  set block_cell_name eth_ctrl_0
+  if { [catch {set eth_ctrl_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $eth_ctrl_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: system_ila_0, and set properties
+  set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
+  set_property -dict [ list \
+   CONFIG.C_MON_TYPE {NATIVE} \
+   CONFIG.C_NUM_OF_PROBES {6} \
+ ] $system_ila_0
+
+  # Create instance: ten_gig_eth_pcs_pma_0, and set properties
+  set ten_gig_eth_pcs_pma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ten_gig_eth_pcs_pma:6.0 ten_gig_eth_pcs_pma_0 ]
+  set_property -dict [ list \
+   CONFIG.Locations {X0Y12} \
+   CONFIG.RefClk {clk0} \
+   CONFIG.SupportLevel {1} \
+   CONFIG.base_kr {BASE-R} \
+   CONFIG.no_ebuff {false} \
+ ] $ten_gig_eth_pcs_pma_0
+
+  # Create instance: testpat_xgmii_rx_0, and set properties
+  set block_name testpat_xgmii_rx
+  set block_cell_name testpat_xgmii_rx_0
+  if { [catch {set testpat_xgmii_rx_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $testpat_xgmii_rx_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: xgmii_fcs_0, and set properties
+  set block_name xgmii_fcs
+  set block_cell_name xgmii_fcs_0
+  if { [catch {set xgmii_fcs_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $xgmii_fcs_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: xgmii_test_server_0, and set properties
+  set block_name xgmii_test_server
+  set block_cell_name xgmii_test_server_0
+  if { [catch {set xgmii_test_server_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $xgmii_test_server_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+ ] $xlconstant_0
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins MGTCLK0] [get_bd_intf_pins ten_gig_eth_pcs_pma_0/refclk_diff_port]
+  connect_bd_intf_net -intf_net ten_gig_eth_pcs_pma_0_core_to_gt_drp [get_bd_intf_pins ten_gig_eth_pcs_pma_0/core_to_gt_drp] [get_bd_intf_pins ten_gig_eth_pcs_pma_0/gt_drp]
+
+  # Create port connections
+  connect_bd_net -net CLK_1 [get_bd_pins txusrclk2_out] [get_bd_pins system_ila_0/clk] [get_bd_pins ten_gig_eth_pcs_pma_0/txusrclk2_out] [get_bd_pins testpat_xgmii_rx_0/CLK] [get_bd_pins xgmii_fcs_0/CLK] [get_bd_pins xgmii_test_server_0/CLK]
+  connect_bd_net -net GAPLEN_0_1 [get_bd_pins GAPLEN] [get_bd_pins testpat_xgmii_rx_0/GAPLEN]
+  connect_bd_net -net PKTLEN_0_1 [get_bd_pins PKTLEN] [get_bd_pins testpat_xgmii_rx_0/PKTLEN]
+  connect_bd_net -net SFP1_RX_N_1 [get_bd_pins SFP1_RX_N] [get_bd_pins ten_gig_eth_pcs_pma_0/rxn]
+  connect_bd_net -net SFP1_RX_P_1 [get_bd_pins SFP1_RX_P] [get_bd_pins ten_gig_eth_pcs_pma_0/rxp]
+  connect_bd_net -net STARTBTN_0_1 [get_bd_pins STARTBTN] [get_bd_pins testpat_xgmii_rx_0/STARTBTN]
+  connect_bd_net -net address_mac_ip_0_IP_ADDR [get_bd_pins address_mac_ip_0/IP_ADDR] [get_bd_pins xgmii_test_server_0/LOCAL_IP]
+  connect_bd_net -net address_mac_ip_0_MAC_ADDR [get_bd_pins address_mac_ip_0/MAC_ADDR] [get_bd_pins xgmii_test_server_0/LOCAL_MAC]
+  connect_bd_net -net dclk_1 [get_bd_pins dclk] [get_bd_pins ten_gig_eth_pcs_pma_0/dclk]
+  connect_bd_net -net eth_ctrl_0_clken [get_bd_pins eth_ctrl_0/clken] [get_bd_pins xgmii_test_server_0/CLOCK_EN]
+  connect_bd_net -net eth_ctrl_0_mdc [get_bd_pins eth_ctrl_0/mdc] [get_bd_pins ten_gig_eth_pcs_pma_0/mdc]
+  connect_bd_net -net eth_ctrl_0_mdio_w [get_bd_pins eth_ctrl_0/mdio_w] [get_bd_pins ten_gig_eth_pcs_pma_0/mdio_in]
+  connect_bd_net -net eth_ctrl_0_pma_pmd_type [get_bd_pins eth_ctrl_0/pma_pmd_type] [get_bd_pins ten_gig_eth_pcs_pma_0/pma_pmd_type]
+  connect_bd_net -net eth_ctrl_0_prtad [get_bd_pins eth_ctrl_0/prtad] [get_bd_pins ten_gig_eth_pcs_pma_0/prtad]
+  connect_bd_net -net eth_ctrl_0_signal_detect [get_bd_pins eth_ctrl_0/signal_detect] [get_bd_pins ten_gig_eth_pcs_pma_0/signal_detect]
+  connect_bd_net -net eth_ctrl_0_sim_speedup_control [get_bd_pins eth_ctrl_0/sim_speedup_control] [get_bd_pins ten_gig_eth_pcs_pma_0/sim_speedup_control]
+  connect_bd_net -net eth_ctrl_0_tx_fault [get_bd_pins eth_ctrl_0/tx_fault] [get_bd_pins ten_gig_eth_pcs_pma_0/tx_fault]
+  connect_bd_net -net reset_2 [get_bd_pins reset] [get_bd_pins ten_gig_eth_pcs_pma_0/reset]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_areset_coreclk_out [get_bd_pins areset_coreclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/areset_coreclk_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_areset_datapathclk_out [get_bd_pins areset_datapathclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/areset_datapathclk_out] [get_bd_pins testpat_xgmii_rx_0/RESET] [get_bd_pins xgmii_fcs_0/RESET] [get_bd_pins xgmii_test_server_0/RESET]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_coreclk_out [get_bd_pins coreclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/coreclk_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_drp_req [get_bd_pins ten_gig_eth_pcs_pma_0/drp_gnt] [get_bd_pins ten_gig_eth_pcs_pma_0/drp_req]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_gtrxreset_out [get_bd_pins gtrxreset_out] [get_bd_pins ten_gig_eth_pcs_pma_0/gtrxreset_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_gttxreset_out [get_bd_pins gttxreset_out] [get_bd_pins ten_gig_eth_pcs_pma_0/gttxreset_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_qpll0lock_out [get_bd_pins qpll0lock_out] [get_bd_pins ten_gig_eth_pcs_pma_0/qpll0lock_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_qpll0outclk_out [get_bd_pins qpll0outclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/qpll0outclk_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_qpll0outrefclk_out [get_bd_pins qpll0outrefclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/qpll0outrefclk_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_reset_counter_done_out [get_bd_pins reset_counter_done_out] [get_bd_pins ten_gig_eth_pcs_pma_0/reset_counter_done_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_rxrecclk_out [get_bd_pins DBG_CLK] [get_bd_pins ten_gig_eth_pcs_pma_0/rxrecclk_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_txn [get_bd_pins SFP1_TX_N] [get_bd_pins ten_gig_eth_pcs_pma_0/txn]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_txp [get_bd_pins SFP1_TX_P] [get_bd_pins ten_gig_eth_pcs_pma_0/txp]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_txuserrdy_out [get_bd_pins txuserrdy_out] [get_bd_pins ten_gig_eth_pcs_pma_0/txuserrdy_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_txusrclk_out [get_bd_pins txusrclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/txusrclk_out]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_xgmii_rxc [get_bd_pins system_ila_0/probe0] [get_bd_pins testpat_xgmii_rx_0/OUT_RXC] [get_bd_pins xgmii_fcs_0/XGMII_RXC]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_xgmii_rxc1 [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_rxc] [get_bd_pins testpat_xgmii_rx_0/IN_RXC]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_xgmii_rxd [get_bd_pins system_ila_0/probe1] [get_bd_pins testpat_xgmii_rx_0/OUT_RXD] [get_bd_pins xgmii_fcs_0/XGMII_RXD]
+  connect_bd_net -net ten_gig_eth_pcs_pma_0_xgmii_rxd1 [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_rxd] [get_bd_pins testpat_xgmii_rx_0/IN_RXD]
+  connect_bd_net -net xgmii_fcs_0_DEBUG_ALIGN [get_bd_pins DEBUG_OUT] [get_bd_pins xgmii_fcs_0/DEBUG_ALIGN]
+  connect_bd_net -net xgmii_fcs_0_FCS_CORRECT [get_bd_pins FCS_CORRECT] [get_bd_pins system_ila_0/probe5] [get_bd_pins xgmii_fcs_0/FCS_CORRECT]
+  connect_bd_net -net xgmii_fcs_0_FCS_EN [get_bd_pins FCS_EN] [get_bd_pins system_ila_0/probe4] [get_bd_pins xgmii_fcs_0/FCS_EN]
+  connect_bd_net -net xgmii_fcs_0_RXD_OUT [get_bd_pins RXD] [get_bd_pins system_ila_0/probe3] [get_bd_pins xgmii_fcs_0/RXD_OUT] [get_bd_pins xgmii_test_server_0/RXD_IN]
+  connect_bd_net -net xgmii_fcs_0_RXLEN_OUT [get_bd_pins RXLEN] [get_bd_pins system_ila_0/probe2] [get_bd_pins xgmii_fcs_0/RXLEN_OUT] [get_bd_pins xgmii_test_server_0/RXLEN_IN]
+  connect_bd_net -net xgmii_fcs_0_XGMII_TXC [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_txc] [get_bd_pins xgmii_fcs_0/XGMII_TXC]
+  connect_bd_net -net xgmii_fcs_0_XGMII_TXD [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_txd] [get_bd_pins xgmii_fcs_0/XGMII_TXD]
+  connect_bd_net -net xgmii_test_server_0_TXD_OUT [get_bd_pins xgmii_fcs_0/TXD_IN] [get_bd_pins xgmii_test_server_0/TXD_OUT]
+  connect_bd_net -net xgmii_test_server_0_TXLEN_OUT [get_bd_pins xgmii_fcs_0/TXLEN_IN] [get_bd_pins xgmii_test_server_0/TXLEN_OUT]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins eth_ctrl_0/rx_loss] [get_bd_pins xlconstant_0/dout]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
 # Hierarchical cell: xgmii_to_axis
 proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
 
@@ -176,6 +377,7 @@ proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
   create_bd_pin -dir I FCS_EN
   create_bd_pin -dir I -from 63 -to 0 IN_RXD
   create_bd_pin -dir I -from 3 -to 0 IN_RXLEN
+  create_bd_pin -dir I KEEP_ERROR_PACKET
   create_bd_pin -dir I TEST_PKT
   create_bd_pin -dir I -from 15 -to 0 TEST_PKT_SIZE
   create_bd_pin -dir I -type clk XGMII_CLK
@@ -309,6 +511,7 @@ proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
   connect_bd_net -net FCS_EN_1 [get_bd_pins FCS_EN] [get_bd_pins testpat_rx_0/IN_FCS_EN]
   connect_bd_net -net IN_RXD_1 [get_bd_pins IN_RXD] [get_bd_pins testpat_rx_0/IN_RXD]
   connect_bd_net -net IN_RXLEN_1 [get_bd_pins IN_RXLEN] [get_bd_pins testpat_rx_0/IN_RXLEN]
+  connect_bd_net -net KEEP_ERROR_PACKET_0_1 [get_bd_pins KEEP_ERROR_PACKET] [get_bd_pins add_packet_header_0/KEEP_ERROR_PACKET]
   connect_bd_net -net PKTLEN_1 [get_bd_pins TEST_PKT_SIZE] [get_bd_pins testpat_rx_0/PKTLEN]
   connect_bd_net -net STARTBTN_1 [get_bd_pins TEST_PKT] [get_bd_pins testpat_rx_0/STARTBTN]
   connect_bd_net -net XGMII_CLK_1 [get_bd_pins XGMII_CLK] [get_bd_pins add_packet_header_0/CLK] [get_bd_pins axis_fifo_pdata/CLK] [get_bd_pins axis_fifo_pinfo/CLK] [get_bd_pins axis_fifo_pkt/CLK] [get_bd_pins err_counter_fcs/CLK] [get_bd_pins err_counter_full/CLK] [get_bd_pins get_packet_info_0/CLK] [get_bd_pins testpat_rx_0/CLK]
@@ -325,612 +528,6 @@ proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
   connect_bd_net -net testpat_rx_0_OUT_RXLEN [get_bd_pins get_packet_info_0/XGMII_LEN] [get_bd_pins testpat_rx_0/OUT_RXLEN]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins err_counter_full/IVAL] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins ERR_LONG] [get_bd_pins xlconstant_0/dout]
-
-  # Restore current instance
-  current_bd_instance $oldCurInst
-}
-
-# Hierarchical cell: axis_wrmem
-proc create_hier_cell_axis_wrmem { parentCell nameHier } {
-
-  variable script_folder
-
-  if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_axis_wrmem() - Empty argument(s)!"}
-     return
-  }
-
-  # Get object for parentCell
-  set parentObj [get_bd_cells $parentCell]
-  if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
-     return
-  }
-
-  # Make sure parentObj is hier blk
-  set parentType [get_property TYPE $parentObj]
-  if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
-     return
-  }
-
-  # Save current instance; Restore later
-  set oldCurInst [current_bd_instance .]
-
-  # Set parent object as current
-  current_bd_instance $parentObj
-
-  # Create cell and set as current instance
-  set hier_obj [create_bd_cell -type hier $nameHier]
-  current_bd_instance $hier_obj
-
-  # Create interface pins
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 IV
-  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_S2MM
-
-  # Create pins
-  create_bd_pin -dir O -from 3 -to 0 CAP_CNT
-  create_bd_pin -dir O -from 3 -to 0 CAP_DELIM
-  create_bd_pin -dir O -from 3 -to 0 CAP_WCMD
-  create_bd_pin -dir O -from 14 -to 0 CAP_WDATA
-  create_bd_pin -dir O -from 4 -to 0 CAP_WORDCNT
-  create_bd_pin -dir O -from 63 -to 0 CUR_ADDR
-  create_bd_pin -dir O -from 63 -to 0 CUR_WADDR
-  create_bd_pin -dir O ERR_DELIM
-  create_bd_pin -dir O -from 1 -to 0 ERR_FATAL
-  create_bd_pin -dir O -from 7 -to 0 ERR_STS
-  create_bd_pin -dir I -type clk XGMII_CLK
-  create_bd_pin -dir I -type rst XGMII_RESETN
-  create_bd_pin -dir O s2mm_err
-
-  # Create instance: axi_datamover_0, and set properties
-  set axi_datamover_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_datamover:5.1 axi_datamover_0 ]
-  set_property -dict [ list \
-   CONFIG.c_addr_width {64} \
-   CONFIG.c_dummy {1} \
-   CONFIG.c_enable_mm2s {0} \
-   CONFIG.c_m_axi_s2mm_data_width {128} \
-   CONFIG.c_s2mm_btt_used {23} \
-   CONFIG.c_s2mm_burst_size {256} \
-   CONFIG.c_s_axis_s2mm_tdata_width {128} \
- ] $axi_datamover_0
-
-  # Create instance: axis_fifo_wcmd, and set properties
-  set block_name axis_fifo
-  set block_cell_name axis_fifo_wcmd
-  if { [catch {set axis_fifo_wcmd [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fifo_wcmd eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.FIFO_REG {8} \
-   CONFIG.FIFO_SIZE_L2 {0} \
-   CONFIG.WIDTH_DATA {104} \
- ] $axis_fifo_wcmd
-
-  # Create instance: axis_fifo_wcmd_cnt, and set properties
-  set block_name axis_fifo
-  set block_cell_name axis_fifo_wcmd_cnt
-  if { [catch {set axis_fifo_wcmd_cnt [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fifo_wcmd_cnt eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.FIFO_REG {8} \
-   CONFIG.FIFO_SIZE_L2 {0} \
-   CONFIG.WIDTH_DATA {104} \
- ] $axis_fifo_wcmd_cnt
-
-  # Create instance: axis_fifo_wcmd_delim, and set properties
-  set block_name axis_fifo
-  set block_cell_name axis_fifo_wcmd_delim
-  if { [catch {set axis_fifo_wcmd_delim [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fifo_wcmd_delim eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.FIFO_REG {8} \
-   CONFIG.FIFO_SIZE_L2 {0} \
-   CONFIG.WIDTH_DATA {104} \
- ] $axis_fifo_wcmd_delim
-
-  # Create instance: axis_fifo_wdata, and set properties
-  set block_name axis_fifo
-  set block_cell_name axis_fifo_wdata
-  if { [catch {set axis_fifo_wdata [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fifo_wdata eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.FIFO_SIZE_L2 {14} \
-   CONFIG.WIDTH_DATA {128} \
- ] $axis_fifo_wdata
-
-  # Create instance: axis_fifo_wordcnt, and set properties
-  set block_name axis_fifo
-  set block_cell_name axis_fifo_wordcnt
-  if { [catch {set axis_fifo_wordcnt [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fifo_wordcnt eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.FIFO_REG {16} \
-   CONFIG.FIFO_SIZE_L2 {0} \
-   CONFIG.WIDTH_DATA {16} \
-   CONFIG.WIDTH_LAST {0} \
- ] $axis_fifo_wordcnt
-
-  # Create instance: axis_fork_0, and set properties
-  set block_name axis_fork
-  set block_cell_name axis_fork_0
-  if { [catch {set axis_fork_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fork_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.WIDTH_DATA {104} \
-   CONFIG.WIDTH_LAST {0} \
- ] $axis_fork_0
-
-  # Create instance: axis_fork_1, and set properties
-  set block_name axis_fork
-  set block_cell_name axis_fork_1
-  if { [catch {set axis_fork_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axis_fork_1 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.WIDTH_DATA {104} \
-   CONFIG.WIDTH_LAST {0} \
- ] $axis_fork_1
-
-  # Create instance: gen_datamover_wcmd_0, and set properties
-  set block_name gen_datamover_wcmd
-  set block_cell_name gen_datamover_wcmd_0
-  if { [catch {set gen_datamover_wcmd_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $gen_datamover_wcmd_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: get_word_count_0, and set properties
-  set block_name get_word_count
-  set block_cell_name get_word_count_0
-  if { [catch {set get_word_count_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $get_word_count_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.WORD_SIZE_L2 {4} \
- ] $get_word_count_0
-
-  # Create instance: groupify_wordcnt_0, and set properties
-  set block_name groupify_wordcnt
-  set block_cell_name groupify_wordcnt_0
-  if { [catch {set groupify_wordcnt_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $groupify_wordcnt_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: rx_wrmem_status_0, and set properties
-  set block_name rx_wrmem_status
-  set block_cell_name rx_wrmem_status_0
-  if { [catch {set rx_wrmem_status_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $rx_wrmem_status_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: update_packet_delim_1, and set properties
-  set block_name update_packet_delim
-  set block_cell_name update_packet_delim_1
-  if { [catch {set update_packet_delim_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $update_packet_delim_1 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: xlconstant_1, and set properties
-  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {65535} \
-   CONFIG.CONST_WIDTH {16} \
- ] $xlconstant_1
-
-  # Create interface connections
-  connect_bd_intf_net -intf_net Conn2 [get_bd_intf_pins M_AXI_S2MM] [get_bd_intf_pins axi_datamover_0/M_AXI_S2MM]
-  connect_bd_intf_net -intf_net Conn3 [get_bd_intf_pins IV] [get_bd_intf_pins get_word_count_0/IV]
-  connect_bd_intf_net -intf_net axi_datamover_0_M_AXIS_S2MM_STS [get_bd_intf_pins axi_datamover_0/M_AXIS_S2MM_STS] [get_bd_intf_pins rx_wrmem_status_0/STS]
-  connect_bd_intf_net -intf_net axis_fifo_wcmd_OV [get_bd_intf_pins axi_datamover_0/S_AXIS_S2MM_CMD] [get_bd_intf_pins axis_fifo_wcmd/OV]
-  connect_bd_intf_net -intf_net axis_fifo_wcmd_cnt_OV [get_bd_intf_pins axis_fifo_wcmd_cnt/OV] [get_bd_intf_pins rx_wrmem_status_0/WCMD]
-  connect_bd_intf_net -intf_net axis_fifo_wcmd_delim_OV [get_bd_intf_pins axis_fifo_wcmd_delim/OV] [get_bd_intf_pins update_packet_delim_1/IWCMD]
-  connect_bd_intf_net -intf_net axis_fifo_wdata_OV [get_bd_intf_pins axis_fifo_wdata/OV] [get_bd_intf_pins update_packet_delim_1/IWDATA]
-  connect_bd_intf_net -intf_net axis_fifo_wordcnt_OV [get_bd_intf_pins axis_fifo_wordcnt/OV] [get_bd_intf_pins groupify_wordcnt_0/IV]
-  connect_bd_intf_net -intf_net axis_fork_0_OV0 [get_bd_intf_pins axis_fork_0/OV0] [get_bd_intf_pins axis_fork_1/IV]
-  connect_bd_intf_net -intf_net axis_fork_0_OV1 [get_bd_intf_pins axis_fifo_wcmd/IV] [get_bd_intf_pins axis_fork_0/OV1]
-  connect_bd_intf_net -intf_net axis_fork_1_OV0 [get_bd_intf_pins axis_fifo_wcmd_cnt/IV] [get_bd_intf_pins axis_fork_1/OV0]
-  connect_bd_intf_net -intf_net axis_fork_1_OV1 [get_bd_intf_pins axis_fifo_wcmd_delim/IV] [get_bd_intf_pins axis_fork_1/OV1]
-  connect_bd_intf_net -intf_net gen_datamover_wcmd_0_WCMD [get_bd_intf_pins axis_fork_0/IV] [get_bd_intf_pins gen_datamover_wcmd_0/WCMD]
-  connect_bd_intf_net -intf_net get_word_count_0_OV [get_bd_intf_pins axis_fifo_wdata/IV] [get_bd_intf_pins get_word_count_0/OV]
-  connect_bd_intf_net -intf_net get_word_count_0_WORDCNT [get_bd_intf_pins axis_fifo_wordcnt/IV] [get_bd_intf_pins get_word_count_0/WORDCNT]
-  connect_bd_intf_net -intf_net groupify_wordcnt_0_OV [get_bd_intf_pins gen_datamover_wcmd_0/WORDCNT] [get_bd_intf_pins groupify_wordcnt_0/OV]
-  connect_bd_intf_net -intf_net update_packet_delim_1_OWDATA [get_bd_intf_pins axi_datamover_0/S_AXIS_S2MM] [get_bd_intf_pins update_packet_delim_1/OWDATA]
-
-  # Create port connections
-  connect_bd_net -net XGMII_CLK_1 [get_bd_pins XGMII_CLK] [get_bd_pins axi_datamover_0/m_axi_s2mm_aclk] [get_bd_pins axi_datamover_0/m_axis_s2mm_cmdsts_awclk] [get_bd_pins axis_fifo_wcmd/CLK] [get_bd_pins axis_fifo_wcmd_cnt/CLK] [get_bd_pins axis_fifo_wcmd_delim/CLK] [get_bd_pins axis_fifo_wdata/CLK] [get_bd_pins axis_fifo_wordcnt/CLK] [get_bd_pins axis_fork_0/CLK] [get_bd_pins axis_fork_1/CLK] [get_bd_pins gen_datamover_wcmd_0/CLK] [get_bd_pins get_word_count_0/CLK] [get_bd_pins groupify_wordcnt_0/CLK] [get_bd_pins rx_wrmem_status_0/CLK] [get_bd_pins update_packet_delim_1/CLK]
-  connect_bd_net -net XGMII_RESETN_1 [get_bd_pins XGMII_RESETN] [get_bd_pins axi_datamover_0/m_axi_s2mm_aresetn] [get_bd_pins axi_datamover_0/m_axis_s2mm_cmdsts_aresetn] [get_bd_pins axis_fifo_wcmd/RESETN] [get_bd_pins axis_fifo_wcmd_cnt/RESETN] [get_bd_pins axis_fifo_wcmd_delim/RESETN] [get_bd_pins axis_fifo_wdata/RESETN] [get_bd_pins axis_fifo_wordcnt/RESETN] [get_bd_pins axis_fork_0/RESETN] [get_bd_pins axis_fork_1/RESETN] [get_bd_pins gen_datamover_wcmd_0/RESETN] [get_bd_pins get_word_count_0/RESETN] [get_bd_pins groupify_wordcnt_0/RESETN] [get_bd_pins rx_wrmem_status_0/RESETN] [get_bd_pins update_packet_delim_1/RESETN]
-  connect_bd_net -net axi_datamover_0_s2mm_err [get_bd_pins s2mm_err] [get_bd_pins axi_datamover_0/s2mm_err]
-  connect_bd_net -net axis_fifo_wcmd_CAP_PUSH [get_bd_pins CAP_WCMD] [get_bd_pins axis_fifo_wcmd/CAP_PUSH]
-  connect_bd_net -net axis_fifo_wcmd_cnt_CAP_PUSH [get_bd_pins CAP_CNT] [get_bd_pins axis_fifo_wcmd_cnt/CAP_PUSH]
-  connect_bd_net -net axis_fifo_wcmd_delim_CAP_PUSH [get_bd_pins CAP_DELIM] [get_bd_pins axis_fifo_wcmd_delim/CAP_PUSH]
-  connect_bd_net -net axis_fifo_wdata_CAP_PUSH [get_bd_pins CAP_WDATA] [get_bd_pins axis_fifo_wdata/CAP_PUSH]
-  connect_bd_net -net axis_fifo_wordcnt_CAP_PUSH [get_bd_pins CAP_WORDCNT] [get_bd_pins axis_fifo_wordcnt/CAP_PUSH]
-  connect_bd_net -net gen_datamover_wcmd_0_CUR_ADDR [get_bd_pins CUR_ADDR] [get_bd_pins gen_datamover_wcmd_0/CUR_ADDR]
-  connect_bd_net -net gen_datamover_wcmd_0_ERR_FATAL [get_bd_pins ERR_FATAL] [get_bd_pins gen_datamover_wcmd_0/ERR_FATAL]
-  connect_bd_net -net rx_wrmem_status_0_CUR_WADDR [get_bd_pins CUR_WADDR] [get_bd_pins rx_wrmem_status_0/CUR_WADDR]
-  connect_bd_net -net rx_wrmem_status_0_ERR_STS [get_bd_pins ERR_STS] [get_bd_pins rx_wrmem_status_0/ERR_STS]
-  connect_bd_net -net update_packet_delim_1_ERR_DELIM [get_bd_pins ERR_DELIM] [get_bd_pins update_packet_delim_1/ERR_DELIM]
-  connect_bd_net -net xlconstant_1_dout [get_bd_pins axi_datamover_0/s_axis_s2mm_tkeep] [get_bd_pins xlconstant_1/dout]
-
-  # Restore current instance
-  current_bd_instance $oldCurInst
-}
-
-# Hierarchical cell: eth_0
-proc create_hier_cell_eth_0 { parentCell nameHier } {
-
-  variable script_folder
-
-  if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_eth_0() - Empty argument(s)!"}
-     return
-  }
-
-  # Get object for parentCell
-  set parentObj [get_bd_cells $parentCell]
-  if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
-     return
-  }
-
-  # Make sure parentObj is hier blk
-  set parentType [get_property TYPE $parentObj]
-  if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
-     return
-  }
-
-  # Save current instance; Restore later
-  set oldCurInst [current_bd_instance .]
-
-  # Set parent object as current
-  current_bd_instance $parentObj
-
-  # Create cell and set as current instance
-  set hier_obj [create_bd_cell -type hier $nameHier]
-  current_bd_instance $hier_obj
-
-  # Create interface pins
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 MGTCLK0
-
-  # Create pins
-  create_bd_pin -dir O -type clk DBG_CLK
-  create_bd_pin -dir O -from 1 -to 0 DEBUG_OUT
-  create_bd_pin -dir O FCS_CORRECT
-  create_bd_pin -dir O FCS_EN
-  create_bd_pin -dir O -from 63 -to 0 RXD
-  create_bd_pin -dir O -from 3 -to 0 RXLEN
-  create_bd_pin -dir I SFP1_RX_N
-  create_bd_pin -dir I SFP1_RX_P
-  create_bd_pin -dir O SFP1_TX_N
-  create_bd_pin -dir O SFP1_TX_P
-  create_bd_pin -dir O -type rst areset_coreclk_out
-  create_bd_pin -dir O -type rst areset_datapathclk_out
-  create_bd_pin -dir O -type clk coreclk_out
-  create_bd_pin -dir I -type clk dclk
-  create_bd_pin -dir O -type rst gtrxreset_out
-  create_bd_pin -dir O -type rst gttxreset_out
-  create_bd_pin -dir O qpll0lock_out
-  create_bd_pin -dir O -type clk qpll0outclk_out
-  create_bd_pin -dir O -type clk qpll0outrefclk_out
-  create_bd_pin -dir I -type rst reset
-  create_bd_pin -dir O reset_counter_done_out
-  create_bd_pin -dir O txuserrdy_out
-  create_bd_pin -dir O -type clk txusrclk2_out
-  create_bd_pin -dir O -type clk txusrclk_out
-
-  # Create instance: address_mac_ip_0, and set properties
-  set block_name address_mac_ip
-  set block_cell_name address_mac_ip_0
-  if { [catch {set address_mac_ip_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $address_mac_ip_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: eth_ctrl_0, and set properties
-  set block_name eth_ctrl
-  set block_cell_name eth_ctrl_0
-  if { [catch {set eth_ctrl_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $eth_ctrl_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: system_ila_0, and set properties
-  set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
-  set_property -dict [ list \
-   CONFIG.C_MON_TYPE {NATIVE} \
-   CONFIG.C_NUM_OF_PROBES {6} \
- ] $system_ila_0
-
-  # Create instance: ten_gig_eth_pcs_pma_0, and set properties
-  set ten_gig_eth_pcs_pma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ten_gig_eth_pcs_pma:6.0 ten_gig_eth_pcs_pma_0 ]
-  set_property -dict [ list \
-   CONFIG.Locations {X0Y12} \
-   CONFIG.RefClk {clk0} \
-   CONFIG.SupportLevel {1} \
-   CONFIG.base_kr {BASE-R} \
-   CONFIG.no_ebuff {false} \
- ] $ten_gig_eth_pcs_pma_0
-
-  # Create instance: xgmii_fcs_0, and set properties
-  set block_name xgmii_fcs
-  set block_cell_name xgmii_fcs_0
-  if { [catch {set xgmii_fcs_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $xgmii_fcs_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: xgmii_test_server_0, and set properties
-  set block_name xgmii_test_server
-  set block_cell_name xgmii_test_server_0
-  if { [catch {set xgmii_test_server_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $xgmii_test_server_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: xlconstant_0, and set properties
-  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {0} \
- ] $xlconstant_0
-
-  # Create interface connections
-  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins MGTCLK0] [get_bd_intf_pins ten_gig_eth_pcs_pma_0/refclk_diff_port]
-  connect_bd_intf_net -intf_net ten_gig_eth_pcs_pma_0_core_to_gt_drp [get_bd_intf_pins ten_gig_eth_pcs_pma_0/core_to_gt_drp] [get_bd_intf_pins ten_gig_eth_pcs_pma_0/gt_drp]
-
-  # Create port connections
-  connect_bd_net -net CLK_1 [get_bd_pins txusrclk2_out] [get_bd_pins system_ila_0/clk] [get_bd_pins ten_gig_eth_pcs_pma_0/txusrclk2_out] [get_bd_pins xgmii_fcs_0/CLK] [get_bd_pins xgmii_test_server_0/CLK]
-  connect_bd_net -net SFP1_RX_N_1 [get_bd_pins SFP1_RX_N] [get_bd_pins ten_gig_eth_pcs_pma_0/rxn]
-  connect_bd_net -net SFP1_RX_P_1 [get_bd_pins SFP1_RX_P] [get_bd_pins ten_gig_eth_pcs_pma_0/rxp]
-  connect_bd_net -net address_mac_ip_0_IP_ADDR [get_bd_pins address_mac_ip_0/IP_ADDR] [get_bd_pins xgmii_test_server_0/LOCAL_IP]
-  connect_bd_net -net address_mac_ip_0_MAC_ADDR [get_bd_pins address_mac_ip_0/MAC_ADDR] [get_bd_pins xgmii_test_server_0/LOCAL_MAC]
-  connect_bd_net -net dclk_1 [get_bd_pins dclk] [get_bd_pins ten_gig_eth_pcs_pma_0/dclk]
-  connect_bd_net -net eth_ctrl_0_clken [get_bd_pins eth_ctrl_0/clken] [get_bd_pins xgmii_test_server_0/CLOCK_EN]
-  connect_bd_net -net eth_ctrl_0_mdc [get_bd_pins eth_ctrl_0/mdc] [get_bd_pins ten_gig_eth_pcs_pma_0/mdc]
-  connect_bd_net -net eth_ctrl_0_mdio_w [get_bd_pins eth_ctrl_0/mdio_w] [get_bd_pins ten_gig_eth_pcs_pma_0/mdio_in]
-  connect_bd_net -net eth_ctrl_0_pma_pmd_type [get_bd_pins eth_ctrl_0/pma_pmd_type] [get_bd_pins ten_gig_eth_pcs_pma_0/pma_pmd_type]
-  connect_bd_net -net eth_ctrl_0_prtad [get_bd_pins eth_ctrl_0/prtad] [get_bd_pins ten_gig_eth_pcs_pma_0/prtad]
-  connect_bd_net -net eth_ctrl_0_signal_detect [get_bd_pins eth_ctrl_0/signal_detect] [get_bd_pins ten_gig_eth_pcs_pma_0/signal_detect]
-  connect_bd_net -net eth_ctrl_0_sim_speedup_control [get_bd_pins eth_ctrl_0/sim_speedup_control] [get_bd_pins ten_gig_eth_pcs_pma_0/sim_speedup_control]
-  connect_bd_net -net eth_ctrl_0_tx_fault [get_bd_pins eth_ctrl_0/tx_fault] [get_bd_pins ten_gig_eth_pcs_pma_0/tx_fault]
-  connect_bd_net -net reset_2 [get_bd_pins reset] [get_bd_pins ten_gig_eth_pcs_pma_0/reset]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_areset_coreclk_out [get_bd_pins areset_coreclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/areset_coreclk_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_areset_datapathclk_out [get_bd_pins areset_datapathclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/areset_datapathclk_out] [get_bd_pins xgmii_fcs_0/RESET] [get_bd_pins xgmii_test_server_0/RESET]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_coreclk_out [get_bd_pins coreclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/coreclk_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_drp_req [get_bd_pins ten_gig_eth_pcs_pma_0/drp_gnt] [get_bd_pins ten_gig_eth_pcs_pma_0/drp_req]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_gtrxreset_out [get_bd_pins gtrxreset_out] [get_bd_pins ten_gig_eth_pcs_pma_0/gtrxreset_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_gttxreset_out [get_bd_pins gttxreset_out] [get_bd_pins ten_gig_eth_pcs_pma_0/gttxreset_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_qpll0lock_out [get_bd_pins qpll0lock_out] [get_bd_pins ten_gig_eth_pcs_pma_0/qpll0lock_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_qpll0outclk_out [get_bd_pins qpll0outclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/qpll0outclk_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_qpll0outrefclk_out [get_bd_pins qpll0outrefclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/qpll0outrefclk_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_reset_counter_done_out [get_bd_pins reset_counter_done_out] [get_bd_pins ten_gig_eth_pcs_pma_0/reset_counter_done_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_rxrecclk_out [get_bd_pins DBG_CLK] [get_bd_pins ten_gig_eth_pcs_pma_0/rxrecclk_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_txn [get_bd_pins SFP1_TX_N] [get_bd_pins ten_gig_eth_pcs_pma_0/txn]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_txp [get_bd_pins SFP1_TX_P] [get_bd_pins ten_gig_eth_pcs_pma_0/txp]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_txuserrdy_out [get_bd_pins txuserrdy_out] [get_bd_pins ten_gig_eth_pcs_pma_0/txuserrdy_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_txusrclk_out [get_bd_pins txusrclk_out] [get_bd_pins ten_gig_eth_pcs_pma_0/txusrclk_out]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_xgmii_rxc [get_bd_pins system_ila_0/probe0] [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_rxc] [get_bd_pins xgmii_fcs_0/XGMII_RXC]
-  connect_bd_net -net ten_gig_eth_pcs_pma_0_xgmii_rxd [get_bd_pins system_ila_0/probe1] [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_rxd] [get_bd_pins xgmii_fcs_0/XGMII_RXD]
-  connect_bd_net -net xgmii_fcs_0_DEBUG_ALIGN [get_bd_pins DEBUG_OUT] [get_bd_pins xgmii_fcs_0/DEBUG_ALIGN]
-  connect_bd_net -net xgmii_fcs_0_FCS_CORRECT [get_bd_pins FCS_CORRECT] [get_bd_pins system_ila_0/probe5] [get_bd_pins xgmii_fcs_0/FCS_CORRECT]
-  connect_bd_net -net xgmii_fcs_0_FCS_EN [get_bd_pins FCS_EN] [get_bd_pins system_ila_0/probe4] [get_bd_pins xgmii_fcs_0/FCS_EN]
-  connect_bd_net -net xgmii_fcs_0_RXD_OUT [get_bd_pins RXD] [get_bd_pins system_ila_0/probe3] [get_bd_pins xgmii_fcs_0/RXD_OUT] [get_bd_pins xgmii_test_server_0/RXD_IN]
-  connect_bd_net -net xgmii_fcs_0_RXLEN_OUT [get_bd_pins RXLEN] [get_bd_pins system_ila_0/probe2] [get_bd_pins xgmii_fcs_0/RXLEN_OUT] [get_bd_pins xgmii_test_server_0/RXLEN_IN]
-  connect_bd_net -net xgmii_fcs_0_XGMII_TXC [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_txc] [get_bd_pins xgmii_fcs_0/XGMII_TXC]
-  connect_bd_net -net xgmii_fcs_0_XGMII_TXD [get_bd_pins ten_gig_eth_pcs_pma_0/xgmii_txd] [get_bd_pins xgmii_fcs_0/XGMII_TXD]
-  connect_bd_net -net xgmii_test_server_0_TXD_OUT [get_bd_pins xgmii_fcs_0/TXD_IN] [get_bd_pins xgmii_test_server_0/TXD_OUT]
-  connect_bd_net -net xgmii_test_server_0_TXLEN_OUT [get_bd_pins xgmii_fcs_0/TXLEN_IN] [get_bd_pins xgmii_test_server_0/TXLEN_OUT]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins eth_ctrl_0/rx_loss] [get_bd_pins xlconstant_0/dout]
-
-  # Restore current instance
-  current_bd_instance $oldCurInst
-}
-
-# Hierarchical cell: rx_wrmem
-proc create_hier_cell_rx_wrmem { parentCell nameHier } {
-
-  variable script_folder
-
-  if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_rx_wrmem() - Empty argument(s)!"}
-     return
-  }
-
-  # Get object for parentCell
-  set parentObj [get_bd_cells $parentCell]
-  if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
-     return
-  }
-
-  # Make sure parentObj is hier blk
-  set parentType [get_property TYPE $parentObj]
-  if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
-     return
-  }
-
-  # Save current instance; Restore later
-  set oldCurInst [current_bd_instance .]
-
-  # Set parent object as current
-  current_bd_instance $parentObj
-
-  # Create cell and set as current instance
-  set hier_obj [create_bd_cell -type hier $nameHier]
-  current_bd_instance $hier_obj
-
-  # Create interface pins
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 AXILITE_REGS
-  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_S2MM
-
-  # Create pins
-  create_bd_pin -dir I FCS_CORRECT
-  create_bd_pin -dir I FCS_EN
-  create_bd_pin -dir I -from 63 -to 0 IN_RXD
-  create_bd_pin -dir I -from 3 -to 0 IN_RXLEN
-  create_bd_pin -dir I -type clk XGMII_CLK
-  create_bd_pin -dir I -type rst XGMII_RESETN
-
-  # Create instance: axilite_regs_0, and set properties
-  set block_name axilite_regs
-  set block_cell_name axilite_regs_0
-  if { [catch {set axilite_regs_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axilite_regs_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: axis_dwidth_converter_0, and set properties
-  set axis_dwidth_converter_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_dwidth_converter:1.1 axis_dwidth_converter_0 ]
-  set_property -dict [ list \
-   CONFIG.HAS_MI_TKEEP {1} \
-   CONFIG.HAS_TKEEP {0} \
-   CONFIG.HAS_TLAST {1} \
-   CONFIG.HAS_TSTRB {0} \
-   CONFIG.M_TDATA_NUM_BYTES {16} \
-   CONFIG.S_TDATA_NUM_BYTES {8} \
-   CONFIG.TDEST_WIDTH {0} \
-   CONFIG.TID_WIDTH {0} \
-   CONFIG.TUSER_BITS_PER_BYTE {0} \
- ] $axis_dwidth_converter_0
-
-  # Create instance: axis_wrmem
-  create_hier_cell_axis_wrmem $hier_obj axis_wrmem
-
-  # Create instance: rx_wrmem_regs_0, and set properties
-  set block_name rx_wrmem_regs
-  set block_cell_name rx_wrmem_regs_0
-  if { [catch {set rx_wrmem_regs_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $rx_wrmem_regs_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: vio_0, and set properties
-  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
-  set_property -dict [ list \
-   CONFIG.C_NUM_PROBE_IN {0} \
-   CONFIG.C_NUM_PROBE_OUT {3} \
-   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
-   CONFIG.C_PROBE_OUT1_WIDTH {1} \
-   CONFIG.C_PROBE_OUT2_INIT_VAL {0x0060} \
-   CONFIG.C_PROBE_OUT2_WIDTH {16} \
- ] $vio_0
-
-  # Create instance: xgmii_to_axis
-  create_hier_cell_xgmii_to_axis $hier_obj xgmii_to_axis
-
-  # Create interface connections
-  connect_bd_intf_net -intf_net Conn [get_bd_intf_pins M_AXI_S2MM] [get_bd_intf_pins axis_wrmem/M_AXI_S2MM]
-  connect_bd_intf_net -intf_net axis_dwidth_converter_0_M_AXIS [get_bd_intf_pins axis_dwidth_converter_0/M_AXIS] [get_bd_intf_pins axis_wrmem/IV]
-  connect_bd_intf_net -intf_net s_axi_AXILiteS_1 [get_bd_intf_pins AXILITE_REGS] [get_bd_intf_pins axilite_regs_0/s_axi_AXILiteS]
-  connect_bd_intf_net -intf_net xgmii_to_axis_OV [get_bd_intf_pins axis_dwidth_converter_0/S_AXIS] [get_bd_intf_pins xgmii_to_axis/OV]
-
-  # Create port connections
-  connect_bd_net -net CLEAR_ERR_1 [get_bd_pins rx_wrmem_regs_0/CLEAR_ERR] [get_bd_pins xgmii_to_axis/CLEAR_ERR]
-  connect_bd_net -net FCS_CORRECT_1 [get_bd_pins FCS_CORRECT] [get_bd_pins xgmii_to_axis/FCS_CORRECT]
-  connect_bd_net -net FCS_EN_1 [get_bd_pins FCS_EN] [get_bd_pins xgmii_to_axis/FCS_EN]
-  connect_bd_net -net IN_RXD_1 [get_bd_pins IN_RXD] [get_bd_pins xgmii_to_axis/IN_RXD]
-  connect_bd_net -net IN_RXLEN_1 [get_bd_pins IN_RXLEN] [get_bd_pins xgmii_to_axis/IN_RXLEN]
-  connect_bd_net -net TEST_PKT_1 [get_bd_pins rx_wrmem_regs_0/TEST_PKT] [get_bd_pins xgmii_to_axis/TEST_PKT]
-  connect_bd_net -net TEST_PKT_SIZE_1 [get_bd_pins rx_wrmem_regs_0/TEST_PKT_SIZE] [get_bd_pins xgmii_to_axis/TEST_PKT_SIZE]
-  connect_bd_net -net axilite_regs_0_RD_ADDR [get_bd_pins axilite_regs_0/RD_ADDR] [get_bd_pins rx_wrmem_regs_0/RD_ADDR]
-  connect_bd_net -net axilite_regs_0_RD_ADDR_EN [get_bd_pins axilite_regs_0/RD_ADDR_EN] [get_bd_pins rx_wrmem_regs_0/RD_ADDR_EN]
-  connect_bd_net -net axilite_regs_0_WR_ADDR [get_bd_pins axilite_regs_0/WR_ADDR] [get_bd_pins rx_wrmem_regs_0/WR_ADDR]
-  connect_bd_net -net axilite_regs_0_WR_DATA [get_bd_pins axilite_regs_0/WR_DATA] [get_bd_pins rx_wrmem_regs_0/WR_DATA]
-  connect_bd_net -net axilite_regs_0_WR_EN [get_bd_pins axilite_regs_0/WR_EN] [get_bd_pins rx_wrmem_regs_0/WR_EN]
-  connect_bd_net -net axis_wrmem_CAP_CNT [get_bd_pins axis_wrmem/CAP_CNT] [get_bd_pins rx_wrmem_regs_0/CAP_CNT]
-  connect_bd_net -net axis_wrmem_CAP_DELIM [get_bd_pins axis_wrmem/CAP_DELIM] [get_bd_pins rx_wrmem_regs_0/CAP_DELIM]
-  connect_bd_net -net axis_wrmem_CAP_WORDCNT [get_bd_pins axis_wrmem/CAP_WORDCNT] [get_bd_pins rx_wrmem_regs_0/CAP_WORDCNT]
-  connect_bd_net -net axis_wrmem_CUR_ADDR [get_bd_pins axis_wrmem/CUR_ADDR] [get_bd_pins rx_wrmem_regs_0/WADDR_PRE]
-  connect_bd_net -net axis_wrmem_CUR_WADDR [get_bd_pins axis_wrmem/CUR_WADDR] [get_bd_pins rx_wrmem_regs_0/WADDR_POST]
-  connect_bd_net -net axis_wrmem_ERR_DELIM [get_bd_pins axis_wrmem/ERR_DELIM] [get_bd_pins rx_wrmem_regs_0/ERR_DELIM]
-  connect_bd_net -net axis_wrmem_ERR_STS [get_bd_pins axis_wrmem/ERR_STS] [get_bd_pins rx_wrmem_regs_0/ERR_STS]
-  connect_bd_net -net clk_1 [get_bd_pins XGMII_CLK] [get_bd_pins axilite_regs_0/CLK] [get_bd_pins axis_dwidth_converter_0/aclk] [get_bd_pins axis_wrmem/XGMII_CLK] [get_bd_pins rx_wrmem_regs_0/CLK] [get_bd_pins vio_0/clk] [get_bd_pins xgmii_to_axis/XGMII_CLK]
-  connect_bd_net -net probe14_1 [get_bd_pins axis_wrmem/s2mm_err] [get_bd_pins rx_wrmem_regs_0/ERR_S2MM]
-  connect_bd_net -net probe15_1 [get_bd_pins axis_wrmem/ERR_FATAL] [get_bd_pins rx_wrmem_regs_0/ERR_WCMD]
-  connect_bd_net -net probe4_1 [get_bd_pins axis_wrmem/CAP_WDATA] [get_bd_pins rx_wrmem_regs_0/CAP_WDATA]
-  connect_bd_net -net probe9_1 [get_bd_pins axis_wrmem/CAP_WCMD] [get_bd_pins rx_wrmem_regs_0/CAP_WCMD]
-  connect_bd_net -net rx_wrmem_regs_0_RD_DATA [get_bd_pins axilite_regs_0/RD_DATA] [get_bd_pins rx_wrmem_regs_0/RD_DATA]
-  connect_bd_net -net rx_wrmem_regs_0_RD_DATA_EN [get_bd_pins axilite_regs_0/RD_DATA_EN] [get_bd_pins rx_wrmem_regs_0/RD_DATA_EN]
-  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins XGMII_RESETN] [get_bd_pins axilite_regs_0/RESETN] [get_bd_pins axis_dwidth_converter_0/aresetn] [get_bd_pins axis_wrmem/XGMII_RESETN] [get_bd_pins rx_wrmem_regs_0/RESETN] [get_bd_pins xgmii_to_axis/XGMII_RESETN]
-  connect_bd_net -net vio_0_probe_out0 [get_bd_pins rx_wrmem_regs_0/VIO_CLEAR] [get_bd_pins vio_0/probe_out0]
-  connect_bd_net -net vio_0_probe_out1 [get_bd_pins rx_wrmem_regs_0/VIO_PKT] [get_bd_pins vio_0/probe_out1]
-  connect_bd_net -net vio_0_probe_out2 [get_bd_pins rx_wrmem_regs_0/VIO_PKT_SIZE] [get_bd_pins vio_0/probe_out2]
-  connect_bd_net -net xgmii_to_axis_CAP_PUSH [get_bd_pins rx_wrmem_regs_0/CAP_PKT] [get_bd_pins xgmii_to_axis/CAP_PUSH]
-  connect_bd_net -net xgmii_to_axis_ERR_FCS [get_bd_pins rx_wrmem_regs_0/ERR_FCS] [get_bd_pins xgmii_to_axis/ERR_FCS]
-  connect_bd_net -net xgmii_to_axis_ERR_FULL [get_bd_pins rx_wrmem_regs_0/ERR_FULL] [get_bd_pins xgmii_to_axis/ERR_FULL]
-  connect_bd_net -net xgmii_to_axis_ERR_LONG [get_bd_pins rx_wrmem_regs_0/ERR_LONG] [get_bd_pins xgmii_to_axis/ERR_LONG]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -1045,7 +642,7 @@ proc create_hier_cell_pcie_dram { parentCell nameHier } {
    CONFIG.mode_selection {Advanced} \
    CONFIG.pcie_id_if {false} \
    CONFIG.pf0_device_id {8038} \
-   CONFIG.pf0_revision_id {a4} \
+   CONFIG.pf0_revision_id {a5} \
    CONFIG.pf1_bar0_scale {Kilobytes} \
    CONFIG.pf1_bar0_size {128} \
    CONFIG.pf1_bar1_enabled {false} \
@@ -1231,12 +828,15 @@ proc create_hier_cell_eth_quad0 { parentCell nameHier } {
   # Create pins
   create_bd_pin -dir O FCS_CORRECT_0
   create_bd_pin -dir O FCS_EN_0
+  create_bd_pin -dir I -from 15 -to 0 GAPLEN
+  create_bd_pin -dir I -from 15 -to 0 PKTLEN
   create_bd_pin -dir O -from 63 -to 0 RXD_0
   create_bd_pin -dir O -from 3 -to 0 RXLEN_0
   create_bd_pin -dir I SFP1_RX_N
   create_bd_pin -dir I SFP1_RX_P
   create_bd_pin -dir O SFP1_TX_N
   create_bd_pin -dir O SFP1_TX_P
+  create_bd_pin -dir I STARTBTN
   create_bd_pin -dir O -type clk XGMII_CLK
   create_bd_pin -dir O -type rst XGMII_RESET
   create_bd_pin -dir I -type clk dclk
@@ -1249,8 +849,11 @@ proc create_hier_cell_eth_quad0 { parentCell nameHier } {
   connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins MGTCLK0] [get_bd_intf_pins eth_0/MGTCLK0]
 
   # Create port connections
+  connect_bd_net -net GAPLEN_0_1 [get_bd_pins GAPLEN] [get_bd_pins eth_0/GAPLEN]
+  connect_bd_net -net PKTLEN_0_1 [get_bd_pins PKTLEN] [get_bd_pins eth_0/PKTLEN]
   connect_bd_net -net SFP1_RX_N_1 [get_bd_pins SFP1_RX_N] [get_bd_pins eth_0/SFP1_RX_N]
   connect_bd_net -net SFP1_RX_P_1 [get_bd_pins SFP1_RX_P] [get_bd_pins eth_0/SFP1_RX_P]
+  connect_bd_net -net STARTBTN_0_1 [get_bd_pins STARTBTN] [get_bd_pins eth_0/STARTBTN]
   connect_bd_net -net dclk_1 [get_bd_pins dclk] [get_bd_pins eth_0/dclk]
   connect_bd_net -net eth_0_FCS_CORRECT [get_bd_pins FCS_CORRECT_0] [get_bd_pins eth_0/FCS_CORRECT]
   connect_bd_net -net eth_0_FCS_EN_0 [get_bd_pins FCS_EN_0] [get_bd_pins eth_0/FCS_EN]
@@ -1261,6 +864,439 @@ proc create_hier_cell_eth_quad0 { parentCell nameHier } {
   connect_bd_net -net eth_0_areset_datapathclk_out [get_bd_pins XGMII_RESET] [get_bd_pins eth_0/areset_datapathclk_out]
   connect_bd_net -net eth_0_txusrclk2_out [get_bd_pins XGMII_CLK] [get_bd_pins eth_0/txusrclk2_out]
   connect_bd_net -net reset_1 [get_bd_pins reset] [get_bd_pins eth_0/reset]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: eth10_capt_ctrl
+proc create_hier_cell_eth10_capt_ctrl { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_eth10_capt_ctrl() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 s_axi_AXILiteS
+
+  # Create pins
+  create_bd_pin -dir I -from 3 -to 0 CAP_CNT
+  create_bd_pin -dir I -from 3 -to 0 CAP_DELIM
+  create_bd_pin -dir I -from 11 -to 0 CAP_PKT
+  create_bd_pin -dir I -from 3 -to 0 CAP_WCMD
+  create_bd_pin -dir I -from 14 -to 0 CAP_WDATA
+  create_bd_pin -dir I -from 4 -to 0 CAP_WORDCNT
+  create_bd_pin -dir O CLEAR_ERR
+  create_bd_pin -dir I -type clk CLK
+  create_bd_pin -dir I ERR_DELIM
+  create_bd_pin -dir I -from 7 -to 0 ERR_FCS
+  create_bd_pin -dir I -from 7 -to 0 ERR_FULL
+  create_bd_pin -dir I -from 7 -to 0 ERR_LONG
+  create_bd_pin -dir I ERR_S2MM
+  create_bd_pin -dir I -from 7 -to 0 ERR_STS
+  create_bd_pin -dir I -from 1 -to 0 ERR_WCMD
+  create_bd_pin -dir O KEEP_ERROR_PACKET
+  create_bd_pin -dir I -type rst RESETN
+  create_bd_pin -dir O -from 15 -to 0 TEST_GAP_SIZE
+  create_bd_pin -dir O TEST_PKT
+  create_bd_pin -dir O -from 15 -to 0 TEST_PKT_SIZE
+  create_bd_pin -dir I -from 63 -to 0 WADDR_POST
+  create_bd_pin -dir I -from 63 -to 0 WADDR_PRE
+
+  # Create instance: axilite_regs_0, and set properties
+  set block_name axilite_regs
+  set block_cell_name axilite_regs_0
+  if { [catch {set axilite_regs_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axilite_regs_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: rx_wrmem_regs_0, and set properties
+  set block_name rx_wrmem_regs
+  set block_cell_name rx_wrmem_regs_0
+  if { [catch {set rx_wrmem_regs_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $rx_wrmem_regs_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: vio_0, and set properties
+  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
+  set_property -dict [ list \
+   CONFIG.C_NUM_PROBE_IN {0} \
+   CONFIG.C_NUM_PROBE_OUT {5} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT1_WIDTH {1} \
+   CONFIG.C_PROBE_OUT2_INIT_VAL {0x0040} \
+   CONFIG.C_PROBE_OUT2_WIDTH {16} \
+   CONFIG.C_PROBE_OUT3_INIT_VAL {0x000c} \
+   CONFIG.C_PROBE_OUT3_WIDTH {16} \
+ ] $vio_0
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins s_axi_AXILiteS] [get_bd_intf_pins axilite_regs_0/s_axi_AXILiteS]
+
+  # Create port connections
+  connect_bd_net -net CAP_CNT_1 [get_bd_pins CAP_CNT] [get_bd_pins rx_wrmem_regs_0/CAP_CNT]
+  connect_bd_net -net CAP_DELIM_1 [get_bd_pins CAP_DELIM] [get_bd_pins rx_wrmem_regs_0/CAP_DELIM]
+  connect_bd_net -net CAP_PKT_1 [get_bd_pins CAP_PKT] [get_bd_pins rx_wrmem_regs_0/CAP_PKT]
+  connect_bd_net -net CAP_WCMD_1 [get_bd_pins CAP_WCMD] [get_bd_pins rx_wrmem_regs_0/CAP_WCMD]
+  connect_bd_net -net CAP_WDATA_1 [get_bd_pins CAP_WDATA] [get_bd_pins rx_wrmem_regs_0/CAP_WDATA]
+  connect_bd_net -net CAP_WORDCNT_1 [get_bd_pins CAP_WORDCNT] [get_bd_pins rx_wrmem_regs_0/CAP_WORDCNT]
+  connect_bd_net -net CLK_1 [get_bd_pins CLK] [get_bd_pins axilite_regs_0/CLK] [get_bd_pins rx_wrmem_regs_0/CLK] [get_bd_pins vio_0/clk]
+  connect_bd_net -net ERR_DELIM_1 [get_bd_pins ERR_DELIM] [get_bd_pins rx_wrmem_regs_0/ERR_DELIM]
+  connect_bd_net -net ERR_FCS_1 [get_bd_pins ERR_FCS] [get_bd_pins rx_wrmem_regs_0/ERR_FCS]
+  connect_bd_net -net ERR_FULL_1 [get_bd_pins ERR_FULL] [get_bd_pins rx_wrmem_regs_0/ERR_FULL]
+  connect_bd_net -net ERR_LONG_1 [get_bd_pins ERR_LONG] [get_bd_pins rx_wrmem_regs_0/ERR_LONG]
+  connect_bd_net -net ERR_S2MM_1 [get_bd_pins ERR_S2MM] [get_bd_pins rx_wrmem_regs_0/ERR_S2MM]
+  connect_bd_net -net ERR_STS_1 [get_bd_pins ERR_STS] [get_bd_pins rx_wrmem_regs_0/ERR_STS]
+  connect_bd_net -net ERR_WCMD_1 [get_bd_pins ERR_WCMD] [get_bd_pins rx_wrmem_regs_0/ERR_WCMD]
+  connect_bd_net -net RESETN_1 [get_bd_pins RESETN] [get_bd_pins axilite_regs_0/RESETN] [get_bd_pins rx_wrmem_regs_0/RESETN]
+  connect_bd_net -net WADDR_POST_1 [get_bd_pins WADDR_POST] [get_bd_pins rx_wrmem_regs_0/WADDR_POST]
+  connect_bd_net -net WADDR_PRE_1 [get_bd_pins WADDR_PRE] [get_bd_pins rx_wrmem_regs_0/WADDR_PRE]
+  connect_bd_net -net axilite_regs_0_RD_ADDR [get_bd_pins axilite_regs_0/RD_ADDR] [get_bd_pins rx_wrmem_regs_0/RD_ADDR]
+  connect_bd_net -net axilite_regs_0_RD_ADDR_EN [get_bd_pins axilite_regs_0/RD_ADDR_EN] [get_bd_pins rx_wrmem_regs_0/RD_ADDR_EN]
+  connect_bd_net -net axilite_regs_0_WR_ADDR [get_bd_pins axilite_regs_0/WR_ADDR] [get_bd_pins rx_wrmem_regs_0/WR_ADDR]
+  connect_bd_net -net axilite_regs_0_WR_DATA [get_bd_pins axilite_regs_0/WR_DATA] [get_bd_pins rx_wrmem_regs_0/WR_DATA]
+  connect_bd_net -net axilite_regs_0_WR_EN [get_bd_pins axilite_regs_0/WR_EN] [get_bd_pins rx_wrmem_regs_0/WR_EN]
+  connect_bd_net -net rx_wrmem_regs_0_CLEAR_ERR [get_bd_pins CLEAR_ERR] [get_bd_pins rx_wrmem_regs_0/CLEAR_ERR]
+  connect_bd_net -net rx_wrmem_regs_0_KEEP_ERROR_PACKET [get_bd_pins KEEP_ERROR_PACKET] [get_bd_pins rx_wrmem_regs_0/KEEP_ERROR_PACKET]
+  connect_bd_net -net rx_wrmem_regs_0_RD_DATA [get_bd_pins axilite_regs_0/RD_DATA] [get_bd_pins rx_wrmem_regs_0/RD_DATA]
+  connect_bd_net -net rx_wrmem_regs_0_RD_DATA_EN [get_bd_pins axilite_regs_0/RD_DATA_EN] [get_bd_pins rx_wrmem_regs_0/RD_DATA_EN]
+  connect_bd_net -net rx_wrmem_regs_0_TEST_GAP_SIZE [get_bd_pins TEST_GAP_SIZE] [get_bd_pins rx_wrmem_regs_0/TEST_GAP_SIZE]
+  connect_bd_net -net rx_wrmem_regs_0_TEST_PKT [get_bd_pins TEST_PKT] [get_bd_pins rx_wrmem_regs_0/TEST_PKT]
+  connect_bd_net -net rx_wrmem_regs_0_TEST_PKT_SIZE [get_bd_pins TEST_PKT_SIZE] [get_bd_pins rx_wrmem_regs_0/TEST_PKT_SIZE]
+  connect_bd_net -net vio_0_probe_out0 [get_bd_pins rx_wrmem_regs_0/VIO_CLEAR] [get_bd_pins vio_0/probe_out0]
+  connect_bd_net -net vio_0_probe_out1 [get_bd_pins rx_wrmem_regs_0/VIO_PKT] [get_bd_pins vio_0/probe_out1]
+  connect_bd_net -net vio_0_probe_out2 [get_bd_pins rx_wrmem_regs_0/VIO_PKT_SIZE] [get_bd_pins vio_0/probe_out2]
+  connect_bd_net -net vio_0_probe_out3 [get_bd_pins rx_wrmem_regs_0/VIO_GAP_SIZE] [get_bd_pins vio_0/probe_out3]
+  connect_bd_net -net vio_0_probe_out4 [get_bd_pins rx_wrmem_regs_0/VIO_KEEP_ERROR_PACKET] [get_bd_pins vio_0/probe_out4]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: axis_wrmem
+proc create_hier_cell_axis_wrmem { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_axis_wrmem() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M_AXI_S2MM
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 S_AXIS
+
+  # Create pins
+  create_bd_pin -dir O -from 3 -to 0 CAP_CNT
+  create_bd_pin -dir O -from 3 -to 0 CAP_DELIM
+  create_bd_pin -dir O -from 3 -to 0 CAP_WCMD
+  create_bd_pin -dir O -from 14 -to 0 CAP_WDATA
+  create_bd_pin -dir O -from 4 -to 0 CAP_WORDCNT
+  create_bd_pin -dir O -from 63 -to 0 CUR_ADDR
+  create_bd_pin -dir O -from 63 -to 0 CUR_WADDR
+  create_bd_pin -dir O ERR_DELIM
+  create_bd_pin -dir O -from 1 -to 0 ERR_FATAL
+  create_bd_pin -dir O -from 7 -to 0 ERR_STS
+  create_bd_pin -dir I -type clk XGMII_CLK
+  create_bd_pin -dir I -type rst XGMII_RESETN
+  create_bd_pin -dir O s2mm_err
+
+  # Create instance: axi_datamover_0, and set properties
+  set axi_datamover_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_datamover:5.1 axi_datamover_0 ]
+  set_property -dict [ list \
+   CONFIG.c_addr_width {64} \
+   CONFIG.c_dummy {1} \
+   CONFIG.c_enable_mm2s {0} \
+   CONFIG.c_m_axi_s2mm_data_width {128} \
+   CONFIG.c_s2mm_btt_used {23} \
+   CONFIG.c_s2mm_burst_size {256} \
+   CONFIG.c_s_axis_s2mm_tdata_width {128} \
+ ] $axi_datamover_0
+
+  # Create instance: axis_dwidth_converter_0, and set properties
+  set axis_dwidth_converter_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_dwidth_converter:1.1 axis_dwidth_converter_0 ]
+  set_property -dict [ list \
+   CONFIG.HAS_MI_TKEEP {1} \
+   CONFIG.HAS_TKEEP {0} \
+   CONFIG.HAS_TLAST {1} \
+   CONFIG.HAS_TSTRB {0} \
+   CONFIG.M_TDATA_NUM_BYTES {16} \
+   CONFIG.S_TDATA_NUM_BYTES {8} \
+   CONFIG.TDEST_WIDTH {0} \
+   CONFIG.TID_WIDTH {0} \
+   CONFIG.TUSER_BITS_PER_BYTE {0} \
+ ] $axis_dwidth_converter_0
+
+  # Create instance: axis_fifo_wcmd, and set properties
+  set block_name axis_fifo
+  set block_cell_name axis_fifo_wcmd
+  if { [catch {set axis_fifo_wcmd [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fifo_wcmd eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.FIFO_REG {8} \
+   CONFIG.FIFO_SIZE_L2 {0} \
+   CONFIG.WIDTH_DATA {104} \
+ ] $axis_fifo_wcmd
+
+  # Create instance: axis_fifo_wcmd_cnt, and set properties
+  set block_name axis_fifo
+  set block_cell_name axis_fifo_wcmd_cnt
+  if { [catch {set axis_fifo_wcmd_cnt [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fifo_wcmd_cnt eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.FIFO_REG {8} \
+   CONFIG.FIFO_SIZE_L2 {0} \
+   CONFIG.WIDTH_DATA {104} \
+ ] $axis_fifo_wcmd_cnt
+
+  # Create instance: axis_fifo_wcmd_delim, and set properties
+  set block_name axis_fifo
+  set block_cell_name axis_fifo_wcmd_delim
+  if { [catch {set axis_fifo_wcmd_delim [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fifo_wcmd_delim eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.FIFO_REG {8} \
+   CONFIG.FIFO_SIZE_L2 {0} \
+   CONFIG.WIDTH_DATA {104} \
+ ] $axis_fifo_wcmd_delim
+
+  # Create instance: axis_fifo_wdata, and set properties
+  set block_name axis_fifo
+  set block_cell_name axis_fifo_wdata
+  if { [catch {set axis_fifo_wdata [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fifo_wdata eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.FIFO_SIZE_L2 {14} \
+   CONFIG.WIDTH_DATA {128} \
+ ] $axis_fifo_wdata
+
+  # Create instance: axis_fifo_wordcnt, and set properties
+  set block_name axis_fifo
+  set block_cell_name axis_fifo_wordcnt
+  if { [catch {set axis_fifo_wordcnt [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fifo_wordcnt eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.FIFO_REG {16} \
+   CONFIG.FIFO_SIZE_L2 {0} \
+   CONFIG.WIDTH_DATA {16} \
+   CONFIG.WIDTH_LAST {0} \
+ ] $axis_fifo_wordcnt
+
+  # Create instance: axis_fork_0, and set properties
+  set block_name axis_fork
+  set block_cell_name axis_fork_0
+  if { [catch {set axis_fork_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fork_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.WIDTH_DATA {104} \
+   CONFIG.WIDTH_LAST {0} \
+ ] $axis_fork_0
+
+  # Create instance: axis_fork_1, and set properties
+  set block_name axis_fork
+  set block_cell_name axis_fork_1
+  if { [catch {set axis_fork_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $axis_fork_1 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.WIDTH_DATA {104} \
+   CONFIG.WIDTH_LAST {0} \
+ ] $axis_fork_1
+
+  # Create instance: gen_datamover_wcmd_0, and set properties
+  set block_name gen_datamover_wcmd
+  set block_cell_name gen_datamover_wcmd_0
+  if { [catch {set gen_datamover_wcmd_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $gen_datamover_wcmd_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: get_word_count_0, and set properties
+  set block_name get_word_count
+  set block_cell_name get_word_count_0
+  if { [catch {set get_word_count_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $get_word_count_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.WORD_SIZE_L2 {4} \
+ ] $get_word_count_0
+
+  # Create instance: groupify_wordcnt_0, and set properties
+  set block_name groupify_wordcnt
+  set block_cell_name groupify_wordcnt_0
+  if { [catch {set groupify_wordcnt_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $groupify_wordcnt_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: rx_wrmem_status_0, and set properties
+  set block_name rx_wrmem_status
+  set block_cell_name rx_wrmem_status_0
+  if { [catch {set rx_wrmem_status_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $rx_wrmem_status_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: update_packet_delim_1, and set properties
+  set block_name update_packet_delim
+  set block_cell_name update_packet_delim_1
+  if { [catch {set update_packet_delim_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $update_packet_delim_1 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: xlconstant_1, and set properties
+  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {65535} \
+   CONFIG.CONST_WIDTH {16} \
+ ] $xlconstant_1
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins S_AXIS] [get_bd_intf_pins axis_dwidth_converter_0/S_AXIS]
+  connect_bd_intf_net -intf_net Conn2 [get_bd_intf_pins M_AXI_S2MM] [get_bd_intf_pins axi_datamover_0/M_AXI_S2MM]
+  connect_bd_intf_net -intf_net axi_datamover_0_M_AXIS_S2MM_STS [get_bd_intf_pins axi_datamover_0/M_AXIS_S2MM_STS] [get_bd_intf_pins rx_wrmem_status_0/STS]
+  connect_bd_intf_net -intf_net axis_dwidth_converter_0_M_AXIS [get_bd_intf_pins axis_dwidth_converter_0/M_AXIS] [get_bd_intf_pins get_word_count_0/IV]
+  connect_bd_intf_net -intf_net axis_fifo_wcmd_OV [get_bd_intf_pins axi_datamover_0/S_AXIS_S2MM_CMD] [get_bd_intf_pins axis_fifo_wcmd/OV]
+  connect_bd_intf_net -intf_net axis_fifo_wcmd_cnt_OV [get_bd_intf_pins axis_fifo_wcmd_cnt/OV] [get_bd_intf_pins rx_wrmem_status_0/WCMD]
+  connect_bd_intf_net -intf_net axis_fifo_wcmd_delim_OV [get_bd_intf_pins axis_fifo_wcmd_delim/OV] [get_bd_intf_pins update_packet_delim_1/IWCMD]
+  connect_bd_intf_net -intf_net axis_fifo_wdata_OV [get_bd_intf_pins axis_fifo_wdata/OV] [get_bd_intf_pins update_packet_delim_1/IWDATA]
+  connect_bd_intf_net -intf_net axis_fifo_wordcnt_OV [get_bd_intf_pins axis_fifo_wordcnt/OV] [get_bd_intf_pins groupify_wordcnt_0/IV]
+  connect_bd_intf_net -intf_net axis_fork_0_OV0 [get_bd_intf_pins axis_fork_0/OV0] [get_bd_intf_pins axis_fork_1/IV]
+  connect_bd_intf_net -intf_net axis_fork_0_OV1 [get_bd_intf_pins axis_fifo_wcmd/IV] [get_bd_intf_pins axis_fork_0/OV1]
+  connect_bd_intf_net -intf_net axis_fork_1_OV0 [get_bd_intf_pins axis_fifo_wcmd_cnt/IV] [get_bd_intf_pins axis_fork_1/OV0]
+  connect_bd_intf_net -intf_net axis_fork_1_OV1 [get_bd_intf_pins axis_fifo_wcmd_delim/IV] [get_bd_intf_pins axis_fork_1/OV1]
+  connect_bd_intf_net -intf_net gen_datamover_wcmd_0_WCMD [get_bd_intf_pins axis_fork_0/IV] [get_bd_intf_pins gen_datamover_wcmd_0/WCMD]
+  connect_bd_intf_net -intf_net get_word_count_0_OV [get_bd_intf_pins axis_fifo_wdata/IV] [get_bd_intf_pins get_word_count_0/OV]
+  connect_bd_intf_net -intf_net get_word_count_0_WORDCNT [get_bd_intf_pins axis_fifo_wordcnt/IV] [get_bd_intf_pins get_word_count_0/WORDCNT]
+  connect_bd_intf_net -intf_net groupify_wordcnt_0_OV [get_bd_intf_pins gen_datamover_wcmd_0/WORDCNT] [get_bd_intf_pins groupify_wordcnt_0/OV]
+  connect_bd_intf_net -intf_net update_packet_delim_1_OWDATA [get_bd_intf_pins axi_datamover_0/S_AXIS_S2MM] [get_bd_intf_pins update_packet_delim_1/OWDATA]
+
+  # Create port connections
+  connect_bd_net -net XGMII_CLK_1 [get_bd_pins XGMII_CLK] [get_bd_pins axi_datamover_0/m_axi_s2mm_aclk] [get_bd_pins axi_datamover_0/m_axis_s2mm_cmdsts_awclk] [get_bd_pins axis_dwidth_converter_0/aclk] [get_bd_pins axis_fifo_wcmd/CLK] [get_bd_pins axis_fifo_wcmd_cnt/CLK] [get_bd_pins axis_fifo_wcmd_delim/CLK] [get_bd_pins axis_fifo_wdata/CLK] [get_bd_pins axis_fifo_wordcnt/CLK] [get_bd_pins axis_fork_0/CLK] [get_bd_pins axis_fork_1/CLK] [get_bd_pins gen_datamover_wcmd_0/CLK] [get_bd_pins get_word_count_0/CLK] [get_bd_pins groupify_wordcnt_0/CLK] [get_bd_pins rx_wrmem_status_0/CLK] [get_bd_pins update_packet_delim_1/CLK]
+  connect_bd_net -net XGMII_RESETN_1 [get_bd_pins XGMII_RESETN] [get_bd_pins axi_datamover_0/m_axi_s2mm_aresetn] [get_bd_pins axi_datamover_0/m_axis_s2mm_cmdsts_aresetn] [get_bd_pins axis_dwidth_converter_0/aresetn] [get_bd_pins axis_fifo_wcmd/RESETN] [get_bd_pins axis_fifo_wcmd_cnt/RESETN] [get_bd_pins axis_fifo_wcmd_delim/RESETN] [get_bd_pins axis_fifo_wdata/RESETN] [get_bd_pins axis_fifo_wordcnt/RESETN] [get_bd_pins axis_fork_0/RESETN] [get_bd_pins axis_fork_1/RESETN] [get_bd_pins gen_datamover_wcmd_0/RESETN] [get_bd_pins get_word_count_0/RESETN] [get_bd_pins groupify_wordcnt_0/RESETN] [get_bd_pins rx_wrmem_status_0/RESETN] [get_bd_pins update_packet_delim_1/RESETN]
+  connect_bd_net -net axi_datamover_0_s2mm_err [get_bd_pins s2mm_err] [get_bd_pins axi_datamover_0/s2mm_err]
+  connect_bd_net -net axis_fifo_wcmd_CAP_PUSH [get_bd_pins CAP_WCMD] [get_bd_pins axis_fifo_wcmd/CAP_PUSH]
+  connect_bd_net -net axis_fifo_wcmd_cnt_CAP_PUSH [get_bd_pins CAP_CNT] [get_bd_pins axis_fifo_wcmd_cnt/CAP_PUSH]
+  connect_bd_net -net axis_fifo_wcmd_delim_CAP_PUSH [get_bd_pins CAP_DELIM] [get_bd_pins axis_fifo_wcmd_delim/CAP_PUSH]
+  connect_bd_net -net axis_fifo_wdata_CAP_PUSH [get_bd_pins CAP_WDATA] [get_bd_pins axis_fifo_wdata/CAP_PUSH]
+  connect_bd_net -net axis_fifo_wordcnt_CAP_PUSH [get_bd_pins CAP_WORDCNT] [get_bd_pins axis_fifo_wordcnt/CAP_PUSH]
+  connect_bd_net -net gen_datamover_wcmd_0_CUR_ADDR [get_bd_pins CUR_ADDR] [get_bd_pins gen_datamover_wcmd_0/CUR_ADDR]
+  connect_bd_net -net gen_datamover_wcmd_0_ERR_FATAL [get_bd_pins ERR_FATAL] [get_bd_pins gen_datamover_wcmd_0/ERR_FATAL]
+  connect_bd_net -net rx_wrmem_status_0_CUR_WADDR [get_bd_pins CUR_WADDR] [get_bd_pins rx_wrmem_status_0/CUR_WADDR]
+  connect_bd_net -net rx_wrmem_status_0_ERR_STS [get_bd_pins ERR_STS] [get_bd_pins rx_wrmem_status_0/ERR_STS]
+  connect_bd_net -net update_packet_delim_1_ERR_DELIM [get_bd_pins ERR_DELIM] [get_bd_pins update_packet_delim_1/ERR_DELIM]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins axi_datamover_0/s_axis_s2mm_tkeep] [get_bd_pins xlconstant_1/dout]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -1332,6 +1368,12 @@ proc create_root_design { parentCell } {
    CONFIG.POLARITY {ACTIVE_LOW} \
  ] $resetn
 
+  # Create instance: axis_wrmem
+  create_hier_cell_axis_wrmem [current_bd_instance .] axis_wrmem
+
+  # Create instance: eth10_capt_ctrl
+  create_hier_cell_eth10_capt_ctrl [current_bd_instance .] eth10_capt_ctrl
+
   # Create instance: eth_quad0
   create_hier_cell_eth_quad0 [current_bd_instance .] eth_quad0
 
@@ -1348,9 +1390,6 @@ proc create_root_design { parentCell } {
    CONFIG.USE_BOARD_FLOW {true} \
  ] $reset_100M
 
-  # Create instance: rx_wrmem
-  create_hier_cell_rx_wrmem [current_bd_instance .] rx_wrmem
-
   # Create instance: util_vector_logic_0, and set properties
   set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
   set_property -dict [ list \
@@ -1358,42 +1397,73 @@ proc create_root_design { parentCell } {
    CONFIG.C_SIZE {1} \
  ] $util_vector_logic_0
 
+  # Create instance: xgmii_to_axis
+  create_hier_cell_xgmii_to_axis [current_bd_instance .] xgmii_to_axis
+
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+ ] $xlconstant_0
+
   # Create interface connections
   connect_bd_intf_net -intf_net MGTCLK0_1 [get_bd_intf_ports MGTCLK0_0] [get_bd_intf_pins eth_quad0/MGTCLK0]
-  connect_bd_intf_net -intf_net S01_AXI_1 [get_bd_intf_pins pcie_dram/S_AXI_S2MM] [get_bd_intf_pins rx_wrmem/M_AXI_S2MM]
+  connect_bd_intf_net -intf_net S_AXIS_1 [get_bd_intf_pins axis_wrmem/S_AXIS] [get_bd_intf_pins xgmii_to_axis/OV]
+  connect_bd_intf_net -intf_net S_AXI_S2MM_1 [get_bd_intf_pins axis_wrmem/M_AXI_S2MM] [get_bd_intf_pins pcie_dram/S_AXI_S2MM]
   connect_bd_intf_net -intf_net default_300mhz_clk0_1 [get_bd_intf_ports default_300mhz_clk0] [get_bd_intf_pins pcie_dram/default_300mhz_clk0]
-  connect_bd_intf_net -intf_net pcie_dram_M02_AXI [get_bd_intf_pins pcie_dram/M_AXI_REGS] [get_bd_intf_pins rx_wrmem/AXILITE_REGS]
+  connect_bd_intf_net -intf_net pcie_dram_M_AXI_REGS [get_bd_intf_pins eth10_capt_ctrl/s_axi_AXILiteS] [get_bd_intf_pins pcie_dram/M_AXI_REGS]
   connect_bd_intf_net -intf_net pcie_dram_ddr4_sdram_c0 [get_bd_intf_ports ddr4_sdram_c0] [get_bd_intf_pins pcie_dram/ddr4_sdram_c0]
   connect_bd_intf_net -intf_net pcie_dram_led_8bits [get_bd_intf_ports led_8bits] [get_bd_intf_pins pcie_dram/led_8bits]
   connect_bd_intf_net -intf_net pcie_dram_pci_express_x8 [get_bd_intf_ports pci_express_x8] [get_bd_intf_pins pcie_dram/pci_express_x8]
   connect_bd_intf_net -intf_net pcie_refclk_1 [get_bd_intf_ports pcie_refclk] [get_bd_intf_pins pcie_dram/pcie_refclk]
 
   # Create port connections
+  connect_bd_net -net CLEAR_ERR_1 [get_bd_pins eth10_capt_ctrl/CLEAR_ERR] [get_bd_pins xgmii_to_axis/CLEAR_ERR]
   connect_bd_net -net CLK_1 [get_bd_pins eth_quad0/dclk] [get_bd_pins fanctrl/CLK] [get_bd_pins pcie_dram/clk_100] [get_bd_pins reset_100M/slowest_sync_clk]
+  connect_bd_net -net GAPLEN_1 [get_bd_pins eth10_capt_ctrl/TEST_GAP_SIZE] [get_bd_pins eth_quad0/GAPLEN]
+  connect_bd_net -net KEEP_ERROR_PACKET_1 [get_bd_pins eth10_capt_ctrl/KEEP_ERROR_PACKET] [get_bd_pins xgmii_to_axis/KEEP_ERROR_PACKET]
   connect_bd_net -net Net [get_bd_ports I2C_SDA] [get_bd_pins fanctrl/I2C_SDA]
   connect_bd_net -net Net1 [get_bd_ports I2C_SCL] [get_bd_pins fanctrl/I2C_SCL]
   connect_bd_net -net RESET_N_1 [get_bd_pins fanctrl/RESET_N] [get_bd_pins reset_100M/peripheral_aresetn]
   connect_bd_net -net SFP1_RX_N_0_1 [get_bd_ports SFP1_RX_N_0] [get_bd_pins eth_quad0/SFP1_RX_N]
   connect_bd_net -net SFP1_RX_P_0_1 [get_bd_ports SFP1_RX_P_0] [get_bd_pins eth_quad0/SFP1_RX_P]
-  connect_bd_net -net eth_quad0_FCS_CORRECT_0 [get_bd_pins eth_quad0/FCS_CORRECT_0] [get_bd_pins rx_wrmem/FCS_CORRECT]
-  connect_bd_net -net eth_quad0_FCS_EN [get_bd_pins eth_quad0/FCS_EN_0] [get_bd_pins rx_wrmem/FCS_EN]
-  connect_bd_net -net eth_quad0_RXD_0 [get_bd_pins eth_quad0/RXD_0] [get_bd_pins rx_wrmem/IN_RXD]
-  connect_bd_net -net eth_quad0_RXLEN_0 [get_bd_pins eth_quad0/RXLEN_0] [get_bd_pins rx_wrmem/IN_RXLEN]
-  connect_bd_net -net eth_quad0_XGMII_CLK [get_bd_pins eth_quad0/XGMII_CLK] [get_bd_pins pcie_dram/XGMII_CLK] [get_bd_pins rx_wrmem/XGMII_CLK]
+  connect_bd_net -net STARTBTN_1 [get_bd_pins eth10_capt_ctrl/TEST_PKT] [get_bd_pins eth_quad0/STARTBTN]
+  connect_bd_net -net axis_wrmem_CAP_CNT [get_bd_pins axis_wrmem/CAP_CNT] [get_bd_pins eth10_capt_ctrl/CAP_CNT]
+  connect_bd_net -net axis_wrmem_CAP_DELIM [get_bd_pins axis_wrmem/CAP_DELIM] [get_bd_pins eth10_capt_ctrl/CAP_DELIM]
+  connect_bd_net -net axis_wrmem_CAP_WCMD [get_bd_pins axis_wrmem/CAP_WCMD] [get_bd_pins eth10_capt_ctrl/CAP_WCMD]
+  connect_bd_net -net axis_wrmem_CAP_WDATA [get_bd_pins axis_wrmem/CAP_WDATA] [get_bd_pins eth10_capt_ctrl/CAP_WDATA]
+  connect_bd_net -net axis_wrmem_CAP_WORDCNT [get_bd_pins axis_wrmem/CAP_WORDCNT] [get_bd_pins eth10_capt_ctrl/CAP_WORDCNT]
+  connect_bd_net -net axis_wrmem_CUR_ADDR [get_bd_pins axis_wrmem/CUR_ADDR] [get_bd_pins eth10_capt_ctrl/WADDR_PRE]
+  connect_bd_net -net axis_wrmem_CUR_WADDR [get_bd_pins axis_wrmem/CUR_WADDR] [get_bd_pins eth10_capt_ctrl/WADDR_POST]
+  connect_bd_net -net axis_wrmem_ERR_DELIM [get_bd_pins axis_wrmem/ERR_DELIM] [get_bd_pins eth10_capt_ctrl/ERR_DELIM]
+  connect_bd_net -net axis_wrmem_ERR_FATAL [get_bd_pins axis_wrmem/ERR_FATAL] [get_bd_pins eth10_capt_ctrl/ERR_WCMD]
+  connect_bd_net -net axis_wrmem_ERR_STS [get_bd_pins axis_wrmem/ERR_STS] [get_bd_pins eth10_capt_ctrl/ERR_STS]
+  connect_bd_net -net axis_wrmem_s2mm_err [get_bd_pins axis_wrmem/s2mm_err] [get_bd_pins eth10_capt_ctrl/ERR_S2MM]
+  connect_bd_net -net eth10_capt_ctrl_TEST_PKT_SIZE [get_bd_pins eth10_capt_ctrl/TEST_PKT_SIZE] [get_bd_pins eth_quad0/PKTLEN] [get_bd_pins xgmii_to_axis/TEST_PKT_SIZE]
+  connect_bd_net -net eth_quad0_FCS_CORRECT_0 [get_bd_pins eth_quad0/FCS_CORRECT_0] [get_bd_pins xgmii_to_axis/FCS_CORRECT]
+  connect_bd_net -net eth_quad0_FCS_EN_0 [get_bd_pins eth_quad0/FCS_EN_0] [get_bd_pins xgmii_to_axis/FCS_EN]
+  connect_bd_net -net eth_quad0_RXD_0 [get_bd_pins eth_quad0/RXD_0] [get_bd_pins xgmii_to_axis/IN_RXD]
+  connect_bd_net -net eth_quad0_RXLEN_0 [get_bd_pins eth_quad0/RXLEN_0] [get_bd_pins xgmii_to_axis/IN_RXLEN]
+  connect_bd_net -net eth_quad0_XGMII_CLK [get_bd_pins axis_wrmem/XGMII_CLK] [get_bd_pins eth10_capt_ctrl/CLK] [get_bd_pins eth_quad0/XGMII_CLK] [get_bd_pins pcie_dram/XGMII_CLK] [get_bd_pins xgmii_to_axis/XGMII_CLK]
   connect_bd_net -net eth_quad0_XGMII_RESET [get_bd_pins eth_quad0/XGMII_RESET] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net eth_quad_SFP1_TX_N [get_bd_ports SFP1_TX_N_0] [get_bd_pins eth_quad0/SFP1_TX_N]
   connect_bd_net -net eth_quad_SFP1_TX_P [get_bd_ports SFP1_TX_P_0] [get_bd_pins eth_quad0/SFP1_TX_P]
   connect_bd_net -net pcie_perstn_1 [get_bd_ports pcie_perstn] [get_bd_pins pcie_dram/pcie_perstn]
   connect_bd_net -net reset_1 [get_bd_pins eth_quad0/reset] [get_bd_pins reset_100M/peripheral_reset]
   connect_bd_net -net resetn_1 [get_bd_ports resetn] [get_bd_pins pcie_dram/resetn] [get_bd_pins reset_100M/ext_reset_in]
-  connect_bd_net -net rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn [get_bd_pins pcie_dram/XGMII_RESETN] [get_bd_pins rx_wrmem/XGMII_RESETN] [get_bd_pins util_vector_logic_0/Res]
+  connect_bd_net -net rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn [get_bd_pins axis_wrmem/XGMII_RESETN] [get_bd_pins eth10_capt_ctrl/RESETN] [get_bd_pins pcie_dram/XGMII_RESETN] [get_bd_pins util_vector_logic_0/Res] [get_bd_pins xgmii_to_axis/XGMII_RESETN]
+  connect_bd_net -net xgmii_to_axis_CAP_PUSH [get_bd_pins eth10_capt_ctrl/CAP_PKT] [get_bd_pins xgmii_to_axis/CAP_PUSH]
+  connect_bd_net -net xgmii_to_axis_ERR_FCS [get_bd_pins eth10_capt_ctrl/ERR_FCS] [get_bd_pins xgmii_to_axis/ERR_FCS]
+  connect_bd_net -net xgmii_to_axis_ERR_FULL [get_bd_pins eth10_capt_ctrl/ERR_FULL] [get_bd_pins xgmii_to_axis/ERR_FULL]
+  connect_bd_net -net xgmii_to_axis_ERR_LONG [get_bd_pins eth10_capt_ctrl/ERR_LONG] [get_bd_pins xgmii_to_axis/ERR_LONG]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins xgmii_to_axis/TEST_PKT] [get_bd_pins xlconstant_0/dout]
 
   # Create address segments
+  create_bd_addr_seg -range 0x000100000000 -offset 0x00000000 [get_bd_addr_spaces axis_wrmem/axi_datamover_0/Data_S2MM] [get_bd_addr_segs pcie_dram/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK] SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK
   create_bd_addr_seg -range 0x00010000 -offset 0x00200000 [get_bd_addr_spaces pcie_dram/xdma_0/M_AXI_LITE] [get_bd_addr_segs pcie_dram/axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces pcie_dram/xdma_0/M_AXI_LITE] [get_bd_addr_segs rx_wrmem/axilite_regs_0/s_axi_AXILiteS/reg0] SEG_axilite_regs_0_reg0
+  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces pcie_dram/xdma_0/M_AXI_LITE] [get_bd_addr_segs eth10_capt_ctrl/axilite_regs_0/s_axi_AXILiteS/reg0] SEG_axilite_regs_0_reg0
   create_bd_addr_seg -range 0x000100000000 -offset 0x00000000 [get_bd_addr_spaces pcie_dram/xdma_0/M_AXI] [get_bd_addr_segs pcie_dram/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK] SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK
   create_bd_addr_seg -range 0x00100000 -offset 0x00100000 [get_bd_addr_spaces pcie_dram/xdma_0/M_AXI_LITE] [get_bd_addr_segs pcie_dram/ddr4_0/C0_DDR4_MEMORY_MAP_CTRL/C0_REG] SEG_ddr4_0_C0_REG
-  create_bd_addr_seg -range 0x000100000000 -offset 0x00000000 [get_bd_addr_spaces rx_wrmem/axis_wrmem/axi_datamover_0/Data_S2MM] [get_bd_addr_segs pcie_dram/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK] SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK
 
 
   # Restore current instance

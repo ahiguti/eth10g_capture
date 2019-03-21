@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xEAA677EE9AAD1455" bd:device="xcku115-flvb2104-2-e" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="bd_eth10_capture" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xEAA677EE9AAD1455" bd:device="xcku115-flvb2104-2-e" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="bd_eth10_capture" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -20,22 +20,8 @@
         <spirit:abstractionType spirit:library="interface" spirit:name="diff_clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:parameters>
           <spirit:parameter>
-            <spirit:name>CAN_DEBUG</spirit:name>
-            <spirit:value>false</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
             <spirit:value>156250000</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="user"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:busInterface>
@@ -44,134 +30,7 @@
         <spirit:master/>
         <spirit:busType spirit:library="interface" spirit:name="ddr4" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:abstractionType spirit:library="interface" spirit:name="ddr4_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>CAN_DEBUG</spirit:name>
-            <spirit:value>false</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>TIMEPERIOD_PS</spirit:name>
-            <spirit:value>833</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>MEMORY_TYPE</spirit:name>
-            <spirit:value>Components</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>MEMORY_PART</spirit:name>
-            <spirit:value>MT40A512M16HA-083E</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>DATA_WIDTH</spirit:name>
-            <spirit:value>72</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>CS_ENABLED</spirit:name>
-            <spirit:value>true</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>DATA_MASK_ENABLED</spirit:name>
-            <spirit:value>NO_DM_NO_DBI</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>SLOT</spirit:name>
-            <spirit:value>Single</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>CUSTOM_PARTS</spirit:name>
-            <spirit:value>no_file_loaded</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>MEM_ADDR_MAP</spirit:name>
-            <spirit:value>ROW_COLUMN_BANK</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>BURST_LENGTH</spirit:name>
-            <spirit:value>8</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>AXI_ARBITRATION_SCHEME</spirit:name>
-            <spirit:value>RD_PRI_REG</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>CAS_LATENCY</spirit:name>
-            <spirit:value>16</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>CAS_WRITE_LATENCY</spirit:name>
-            <spirit:value>12</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default_prop"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-        </spirit:parameters>
+        <spirit:parameters/>
       </spirit:busInterface>
       <spirit:busInterface>
         <spirit:name>default_300mhz_clk0</spirit:name>
@@ -180,22 +39,8 @@
         <spirit:abstractionType spirit:library="interface" spirit:name="diff_clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:parameters>
           <spirit:parameter>
-            <spirit:name>CAN_DEBUG</spirit:name>
-            <spirit:value>false</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
             <spirit:value>300000000</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="user"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:busInterface>
@@ -218,22 +63,8 @@
         <spirit:abstractionType spirit:library="interface" spirit:name="diff_clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:parameters>
           <spirit:parameter>
-            <spirit:name>CAN_DEBUG</spirit:name>
-            <spirit:value>false</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-          <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
             <spirit:value>100000000</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="user"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:busInterface>
@@ -258,11 +89,6 @@
           <spirit:parameter>
             <spirit:name>POLARITY</spirit:name>
             <spirit:value>ACTIVE_LOW</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="user"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:busInterface>
@@ -287,11 +113,6 @@
           <spirit:parameter>
             <spirit:name>POLARITY</spirit:name>
             <spirit:value>ACTIVE_LOW</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="user"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:busInterface>
@@ -385,10 +206,6 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>rx_wrmem</spirit:instanceName>
-        <spirit:componentRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="rx_wrmem" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>util_vector_logic_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="util_vector_logic" spirit:vendor="xilinx.com" spirit:version="2.0"/>
         <spirit:configurableElementValues>
@@ -397,17 +214,42 @@
           <spirit:configurableElementValue spirit:referenceId="C_OPERATION">not</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>eth10_capt_ctrl</spirit:instanceName>
+        <spirit:componentRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="eth10_capt_ctrl" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlconstant_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axis_wrmem</spirit:instanceName>
+        <spirit:componentRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="axis_wrmem" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xgmii_to_axis</spirit:instanceName>
+        <spirit:componentRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="xgmii_to_axis" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+      </spirit:componentInstance>
     </spirit:componentInstances>
     <spirit:interconnections>
       <spirit:interconnection>
-        <spirit:name>S01_AXI_1</spirit:name>
+        <spirit:name>S_AXI_S2MM_1</spirit:name>
         <spirit:activeInterface spirit:busRef="S_AXI_S2MM" spirit:componentRef="pcie_dram"/>
-        <spirit:activeInterface spirit:busRef="M_AXI_S2MM" spirit:componentRef="rx_wrmem"/>
+        <spirit:activeInterface spirit:busRef="M_AXI_S2MM" spirit:componentRef="axis_wrmem"/>
       </spirit:interconnection>
       <spirit:interconnection>
-        <spirit:name>pcie_dram_M02_AXI</spirit:name>
+        <spirit:name>S_AXIS_1</spirit:name>
+        <spirit:activeInterface spirit:busRef="S_AXIS" spirit:componentRef="axis_wrmem"/>
+        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="xgmii_to_axis"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>pcie_dram_M_AXI_REGS</spirit:name>
         <spirit:activeInterface spirit:busRef="M_AXI_REGS" spirit:componentRef="pcie_dram"/>
-        <spirit:activeInterface spirit:busRef="AXILITE_REGS" spirit:componentRef="rx_wrmem"/>
+        <spirit:activeInterface spirit:busRef="s_axi_AXILiteS" spirit:componentRef="eth10_capt_ctrl"/>
       </spirit:interconnection>
     </spirit:interconnections>
     <spirit:adHocConnections>
@@ -447,7 +289,9 @@
         <spirit:name>eth_quad0_XGMII_CLK</spirit:name>
         <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="XGMII_CLK"/>
         <spirit:internalPortReference spirit:componentRef="pcie_dram" spirit:portRef="XGMII_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem" spirit:portRef="XGMII_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="XGMII_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="XGMII_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>eth_quad_SFP1_TX_N</spirit:name>
@@ -475,20 +319,12 @@
         <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op1"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>eth_quad0_RXD_0</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="RXD_0"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem" spirit:portRef="IN_RXD"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>eth_quad0_RXLEN_0</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="RXLEN_0"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem" spirit:portRef="IN_RXLEN"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Res"/>
         <spirit:internalPortReference spirit:componentRef="pcie_dram" spirit:portRef="XGMII_RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem" spirit:portRef="XGMII_RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="XGMII_RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="XGMII_RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="RESETN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>resetn_1</spirit:name>
@@ -497,14 +333,130 @@
         <spirit:internalPortReference spirit:componentRef="pcie_dram" spirit:portRef="resetn"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>eth_quad0_FCS_EN</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="FCS_EN_0"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem" spirit:portRef="FCS_EN"/>
+        <spirit:name>eth10_capt_ctrl_TEST_PKT_SIZE</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="TEST_PKT_SIZE"/>
+        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="PKTLEN"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="TEST_PKT_SIZE"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xlconstant_0_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="TEST_PKT"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>eth_quad0_FCS_CORRECT_0</spirit:name>
         <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="FCS_CORRECT_0"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem" spirit:portRef="FCS_CORRECT"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="FCS_CORRECT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>eth_quad0_FCS_EN_0</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="FCS_EN_0"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="FCS_EN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>eth_quad0_RXLEN_0</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="RXLEN_0"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="IN_RXLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>eth_quad0_RXD_0</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="RXD_0"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="IN_RXD"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CUR_ADDR</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CUR_ADDR"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="WADDR_PRE"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_ERR_STS</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="ERR_STS"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_STS"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>KEEP_ERROR_PACKET_1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="KEEP_ERROR_PACKET"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="KEEP_ERROR_PACKET"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CAP_DELIM</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_DELIM"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CAP_DELIM"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CAP_WDATA</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_WDATA"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CAP_WDATA"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xgmii_to_axis_ERR_FCS</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="ERR_FCS"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_FCS"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_ERR_FATAL</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="ERR_FATAL"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_WCMD"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CAP_WORDCNT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_WORDCNT"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CAP_WORDCNT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CAP_WCMD</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_WCMD"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CAP_WCMD"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_ERR_DELIM</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="ERR_DELIM"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_DELIM"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>GAPLEN_1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="TEST_GAP_SIZE"/>
+        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="GAPLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>STARTBTN_1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="TEST_PKT"/>
+        <spirit:internalPortReference spirit:componentRef="eth_quad0" spirit:portRef="STARTBTN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CUR_WADDR</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CUR_WADDR"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="WADDR_POST"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CLEAR_ERR_1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CLEAR_ERR"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="CLEAR_ERR"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_s2mm_err</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="s2mm_err"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_S2MM"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axis_wrmem_CAP_CNT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_CNT"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CAP_CNT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xgmii_to_axis_ERR_LONG</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="ERR_LONG"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_LONG"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xgmii_to_axis_ERR_FULL</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="ERR_FULL"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="ERR_FULL"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xgmii_to_axis_CAP_PUSH</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="CAP_PUSH"/>
+        <spirit:internalPortReference spirit:componentRef="eth10_capt_ctrl" spirit:portRef="CAP_PKT"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>
@@ -532,20 +484,14 @@
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
     <spirit:library>BlockDiagram/bd_eth10_capture_imp</spirit:library>
-    <spirit:name>rx_wrmem</spirit:name>
+    <spirit:name>xgmii_to_axis</spirit:name>
     <spirit:version>1.00.a</spirit:version>
     <spirit:busInterfaces>
       <spirit:busInterface>
-        <spirit:name>M_AXI_S2MM</spirit:name>
+        <spirit:name>OV</spirit:name>
         <spirit:master/>
-        <spirit:busType spirit:library="interface" spirit:name="aximm" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-      </spirit:busInterface>
-      <spirit:busInterface>
-        <spirit:name>AXILITE_REGS</spirit:name>
-        <spirit:slave/>
-        <spirit:busType spirit:library="interface" spirit:name="aximm" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:busType spirit:library="interface" spirit:name="axis" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="axis_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
       </spirit:busInterface>
       <spirit:busInterface>
         <spirit:name>CLK.XGMII_CLK</spirit:name>
@@ -589,7 +535,7 @@
         <spirit:view>
           <spirit:name>BlockDiagram</spirit:name>
           <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
-          <spirit:hierarchyRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="rx_wrmem_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+          <spirit:hierarchyRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="xgmii_to_axis_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
         </spirit:view>
       </spirit:views>
       <spirit:ports>
@@ -637,6 +583,74 @@
             <spirit:direction>in</spirit:direction>
           </spirit:wire>
         </spirit:port>
+        <spirit:port>
+          <spirit:name>ERR_FCS</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>7</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>TEST_PKT_SIZE</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>15</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>TEST_PKT</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>CLEAR_ERR</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>ERR_LONG</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>7</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>ERR_FULL</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>7</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>CAP_PUSH</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>11</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>KEEP_ERROR_PACKET</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
       </spirit:ports>
     </spirit:model>
   </spirit:component>
@@ -644,63 +658,116 @@
   <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
     <spirit:library>BlockDiagram/bd_eth10_capture_imp</spirit:library>
-    <spirit:name>rx_wrmem_imp</spirit:name>
+    <spirit:name>xgmii_to_axis_imp</spirit:name>
     <spirit:version>1.00.a</spirit:version>
     <spirit:componentInstances>
       <spirit:componentInstance>
-        <spirit:instanceName>axis_dwidth_converter_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="axis_dwidth_converter" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:instanceName>xlconstant_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_dwidth_converter_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="S_TDATA_NUM_BYTES">8</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="M_TDATA_NUM_BYTES">16</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="TID_WIDTH">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="TDEST_WIDTH">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="TUSER_BITS_PER_BYTE">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="HAS_TLAST">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="HAS_TSTRB">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="HAS_TKEEP">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="HAS_MI_TKEEP">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">8</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>vio_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
+        <spirit:instanceName>util_vector_logic_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="util_vector_logic" spirit:vendor="xilinx.com" spirit:version="2.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_vio_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT2_INIT_VAL">0x0060</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_INIT_VAL">0x0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT2_WIDTH">16</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_WIDTH">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">3</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_util_vector_logic_0_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_SIZE">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_OPERATION">or</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>xgmii_to_axis</spirit:instanceName>
-        <spirit:componentRef spirit:library="BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp" spirit:name="xgmii_to_axis" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>axis_wrmem</spirit:instanceName>
-        <spirit:componentRef spirit:library="BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp" spirit:name="axis_wrmem" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>rx_wrmem_regs_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="rx_wrmem_regs" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:instanceName>axis_fifo_pdata</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="axis_fifo" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_rx_wrmem_regs_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">rx_wrmem_regs</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_fifo_pdata_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="WIDTH_LAST">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="FIFO_SIZE_L2">11</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axis_fifo</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>axilite_regs_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="axilite_regs" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:instanceName>axis_fifo_pinfo</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="axis_fifo" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axilite_regs_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axilite_regs</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_fifo_pinfo_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="WIDTH_DATA">24</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="WIDTH_LAST">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="FIFO_SIZE_L2">10</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axis_fifo</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axis_fifo_pkt</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="axis_fifo" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_fifo_pkt_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="FIFO_SIZE_L2">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axis_fifo</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>err_counter_fcs</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="err_counter" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_err_counter_fcs_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">err_counter</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>err_counter_full</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="err_counter" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_err_counter_full_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">err_counter</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>get_packet_info_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="get_packet_info" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_get_packet_info_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">get_packet_info</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>testpat_rx_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="testpat_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_testpat_rx_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">testpat_rx</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>add_packet_header_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="add_packet_header" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_add_packet_header_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">add_packet_header</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -709,210 +776,168 @@
     </spirit:componentInstances>
     <spirit:interconnections>
       <spirit:interconnection>
-        <spirit:name>xgmii_to_axis_OV</spirit:name>
-        <spirit:activeInterface spirit:busRef="S_AXIS" spirit:componentRef="axis_dwidth_converter_0"/>
-        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="xgmii_to_axis"/>
+        <spirit:name>axis_fifo_0_OV</spirit:name>
+        <spirit:activeInterface spirit:busRef="DATA" spirit:componentRef="add_packet_header_0"/>
+        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="axis_fifo_pdata"/>
       </spirit:interconnection>
       <spirit:interconnection>
-        <spirit:name>axis_dwidth_converter_0_M_AXIS</spirit:name>
-        <spirit:activeInterface spirit:busRef="M_AXIS" spirit:componentRef="axis_dwidth_converter_0"/>
-        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_wrmem"/>
+        <spirit:name>axis_fifo_pinfo_OV</spirit:name>
+        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="axis_fifo_pinfo"/>
+        <spirit:activeInterface spirit:busRef="INFO" spirit:componentRef="add_packet_header_0"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>add_packet_header_0_PKT</spirit:name>
+        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_fifo_pkt"/>
+        <spirit:activeInterface spirit:busRef="PKT" spirit:componentRef="add_packet_header_0"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>get_packet_info_0_DATA</spirit:name>
+        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_fifo_pdata"/>
+        <spirit:activeInterface spirit:busRef="DATA" spirit:componentRef="get_packet_info_0"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>get_packet_info_0_INFO</spirit:name>
+        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_fifo_pinfo"/>
+        <spirit:activeInterface spirit:busRef="INFO" spirit:componentRef="get_packet_info_0"/>
       </spirit:interconnection>
     </spirit:interconnections>
     <spirit:adHocConnections>
       <spirit:adHocConnection>
-        <spirit:name>util_vector_logic_0_Res</spirit:name>
-        <spirit:externalPortReference spirit:portRef="XGMII_RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axis_dwidth_converter_0" spirit:portRef="aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="XGMII_RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="XGMII_RESETN"/>
+        <spirit:name>testpat_rx_0_OUT_RXD</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_RXD"/>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="XGMII_D"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>clk_1</spirit:name>
+        <spirit:name>testpat_rx_0_OUT_RXLEN</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_RXLEN"/>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="XGMII_LEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>testpat_rx_0_OUT_FCS_EN</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_FCS_EN"/>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="FCS_EN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>testpat_rx_0_OUT_FCS_CORRECT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_FCS_CORRECT"/>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="FCS_CORRECT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>XGMII_CLK_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="XGMII_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axis_dwidth_converter_0" spirit:portRef="aclk"/>
-        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="clk"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="XGMII_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="XGMII_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pdata" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pinfo" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pkt" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="add_packet_header_0" spirit:portRef="CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>IN_RXD_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="IN_RXD"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="IN_RXD"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_RXD"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>IN_RXLEN_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="IN_RXLEN"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="IN_RXLEN"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_RXLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>XGMII_RESETN_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="XGMII_RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pdata" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pinfo" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pkt" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="add_packet_header_0" spirit:portRef="RESETN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>FCS_EN_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="FCS_EN"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="FCS_EN"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_FCS_EN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>FCS_CORRECT_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="FCS_CORRECT"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="FCS_CORRECT"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_FCS_CORRECT"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_ERR_DELIM</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="ERR_DELIM"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_DELIM"/>
+        <spirit:name>PKTLEN_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="TEST_PKT_SIZE"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="PKTLEN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>probe14_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="s2mm_err"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_S2MM"/>
+        <spirit:name>STARTBTN_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="TEST_PKT"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="STARTBTN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>probe15_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="ERR_FATAL"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_WCMD"/>
+        <spirit:name>axis_fifo_pdata_CAP_PUSH</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axis_fifo_pdata" spirit:portRef="CAP_PUSH"/>
+        <spirit:externalPortReference spirit:portRef="CAP_PUSH"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>probe9_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_WCMD"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_WCMD"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_CAP_WORDCNT</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_WORDCNT"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_WORDCNT"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>probe4_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_WDATA"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_WDATA"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>TEST_PKT_SIZE_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="TEST_PKT_SIZE"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="TEST_PKT_SIZE"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>TEST_PKT_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="TEST_PKT"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="TEST_PKT"/>
+        <spirit:name>xlconstant_0_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
+        <spirit:externalPortReference spirit:portRef="ERR_LONG"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>CLEAR_ERR_1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CLEAR_ERR"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="CLEAR_ERR"/>
+        <spirit:externalPortReference spirit:portRef="CLEAR_ERR"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="CLEAR_ERR"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="CLEAR_ERR"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>vio_0_probe_out2</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out2"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_PKT_SIZE"/>
+        <spirit:name>err_counter_fcs_OVAL</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="OVAL"/>
+        <spirit:externalPortReference spirit:portRef="ERR_FCS"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>vio_0_probe_out1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out1"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_PKT"/>
+        <spirit:name>err_counter_full_OVAL</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="OVAL"/>
+        <spirit:externalPortReference spirit:portRef="ERR_FULL"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>vio_0_probe_out0</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out0"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_CLEAR"/>
+        <spirit:name>get_packet_info_0_ERR_DROP</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="ERR_DROP"/>
+        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op1"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_CAP_DELIM</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_DELIM"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_DELIM"/>
+        <spirit:name>get_packet_info_0_ERR_INCOMPLETE</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="ERR_INCOMPLETE"/>
+        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op2"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_CAP_CNT</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CAP_CNT"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_CNT"/>
+        <spirit:name>get_packet_info_0_ERR_FCS</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="ERR_FCS"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="IVAL"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>xgmii_to_axis_CAP_PUSH</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="CAP_PUSH"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_PKT"/>
+        <spirit:name>util_vector_logic_0_Res</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Res"/>
+        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="IVAL"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>xgmii_to_axis_ERR_FULL</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="ERR_FULL"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_FULL"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>xgmii_to_axis_ERR_FCS</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="ERR_FCS"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_FCS"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>xgmii_to_axis_ERR_LONG</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="xgmii_to_axis" spirit:portRef="ERR_LONG"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_LONG"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_CUR_ADDR</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CUR_ADDR"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WADDR_PRE"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axilite_regs_0_WR_DATA</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="WR_DATA"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WR_DATA"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axilite_regs_0_WR_ADDR</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="WR_ADDR"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WR_ADDR"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axilite_regs_0_WR_EN</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="WR_EN"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WR_EN"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>rx_wrmem_regs_0_RD_DATA</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_DATA"/>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_DATA"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_ERR_STS</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="ERR_STS"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_STS"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axis_wrmem_CUR_WADDR</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_wrmem" spirit:portRef="CUR_WADDR"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WADDR_POST"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axilite_regs_0_RD_ADDR_EN</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_ADDR_EN"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_ADDR_EN"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>axilite_regs_0_RD_ADDR</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_ADDR"/>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_ADDR"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>rx_wrmem_regs_0_RD_DATA_EN</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_DATA_EN"/>
-        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_DATA_EN"/>
+        <spirit:name>KEEP_ERROR_PACKET_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="KEEP_ERROR_PACKET"/>
+        <spirit:internalPortReference spirit:componentRef="add_packet_header_0" spirit:portRef="KEEP_ERROR_PACKET"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>
-      <spirit:hierConnection spirit:interfaceRef="M_AXI_S2MM/Conn">
-        <spirit:activeInterface spirit:busRef="M_AXI_S2MM" spirit:componentRef="axis_wrmem"/>
-      </spirit:hierConnection>
-      <spirit:hierConnection spirit:interfaceRef="AXILITE_REGS/s_axi_AXILiteS_1">
-        <spirit:activeInterface spirit:busRef="s_axi_AXILiteS" spirit:componentRef="axilite_regs_0"/>
+      <spirit:hierConnection spirit:interfaceRef="OV/axis_fifo_0_OV1">
+        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="axis_fifo_pkt"/>
       </spirit:hierConnection>
     </spirit:hierConnections>
   </spirit:design>
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp</spirit:library>
+    <spirit:library>BlockDiagram/bd_eth10_capture_imp</spirit:library>
     <spirit:name>axis_wrmem</spirit:name>
     <spirit:version>1.00.a</spirit:version>
     <spirit:busInterfaces>
@@ -923,7 +948,7 @@
         <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
       </spirit:busInterface>
       <spirit:busInterface>
-        <spirit:name>IV</spirit:name>
+        <spirit:name>S_AXIS</spirit:name>
         <spirit:slave/>
         <spirit:busType spirit:library="interface" spirit:name="axis" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:abstractionType spirit:library="interface" spirit:name="axis_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
@@ -970,7 +995,7 @@
         <spirit:view>
           <spirit:name>BlockDiagram</spirit:name>
           <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
-          <spirit:hierarchyRef spirit:library="BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp" spirit:name="axis_wrmem_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+          <spirit:hierarchyRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="axis_wrmem_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
         </spirit:view>
       </spirit:views>
       <spirit:ports>
@@ -1094,7 +1119,7 @@
 
   <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp</spirit:library>
+    <spirit:library>BlockDiagram/bd_eth10_capture_imp</spirit:library>
     <spirit:name>axis_wrmem_imp</spirit:name>
     <spirit:version>1.00.a</spirit:version>
     <spirit:componentInstances>
@@ -1110,6 +1135,31 @@
           <spirit:configurableElementValue spirit:referenceId="c_enable_mm2s">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_addr_width">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_dummy">1</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlconstant_1</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_1_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">16</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">65535</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axis_dwidth_converter_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="axis_dwidth_converter" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_dwidth_converter_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="S_TDATA_NUM_BYTES">8</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="M_TDATA_NUM_BYTES">16</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="TID_WIDTH">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="TDEST_WIDTH">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="TUSER_BITS_PER_BYTE">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="HAS_TLAST">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="HAS_TSTRB">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="HAS_TKEEP">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="HAS_MI_TKEEP">1</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -1144,15 +1194,6 @@
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>xlconstant_1</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_1_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">16</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">65535</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -1350,6 +1391,11 @@
         <spirit:activeInterface spirit:busRef="STS" spirit:componentRef="rx_wrmem_status_0"/>
         <spirit:activeInterface spirit:busRef="M_AXIS_S2MM_STS" spirit:componentRef="axi_datamover_0"/>
       </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>axis_dwidth_converter_0_M_AXIS</spirit:name>
+        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="get_word_count_0"/>
+        <spirit:activeInterface spirit:busRef="M_AXIS" spirit:componentRef="axis_dwidth_converter_0"/>
+      </spirit:interconnection>
     </spirit:interconnections>
     <spirit:adHocConnections>
       <spirit:adHocConnection>
@@ -1377,9 +1423,10 @@
         <spirit:externalPortReference spirit:portRef="XGMII_CLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="m_axis_s2mm_cmdsts_awclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="m_axi_s2mm_aclk"/>
-        <spirit:internalPortReference spirit:componentRef="get_word_count_0" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="groupify_wordcnt_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="axis_dwidth_converter_0" spirit:portRef="aclk"/>
         <spirit:internalPortReference spirit:componentRef="update_packet_delim_1" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="groupify_wordcnt_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="get_word_count_0" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="gen_datamover_wcmd_0" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="rx_wrmem_status_0" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wcmd" spirit:portRef="CLK"/>
@@ -1387,17 +1434,18 @@
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wcmd_delim" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wdata" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wordcnt" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fork_1" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="axis_fork_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fork_1" spirit:portRef="CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>XGMII_RESETN_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="XGMII_RESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="m_axis_s2mm_cmdsts_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="m_axi_s2mm_aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="get_word_count_0" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="groupify_wordcnt_0" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axis_dwidth_converter_0" spirit:portRef="aresetn"/>
         <spirit:internalPortReference spirit:componentRef="update_packet_delim_1" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="groupify_wordcnt_0" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="get_word_count_0" spirit:portRef="RESETN"/>
         <spirit:internalPortReference spirit:componentRef="gen_datamover_wcmd_0" spirit:portRef="RESETN"/>
         <spirit:internalPortReference spirit:componentRef="rx_wrmem_status_0" spirit:portRef="RESETN"/>
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wcmd" spirit:portRef="RESETN"/>
@@ -1405,8 +1453,8 @@
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wcmd_delim" spirit:portRef="RESETN"/>
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wdata" spirit:portRef="RESETN"/>
         <spirit:internalPortReference spirit:componentRef="axis_fifo_wordcnt" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fork_1" spirit:portRef="RESETN"/>
         <spirit:internalPortReference spirit:componentRef="axis_fork_0" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axis_fork_1" spirit:portRef="RESETN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>axis_fifo_wcmd_CAP_PUSH</spirit:name>
@@ -1453,26 +1501,26 @@
       <spirit:hierConnection spirit:interfaceRef="M_AXI_S2MM/Conn2">
         <spirit:activeInterface spirit:busRef="M_AXI_S2MM" spirit:componentRef="axi_datamover_0"/>
       </spirit:hierConnection>
-      <spirit:hierConnection spirit:interfaceRef="IV/Conn3">
-        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="get_word_count_0"/>
+      <spirit:hierConnection spirit:interfaceRef="S_AXIS/Conn1">
+        <spirit:activeInterface spirit:busRef="S_AXIS" spirit:componentRef="axis_dwidth_converter_0"/>
       </spirit:hierConnection>
     </spirit:hierConnections>
   </spirit:design>
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp</spirit:library>
-    <spirit:name>xgmii_to_axis</spirit:name>
+    <spirit:library>BlockDiagram/bd_eth10_capture_imp</spirit:library>
+    <spirit:name>eth10_capt_ctrl</spirit:name>
     <spirit:version>1.00.a</spirit:version>
     <spirit:busInterfaces>
       <spirit:busInterface>
-        <spirit:name>OV</spirit:name>
-        <spirit:master/>
-        <spirit:busType spirit:library="interface" spirit:name="axis" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="interface" spirit:name="axis_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:name>s_axi_AXILiteS</spirit:name>
+        <spirit:slave/>
+        <spirit:busType spirit:library="interface" spirit:name="aximm" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
       </spirit:busInterface>
       <spirit:busInterface>
-        <spirit:name>CLK.XGMII_CLK</spirit:name>
+        <spirit:name>CLK.CLK</spirit:name>
         <spirit:displayName>Clk</spirit:displayName>
         <spirit:description>Clock</spirit:description>
         <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
@@ -1484,13 +1532,13 @@
               <spirit:name>CLK</spirit:name>
             </spirit:logicalPort>
             <spirit:physicalPort>
-              <spirit:name>XGMII_CLK</spirit:name>
+              <spirit:name>CLK</spirit:name>
             </spirit:physicalPort>
           </spirit:portMap>
         </spirit:portMaps>
       </spirit:busInterface>
       <spirit:busInterface>
-        <spirit:name>RST.XGMII_RESETN</spirit:name>
+        <spirit:name>RST.RESETN</spirit:name>
         <spirit:displayName>Reset</spirit:displayName>
         <spirit:description>Reset</spirit:description>
         <spirit:busType spirit:library="signal" spirit:name="reset" spirit:vendor="xilinx.com" spirit:version="1.0"/>
@@ -1502,7 +1550,7 @@
               <spirit:name>RST</spirit:name>
             </spirit:logicalPort>
             <spirit:physicalPort>
-              <spirit:name>XGMII_RESETN</spirit:name>
+              <spirit:name>RESETN</spirit:name>
             </spirit:physicalPort>
           </spirit:portMap>
         </spirit:portMaps>
@@ -1513,18 +1561,24 @@
         <spirit:view>
           <spirit:name>BlockDiagram</spirit:name>
           <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
-          <spirit:hierarchyRef spirit:library="BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp" spirit:name="xgmii_to_axis_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+          <spirit:hierarchyRef spirit:library="BlockDiagram/bd_eth10_capture_imp" spirit:name="eth10_capt_ctrl_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
         </spirit:view>
       </spirit:views>
       <spirit:ports>
         <spirit:port>
-          <spirit:name>XGMII_CLK</spirit:name>
+          <spirit:name>CLK</spirit:name>
           <spirit:wire>
             <spirit:direction>in</spirit:direction>
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>IN_RXD</spirit:name>
+          <spirit:name>RESETN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>WADDR_PRE</spirit:name>
           <spirit:wire>
             <spirit:direction>in</spirit:direction>
             <spirit:vector>
@@ -1534,7 +1588,23 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>IN_RXLEN</spirit:name>
+          <spirit:name>ERR_STS</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>7</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>KEEP_ERROR_PACKET</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>CAP_DELIM</spirit:name>
           <spirit:wire>
             <spirit:direction>in</spirit:direction>
             <spirit:vector>
@@ -1544,27 +1614,19 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>XGMII_RESETN</spirit:name>
+          <spirit:name>CAP_WDATA</spirit:name>
           <spirit:wire>
             <spirit:direction>in</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>FCS_EN</spirit:name>
-          <spirit:wire>
-            <spirit:direction>in</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>FCS_CORRECT</spirit:name>
-          <spirit:wire>
-            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>14</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
           </spirit:wire>
         </spirit:port>
         <spirit:port>
           <spirit:name>ERR_FCS</spirit:name>
           <spirit:wire>
-            <spirit:direction>out</spirit:direction>
+            <spirit:direction>in</spirit:direction>
             <spirit:vector>
               <spirit:left>7</spirit:left>
               <spirit:right>0</spirit:right>
@@ -1572,9 +1634,55 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>TEST_PKT_SIZE</spirit:name>
+          <spirit:name>ERR_WCMD</spirit:name>
           <spirit:wire>
             <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>1</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>CAP_WORDCNT</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>4</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>CAP_WCMD</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>3</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>ERR_DELIM</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>TEST_GAP_SIZE</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>15</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>TEST_PKT_SIZE</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
             <spirit:vector>
               <spirit:left>15</spirit:left>
               <spirit:right>0</spirit:right>
@@ -1584,19 +1692,45 @@
         <spirit:port>
           <spirit:name>TEST_PKT</spirit:name>
           <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>WADDR_POST</spirit:name>
+          <spirit:wire>
             <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>63</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
           </spirit:wire>
         </spirit:port>
         <spirit:port>
           <spirit:name>CLEAR_ERR</spirit:name>
           <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>ERR_S2MM</spirit:name>
+          <spirit:wire>
             <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>CAP_CNT</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>3</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
           </spirit:wire>
         </spirit:port>
         <spirit:port>
           <spirit:name>ERR_LONG</spirit:name>
           <spirit:wire>
-            <spirit:direction>out</spirit:direction>
+            <spirit:direction>in</spirit:direction>
             <spirit:vector>
               <spirit:left>7</spirit:left>
               <spirit:right>0</spirit:right>
@@ -1606,7 +1740,7 @@
         <spirit:port>
           <spirit:name>ERR_FULL</spirit:name>
           <spirit:wire>
-            <spirit:direction>out</spirit:direction>
+            <spirit:direction>in</spirit:direction>
             <spirit:vector>
               <spirit:left>7</spirit:left>
               <spirit:right>0</spirit:right>
@@ -1614,9 +1748,9 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>CAP_PUSH</spirit:name>
+          <spirit:name>CAP_PKT</spirit:name>
           <spirit:wire>
-            <spirit:direction>out</spirit:direction>
+            <spirit:direction>in</spirit:direction>
             <spirit:vector>
               <spirit:left>11</spirit:left>
               <spirit:right>0</spirit:right>
@@ -1629,275 +1763,227 @@
 
   <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>BlockDiagram/bd_eth10_capture_imp/rx_wrmem_imp</spirit:library>
-    <spirit:name>xgmii_to_axis_imp</spirit:name>
+    <spirit:library>BlockDiagram/bd_eth10_capture_imp</spirit:library>
+    <spirit:name>eth10_capt_ctrl_imp</spirit:name>
     <spirit:version>1.00.a</spirit:version>
     <spirit:componentInstances>
       <spirit:componentInstance>
-        <spirit:instanceName>testpat_rx_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="testpat_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:instanceName>vio_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_testpat_rx_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">testpat_rx</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_vio_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT3_INIT_VAL">0x000c</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT2_INIT_VAL">0x0040</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_INIT_VAL">0x0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT3_WIDTH">16</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT2_WIDTH">16</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_WIDTH">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">5</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axilite_regs_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="axilite_regs" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axilite_regs_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axilite_regs</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>xlconstant_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:instanceName>rx_wrmem_regs_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="rx_wrmem_regs" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">8</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>axis_fifo_pdata</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="axis_fifo" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_fifo_pdata_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="WIDTH_LAST">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="FIFO_SIZE_L2">11</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axis_fifo</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_rx_wrmem_regs_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">rx_wrmem_regs</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>axis_fifo_pkt</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="axis_fifo" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_fifo_pkt_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="FIFO_SIZE_L2">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axis_fifo</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>axis_fifo_pinfo</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="axis_fifo" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_axis_fifo_pinfo_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="WIDTH_DATA">24</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="WIDTH_LAST">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="FIFO_SIZE_L2">10</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axis_fifo</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>add_packet_header_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="add_packet_header" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_add_packet_header_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">add_packet_header</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>get_packet_info_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="get_packet_info" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_get_packet_info_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">get_packet_info</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>err_counter_fcs</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="err_counter" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_err_counter_fcs_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">err_counter</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>err_counter_full</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="err_counter" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_err_counter_full_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">err_counter</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>util_vector_logic_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="util_vector_logic" spirit:vendor="xilinx.com" spirit:version="2.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_util_vector_logic_0_1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_SIZE">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_OPERATION">or</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
-    <spirit:interconnections>
-      <spirit:interconnection>
-        <spirit:name>axis_fifo_0_OV</spirit:name>
-        <spirit:activeInterface spirit:busRef="DATA" spirit:componentRef="add_packet_header_0"/>
-        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="axis_fifo_pdata"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>axis_fifo_pinfo_OV</spirit:name>
-        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="axis_fifo_pinfo"/>
-        <spirit:activeInterface spirit:busRef="INFO" spirit:componentRef="add_packet_header_0"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>add_packet_header_0_PKT</spirit:name>
-        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_fifo_pkt"/>
-        <spirit:activeInterface spirit:busRef="PKT" spirit:componentRef="add_packet_header_0"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>get_packet_info_0_DATA</spirit:name>
-        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_fifo_pdata"/>
-        <spirit:activeInterface spirit:busRef="DATA" spirit:componentRef="get_packet_info_0"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>get_packet_info_0_INFO</spirit:name>
-        <spirit:activeInterface spirit:busRef="IV" spirit:componentRef="axis_fifo_pinfo"/>
-        <spirit:activeInterface spirit:busRef="INFO" spirit:componentRef="get_packet_info_0"/>
-      </spirit:interconnection>
-    </spirit:interconnections>
+    <spirit:interconnections/>
     <spirit:adHocConnections>
       <spirit:adHocConnection>
-        <spirit:name>testpat_rx_0_OUT_RXD</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_RXD"/>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="XGMII_D"/>
+        <spirit:name>CLK_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="clk"/>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>testpat_rx_0_OUT_RXLEN</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_RXLEN"/>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="XGMII_LEN"/>
+        <spirit:name>RESETN_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RESETN"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RESETN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>testpat_rx_0_OUT_FCS_EN</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_FCS_EN"/>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="FCS_EN"/>
+        <spirit:name>WADDR_PRE_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="WADDR_PRE"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WADDR_PRE"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>testpat_rx_0_OUT_FCS_CORRECT</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="OUT_FCS_CORRECT"/>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="FCS_CORRECT"/>
+        <spirit:name>ERR_STS_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="ERR_STS"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_STS"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>XGMII_CLK_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="XGMII_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pdata" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pkt" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pinfo" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="add_packet_header_0" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="CLK"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="CLK"/>
+        <spirit:name>rx_wrmem_regs_0_KEEP_ERROR_PACKET</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="KEEP_ERROR_PACKET"/>
+        <spirit:externalPortReference spirit:portRef="KEEP_ERROR_PACKET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>IN_RXD_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="IN_RXD"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_RXD"/>
+        <spirit:name>CAP_DELIM_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CAP_DELIM"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_DELIM"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>IN_RXLEN_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="IN_RXLEN"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_RXLEN"/>
+        <spirit:name>CAP_WDATA_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CAP_WDATA"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_WDATA"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>XGMII_RESETN_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="XGMII_RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pdata" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pkt" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pinfo" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="add_packet_header_0" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="RESETN"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="RESETN"/>
+        <spirit:name>vio_0_probe_out2</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out2"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_PKT_SIZE"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>FCS_EN_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="FCS_EN"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_FCS_EN"/>
+        <spirit:name>vio_0_probe_out1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out1"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_PKT"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>FCS_CORRECT_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="FCS_CORRECT"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="IN_FCS_CORRECT"/>
+        <spirit:name>vio_0_probe_out0</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out0"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_CLEAR"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>PKTLEN_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="TEST_PKT_SIZE"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="PKTLEN"/>
+        <spirit:name>vio_0_probe_out4</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out4"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_KEEP_ERROR_PACKET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>STARTBTN_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="TEST_PKT"/>
-        <spirit:internalPortReference spirit:componentRef="testpat_rx_0" spirit:portRef="STARTBTN"/>
+        <spirit:name>vio_0_probe_out3</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out3"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="VIO_GAP_SIZE"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>axis_fifo_pdata_CAP_PUSH</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="axis_fifo_pdata" spirit:portRef="CAP_PUSH"/>
-        <spirit:externalPortReference spirit:portRef="CAP_PUSH"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>xlconstant_0_dout</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
-        <spirit:externalPortReference spirit:portRef="ERR_LONG"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>CLEAR_ERR_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="CLEAR_ERR"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="CLEAR_ERR"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="CLEAR_ERR"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>err_counter_fcs_OVAL</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="OVAL"/>
+        <spirit:name>ERR_FCS_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="ERR_FCS"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_FCS"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>err_counter_full_OVAL</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="OVAL"/>
+        <spirit:name>ERR_WCMD_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="ERR_WCMD"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_WCMD"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CAP_WORDCNT_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CAP_WORDCNT"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_WORDCNT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CAP_WCMD_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CAP_WCMD"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_WCMD"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>ERR_DELIM_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="ERR_DELIM"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_DELIM"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_wrmem_regs_0_TEST_GAP_SIZE</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="TEST_GAP_SIZE"/>
+        <spirit:externalPortReference spirit:portRef="TEST_GAP_SIZE"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_wrmem_regs_0_TEST_PKT_SIZE</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="TEST_PKT_SIZE"/>
+        <spirit:externalPortReference spirit:portRef="TEST_PKT_SIZE"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_wrmem_regs_0_TEST_PKT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="TEST_PKT"/>
+        <spirit:externalPortReference spirit:portRef="TEST_PKT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>WADDR_POST_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="WADDR_POST"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WADDR_POST"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_wrmem_regs_0_CLEAR_ERR</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CLEAR_ERR"/>
+        <spirit:externalPortReference spirit:portRef="CLEAR_ERR"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>ERR_S2MM_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="ERR_S2MM"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_S2MM"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CAP_CNT_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CAP_CNT"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_CNT"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axilite_regs_0_WR_ADDR</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="WR_ADDR"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WR_ADDR"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axilite_regs_0_WR_EN</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="WR_EN"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WR_EN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axilite_regs_0_WR_DATA</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="WR_DATA"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="WR_DATA"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_wrmem_regs_0_RD_DATA_EN</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_DATA_EN"/>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_DATA_EN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_wrmem_regs_0_RD_DATA</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_DATA"/>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_DATA"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axilite_regs_0_RD_ADDR</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_ADDR"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_ADDR"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axilite_regs_0_RD_ADDR_EN</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axilite_regs_0" spirit:portRef="RD_ADDR_EN"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="RD_ADDR_EN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>ERR_LONG_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="ERR_LONG"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_LONG"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>ERR_FULL_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="ERR_FULL"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="ERR_FULL"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>get_packet_info_0_ERR_DROP</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="ERR_DROP"/>
-        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op1"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>get_packet_info_0_ERR_INCOMPLETE</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="ERR_INCOMPLETE"/>
-        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op2"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>get_packet_info_0_ERR_FCS</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="get_packet_info_0" spirit:portRef="ERR_FCS"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_fcs" spirit:portRef="IVAL"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>util_vector_logic_0_Res</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Res"/>
-        <spirit:internalPortReference spirit:componentRef="err_counter_full" spirit:portRef="IVAL"/>
+        <spirit:name>CAP_PKT_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="CAP_PKT"/>
+        <spirit:internalPortReference spirit:componentRef="rx_wrmem_regs_0" spirit:portRef="CAP_PKT"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>
-      <spirit:hierConnection spirit:interfaceRef="OV/axis_fifo_0_OV1">
-        <spirit:activeInterface spirit:busRef="OV" spirit:componentRef="axis_fifo_pkt"/>
+      <spirit:hierConnection spirit:interfaceRef="s_axi_AXILiteS/Conn1">
+        <spirit:activeInterface spirit:busRef="s_axi_AXILiteS" spirit:componentRef="axilite_regs_0"/>
       </spirit:hierConnection>
     </spirit:hierConnections>
   </spirit:design>
@@ -2089,7 +2175,7 @@
           <spirit:configurableElementValue spirit:referenceId="dedicate_perst">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="mcap_enablement">None</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="pf0_device_id">8038</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="pf0_revision_id">a4</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="pf0_revision_id">a5</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="axilite_master_en">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="axilite_master_size">512</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="axilite_master_scale">Kilobytes</spirit:configurableElementValue>
@@ -2126,7 +2212,7 @@
         <spirit:instanceName>xlconstant_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_2</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
@@ -3849,6 +3935,32 @@
             <spirit:direction>out</spirit:direction>
           </spirit:wire>
         </spirit:port>
+        <spirit:port>
+          <spirit:name>GAPLEN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>15</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>PKTLEN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>15</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>STARTBTN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
       </spirit:ports>
     </spirit:model>
   </spirit:component>
@@ -3925,6 +4037,21 @@
         <spirit:name>eth_0_FCS_EN_0</spirit:name>
         <spirit:internalPortReference spirit:componentRef="eth_0" spirit:portRef="FCS_EN"/>
         <spirit:externalPortReference spirit:portRef="FCS_EN_0"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>GAPLEN_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="GAPLEN"/>
+        <spirit:internalPortReference spirit:componentRef="eth_0" spirit:portRef="GAPLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>PKTLEN_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="PKTLEN"/>
+        <spirit:internalPortReference spirit:componentRef="eth_0" spirit:portRef="PKTLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>STARTBTN_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="STARTBTN"/>
+        <spirit:internalPortReference spirit:componentRef="eth_0" spirit:portRef="STARTBTN"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>
@@ -4328,6 +4455,32 @@
             <spirit:direction>out</spirit:direction>
           </spirit:wire>
         </spirit:port>
+        <spirit:port>
+          <spirit:name>GAPLEN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>15</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>PKTLEN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>15</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>STARTBTN</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
       </spirit:ports>
     </spirit:model>
   </spirit:component>
@@ -4354,8 +4507,17 @@
         <spirit:instanceName>xlconstant_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xlconstant_0_3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>system_ila_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="system_ila" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_system_ila_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">6</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_MON_TYPE">NATIVE</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -4392,20 +4554,22 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>system_ila_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="system_ila" spirit:vendor="xilinx.com" spirit:version="1.1"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_system_ila_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">6</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_MON_TYPE">NATIVE</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>xgmii_fcs_0</spirit:instanceName>
         <spirit:componentRef spirit:library="module_ref" spirit:name="xgmii_fcs" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_xgmii_fcs_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">xgmii_fcs</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>testpat_xgmii_rx_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="testpat_xgmii_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_eth10_capture_testpat_xgmii_rx_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">testpat_xgmii_rx</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -4424,23 +4588,24 @@
         <spirit:name>CLK_1</spirit:name>
         <spirit:internalPortReference spirit:componentRef="ten_gig_eth_pcs_pma_0" spirit:portRef="txusrclk2_out"/>
         <spirit:externalPortReference spirit:portRef="txusrclk2_out"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="clk"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="CLK"/>
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="CLK"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>xgmii_fcs_0_RXD_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="RXD_OUT"/>
         <spirit:externalPortReference spirit:portRef="RXD"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="RXD_IN"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe3"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="RXD_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>xgmii_fcs_0_RXLEN_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="RXLEN_OUT"/>
         <spirit:externalPortReference spirit:portRef="RXLEN"/>
-        <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="RXLEN_IN"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe2"/>
+        <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="RXLEN_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>xgmii_test_server_0_TXD_OUT</spirit:name>
@@ -4484,13 +4649,13 @@
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>ten_gig_eth_pcs_pma_0_xgmii_rxd</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="ten_gig_eth_pcs_pma_0" spirit:portRef="xgmii_rxd"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="OUT_RXD"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe1"/>
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="XGMII_RXD"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>ten_gig_eth_pcs_pma_0_xgmii_rxc</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="ten_gig_eth_pcs_pma_0" spirit:portRef="xgmii_rxc"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="OUT_RXC"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe0"/>
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="XGMII_RXC"/>
       </spirit:adHocConnection>
@@ -4630,6 +4795,7 @@
         <spirit:externalPortReference spirit:portRef="areset_datapathclk_out"/>
         <spirit:internalPortReference spirit:componentRef="xgmii_test_server_0" spirit:portRef="RESET"/>
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="RESET"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>xgmii_fcs_0_FCS_CORRECT</spirit:name>
@@ -4642,6 +4808,31 @@
         <spirit:internalPortReference spirit:componentRef="xgmii_fcs_0" spirit:portRef="FCS_EN"/>
         <spirit:externalPortReference spirit:portRef="FCS_EN"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe4"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>ten_gig_eth_pcs_pma_0_xgmii_rxc1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="ten_gig_eth_pcs_pma_0" spirit:portRef="xgmii_rxc"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="IN_RXC"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>ten_gig_eth_pcs_pma_0_xgmii_rxd1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="ten_gig_eth_pcs_pma_0" spirit:portRef="xgmii_rxd"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="IN_RXD"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>GAPLEN_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="GAPLEN"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="GAPLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>PKTLEN_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="PKTLEN"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="PKTLEN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>STARTBTN_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="STARTBTN"/>
+        <spirit:internalPortReference spirit:componentRef="testpat_xgmii_rx_0" spirit:portRef="STARTBTN"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>
@@ -4707,7 +4898,7 @@
           </spirit:segment>
           <spirit:segment>
             <spirit:name>SEG_axilite_regs_0_reg0</spirit:name>
-            <spirit:displayName>/rx_wrmem/axilite_regs_0/s_axi_AXILiteS/reg0</spirit:displayName>
+            <spirit:displayName>/eth10_capt_ctrl/axilite_regs_0/s_axi_AXILiteS/reg0</spirit:displayName>
             <spirit:addressOffset>0x00000000</spirit:addressOffset>
             <spirit:range>64K</spirit:range>
           </spirit:segment>
@@ -4724,7 +4915,7 @@
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>Addressing/rx_wrmem/axis_wrmem/axi_datamover_0</spirit:library>
+    <spirit:library>Addressing/axis_wrmem/axi_datamover_0</spirit:library>
     <spirit:name>axi_datamover</spirit:name>
     <spirit:version>5.1</spirit:version>
     <spirit:busInterfaces>

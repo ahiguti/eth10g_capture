@@ -1,6 +1,6 @@
 
 // Copyright (C) Akira Higuchi  ( https://github.com/ahiguti )
-// Copyright (C) DeNA Co., Ltd. ( https://dena.com )
+// Copyright (C) DeNA Co.,Ltd. ( https://dena.com )
 // All rights reserved.
 // See COPYRIGHT.txt for details
 
@@ -25,6 +25,7 @@ reg fcs_en;
 reg fcs_correct;
 reg [15:0] len_rem;
 reg [3:0] gap;
+reg [63:0] cnt;
 
 assign OUT_RXD = rxd;
 assign OUT_RXLEN = rxlen;
@@ -39,6 +40,7 @@ always @(posedge CLK) begin
         fcs_correct <= 0;
         len_rem <= 0;
         gap <= 0;
+        cnt <= 0;
     end else begin
         rxd <= 0;
         rxlen <= 0;
@@ -56,8 +58,9 @@ always @(posedge CLK) begin
                 end else begin
                     len_rem <= 0;
                     rxlen <= len_rem;
-                    rxd <= 64'hffffffffffffffff;
-                    gap <= 3;
+                    rxd <= cnt;
+                    cnt <= cnt + 1;
+                    gap <= 1;
                 end
             end
             fcs_en <= 1;

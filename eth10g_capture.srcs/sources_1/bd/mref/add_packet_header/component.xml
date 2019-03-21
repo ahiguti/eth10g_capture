@@ -169,7 +169,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>4f122a3e</spirit:value>
+            <spirit:value>1f229de7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -182,7 +182,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>4f122a3e</spirit:value>
+            <spirit:value>1f229de7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -211,6 +211,19 @@
       </spirit:port>
       <spirit:port>
         <spirit:name>RESETN</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>KEEP_ERROR_PACKET</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -415,7 +428,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2018-10-12T07:07:35Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2019-03-21T19:16:00Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>

@@ -1,15 +1,15 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-//Date        : Fri Oct 26 15:01:17 2018
-//Host        : O-11943-LIN running 64-bit Ubuntu 16.04.5 LTS
+//Date        : Fri Mar 22 01:48:09 2019
+//Host        : habuild running 64-bit Ubuntu 16.04.6 LTS
 //Command     : generate_target bd_eth10_capture.bd
 //Design      : bd_eth10_capture
 //Purpose     : IP block netlist
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-module axis_wrmem_imp_1H5WZDN
+module axis_wrmem_imp_1DB1J91
    (CAP_CNT,
     CAP_DELIM,
     CAP_WCMD,
@@ -20,10 +20,6 @@ module axis_wrmem_imp_1H5WZDN
     ERR_DELIM,
     ERR_FATAL,
     ERR_STS,
-    IV_tdata,
-    IV_tlast,
-    IV_tready,
-    IV_tvalid,
     M_AXI_S2MM_awaddr,
     M_AXI_S2MM_awburst,
     M_AXI_S2MM_awcache,
@@ -42,6 +38,10 @@ module axis_wrmem_imp_1H5WZDN
     M_AXI_S2MM_wready,
     M_AXI_S2MM_wstrb,
     M_AXI_S2MM_wvalid,
+    S_AXIS_tdata,
+    S_AXIS_tlast,
+    S_AXIS_tready,
+    S_AXIS_tvalid,
     XGMII_CLK,
     XGMII_RESETN,
     s2mm_err);
@@ -55,10 +55,6 @@ module axis_wrmem_imp_1H5WZDN
   output ERR_DELIM;
   output [1:0]ERR_FATAL;
   output [7:0]ERR_STS;
-  input [127:0]IV_tdata;
-  input IV_tlast;
-  output IV_tready;
-  input IV_tvalid;
   output [63:0]M_AXI_S2MM_awaddr;
   output [1:0]M_AXI_S2MM_awburst;
   output [3:0]M_AXI_S2MM_awcache;
@@ -77,10 +73,18 @@ module axis_wrmem_imp_1H5WZDN
   input M_AXI_S2MM_wready;
   output [15:0]M_AXI_S2MM_wstrb;
   output M_AXI_S2MM_wvalid;
+  input [63:0]S_AXIS_tdata;
+  input [0:0]S_AXIS_tlast;
+  output S_AXIS_tready;
+  input S_AXIS_tvalid;
   input XGMII_CLK;
   input XGMII_RESETN;
   output s2mm_err;
 
+  wire [63:0]Conn1_TDATA;
+  wire [0:0]Conn1_TLAST;
+  wire Conn1_TREADY;
+  wire Conn1_TVALID;
   wire [63:0]Conn2_AWADDR;
   wire [1:0]Conn2_AWBURST;
   wire [3:0]Conn2_AWCACHE;
@@ -99,16 +103,16 @@ module axis_wrmem_imp_1H5WZDN
   wire Conn2_WREADY;
   wire [15:0]Conn2_WSTRB;
   wire Conn2_WVALID;
-  wire [127:0]Conn3_TDATA;
-  wire Conn3_TLAST;
-  wire Conn3_TREADY;
-  wire Conn3_TVALID;
   wire XGMII_CLK_1;
   wire XGMII_RESETN_1;
   wire [7:0]axi_datamover_0_M_AXIS_S2MM_STS_TDATA;
   wire axi_datamover_0_M_AXIS_S2MM_STS_TREADY;
   wire axi_datamover_0_M_AXIS_S2MM_STS_TVALID;
   wire axi_datamover_0_s2mm_err;
+  wire [127:0]axis_dwidth_converter_0_M_AXIS_TDATA;
+  wire axis_dwidth_converter_0_M_AXIS_TLAST;
+  wire axis_dwidth_converter_0_M_AXIS_TREADY;
+  wire axis_dwidth_converter_0_M_AXIS_TVALID;
   wire [3:0]axis_fifo_wcmd_CAP_PUSH;
   wire [103:0]axis_fifo_wcmd_OV_TDATA;
   wire axis_fifo_wcmd_OV_TREADY;
@@ -189,17 +193,16 @@ module axis_wrmem_imp_1H5WZDN
   assign CAP_WORDCNT[4:0] = axis_fifo_wordcnt_CAP_PUSH;
   assign CUR_ADDR[63:0] = gen_datamover_wcmd_0_CUR_ADDR;
   assign CUR_WADDR[63:0] = rx_wrmem_status_0_CUR_WADDR;
+  assign Conn1_TDATA = S_AXIS_tdata[63:0];
+  assign Conn1_TLAST = S_AXIS_tlast[0];
+  assign Conn1_TVALID = S_AXIS_tvalid;
   assign Conn2_AWREADY = M_AXI_S2MM_awready;
   assign Conn2_BRESP = M_AXI_S2MM_bresp[1:0];
   assign Conn2_BVALID = M_AXI_S2MM_bvalid;
   assign Conn2_WREADY = M_AXI_S2MM_wready;
-  assign Conn3_TDATA = IV_tdata[127:0];
-  assign Conn3_TLAST = IV_tlast;
-  assign Conn3_TVALID = IV_tvalid;
   assign ERR_DELIM = update_packet_delim_1_ERR_DELIM;
   assign ERR_FATAL[1:0] = gen_datamover_wcmd_0_ERR_FATAL;
   assign ERR_STS[7:0] = rx_wrmem_status_0_ERR_STS;
-  assign IV_tready = Conn3_TREADY;
   assign M_AXI_S2MM_awaddr[63:0] = Conn2_AWADDR;
   assign M_AXI_S2MM_awburst[1:0] = Conn2_AWBURST;
   assign M_AXI_S2MM_awcache[3:0] = Conn2_AWCACHE;
@@ -214,6 +217,7 @@ module axis_wrmem_imp_1H5WZDN
   assign M_AXI_S2MM_wlast = Conn2_WLAST;
   assign M_AXI_S2MM_wstrb[15:0] = Conn2_WSTRB;
   assign M_AXI_S2MM_wvalid = Conn2_WVALID;
+  assign S_AXIS_tready = Conn1_TREADY;
   assign XGMII_CLK_1 = XGMII_CLK;
   assign XGMII_RESETN_1 = XGMII_RESETN;
   assign s2mm_err = axi_datamover_0_s2mm_err;
@@ -252,6 +256,17 @@ module axis_wrmem_imp_1H5WZDN
         .s_axis_s2mm_tlast(update_packet_delim_1_OWDATA_TLAST),
         .s_axis_s2mm_tready(update_packet_delim_1_OWDATA_TREADY),
         .s_axis_s2mm_tvalid(update_packet_delim_1_OWDATA_TVALID));
+  bd_eth10_capture_axis_dwidth_converter_0_0 axis_dwidth_converter_0
+       (.aclk(XGMII_CLK_1),
+        .aresetn(XGMII_RESETN_1),
+        .m_axis_tdata(axis_dwidth_converter_0_M_AXIS_TDATA),
+        .m_axis_tlast(axis_dwidth_converter_0_M_AXIS_TLAST),
+        .m_axis_tready(axis_dwidth_converter_0_M_AXIS_TREADY),
+        .m_axis_tvalid(axis_dwidth_converter_0_M_AXIS_TVALID),
+        .s_axis_tdata(Conn1_TDATA),
+        .s_axis_tlast(Conn1_TLAST),
+        .s_axis_tready(Conn1_TREADY),
+        .s_axis_tvalid(Conn1_TVALID));
   bd_eth10_capture_axis_fifo_wcmd_0 axis_fifo_wcmd
        (.CAP_PUSH(axis_fifo_wcmd_CAP_PUSH),
         .CLK(XGMII_CLK_1),
@@ -384,10 +399,10 @@ module axis_wrmem_imp_1H5WZDN
         .WORDCNT_TVALID(groupify_wordcnt_0_OV_TVALID));
   bd_eth10_capture_get_word_count_0_0 get_word_count_0
        (.CLK(XGMII_CLK_1),
-        .IV_TDATA(Conn3_TDATA),
-        .IV_TLAST(Conn3_TLAST),
-        .IV_TREADY(Conn3_TREADY),
-        .IV_TVALID(Conn3_TVALID),
+        .IV_TDATA(axis_dwidth_converter_0_M_AXIS_TDATA),
+        .IV_TLAST(axis_dwidth_converter_0_M_AXIS_TLAST),
+        .IV_TREADY(axis_dwidth_converter_0_M_AXIS_TREADY),
+        .IV_TVALID(axis_dwidth_converter_0_M_AXIS_TVALID),
         .OV_TDATA(get_word_count_0_OV_TDATA),
         .OV_TLAST(get_word_count_0_OV_TLAST),
         .OV_TREADY(get_word_count_0_OV_TREADY),
@@ -435,7 +450,7 @@ module axis_wrmem_imp_1H5WZDN
        (.dout(xlconstant_1_dout));
 endmodule
 
-(* CORE_GENERATION_INFO = "bd_eth10_capture,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_eth10_capture,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=62,numReposBlks=50,numNonXlnxBlks=0,numHierBlks=12,maxHierDepth=2,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=28,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "bd_eth10_capture.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_eth10_capture,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_eth10_capture,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=64,numReposBlks=52,numNonXlnxBlks=0,numHierBlks=12,maxHierDepth=2,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=29,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "bd_eth10_capture.hwdef" *) 
 module bd_eth10_capture
    (I2C_SCL,
     I2C_SDA,
@@ -504,59 +519,79 @@ module bd_eth10_capture
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 pcie_refclk CLK_P" *) input pcie_refclk_clk_p;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESETN, POLARITY ACTIVE_LOW" *) input resetn;
 
+  wire CLEAR_ERR_1;
   wire CLK_1;
+  wire [15:0]GAPLEN_1;
+  wire KEEP_ERROR_PACKET_1;
   wire MGTCLK0_1_CLK_N;
   wire MGTCLK0_1_CLK_P;
   wire Net;
   wire Net1;
   wire [0:0]RESET_N_1;
-  wire [63:0]S01_AXI_1_AWADDR;
-  wire [1:0]S01_AXI_1_AWBURST;
-  wire [3:0]S01_AXI_1_AWCACHE;
-  wire [3:0]S01_AXI_1_AWID;
-  wire [7:0]S01_AXI_1_AWLEN;
-  wire [2:0]S01_AXI_1_AWPROT;
-  wire S01_AXI_1_AWREADY;
-  wire [2:0]S01_AXI_1_AWSIZE;
-  wire [3:0]S01_AXI_1_AWUSER;
-  wire S01_AXI_1_AWVALID;
-  wire S01_AXI_1_BREADY;
-  wire [1:0]S01_AXI_1_BRESP;
-  wire S01_AXI_1_BVALID;
-  wire [127:0]S01_AXI_1_WDATA;
-  wire S01_AXI_1_WLAST;
-  wire S01_AXI_1_WREADY;
-  wire [15:0]S01_AXI_1_WSTRB;
-  wire S01_AXI_1_WVALID;
   wire SFP1_RX_N_0_1;
   wire SFP1_RX_P_0_1;
+  wire STARTBTN_1;
+  wire [63:0]S_AXIS_1_TDATA;
+  wire [0:0]S_AXIS_1_TLAST;
+  wire S_AXIS_1_TREADY;
+  wire S_AXIS_1_TVALID;
+  wire [63:0]S_AXI_S2MM_1_AWADDR;
+  wire [1:0]S_AXI_S2MM_1_AWBURST;
+  wire [3:0]S_AXI_S2MM_1_AWCACHE;
+  wire [3:0]S_AXI_S2MM_1_AWID;
+  wire [7:0]S_AXI_S2MM_1_AWLEN;
+  wire [2:0]S_AXI_S2MM_1_AWPROT;
+  wire S_AXI_S2MM_1_AWREADY;
+  wire [2:0]S_AXI_S2MM_1_AWSIZE;
+  wire [3:0]S_AXI_S2MM_1_AWUSER;
+  wire S_AXI_S2MM_1_AWVALID;
+  wire S_AXI_S2MM_1_BREADY;
+  wire [1:0]S_AXI_S2MM_1_BRESP;
+  wire S_AXI_S2MM_1_BVALID;
+  wire [127:0]S_AXI_S2MM_1_WDATA;
+  wire S_AXI_S2MM_1_WLAST;
+  wire S_AXI_S2MM_1_WREADY;
+  wire [15:0]S_AXI_S2MM_1_WSTRB;
+  wire S_AXI_S2MM_1_WVALID;
+  wire [3:0]axis_wrmem_CAP_CNT;
+  wire [3:0]axis_wrmem_CAP_DELIM;
+  wire [3:0]axis_wrmem_CAP_WCMD;
+  wire [14:0]axis_wrmem_CAP_WDATA;
+  wire [4:0]axis_wrmem_CAP_WORDCNT;
+  wire [63:0]axis_wrmem_CUR_ADDR;
+  wire [63:0]axis_wrmem_CUR_WADDR;
+  wire axis_wrmem_ERR_DELIM;
+  wire [1:0]axis_wrmem_ERR_FATAL;
+  wire [7:0]axis_wrmem_ERR_STS;
+  wire axis_wrmem_s2mm_err;
   wire default_300mhz_clk0_1_CLK_N;
   wire default_300mhz_clk0_1_CLK_P;
+  wire [15:0]eth10_capt_ctrl_TEST_PKT_SIZE;
   wire eth_quad0_FCS_CORRECT_0;
-  wire eth_quad0_FCS_EN;
+  wire eth_quad0_FCS_EN_0;
   wire [63:0]eth_quad0_RXD_0;
   wire [3:0]eth_quad0_RXLEN_0;
   wire eth_quad0_XGMII_CLK;
   wire eth_quad0_XGMII_RESET;
   wire eth_quad_SFP1_TX_N;
   wire eth_quad_SFP1_TX_P;
-  wire [7:0]pcie_dram_M02_AXI_ARADDR;
-  wire pcie_dram_M02_AXI_ARREADY;
-  wire pcie_dram_M02_AXI_ARVALID;
-  wire [7:0]pcie_dram_M02_AXI_AWADDR;
-  wire pcie_dram_M02_AXI_AWREADY;
-  wire pcie_dram_M02_AXI_AWVALID;
-  wire pcie_dram_M02_AXI_BREADY;
-  wire [1:0]pcie_dram_M02_AXI_BRESP;
-  wire pcie_dram_M02_AXI_BVALID;
-  wire [31:0]pcie_dram_M02_AXI_RDATA;
-  wire pcie_dram_M02_AXI_RREADY;
-  wire [1:0]pcie_dram_M02_AXI_RRESP;
-  wire pcie_dram_M02_AXI_RVALID;
-  wire [31:0]pcie_dram_M02_AXI_WDATA;
-  wire pcie_dram_M02_AXI_WREADY;
-  wire [3:0]pcie_dram_M02_AXI_WSTRB;
-  wire pcie_dram_M02_AXI_WVALID;
+  wire [7:0]pcie_dram_M_AXI_REGS_ARADDR;
+  wire pcie_dram_M_AXI_REGS_ARREADY;
+  wire pcie_dram_M_AXI_REGS_ARVALID;
+  wire [7:0]pcie_dram_M_AXI_REGS_AWADDR;
+  wire pcie_dram_M_AXI_REGS_AWREADY;
+  wire pcie_dram_M_AXI_REGS_AWVALID;
+  wire pcie_dram_M_AXI_REGS_BREADY;
+  wire [1:0]pcie_dram_M_AXI_REGS_BRESP;
+  wire pcie_dram_M_AXI_REGS_BVALID;
+  wire [31:0]pcie_dram_M_AXI_REGS_RDATA;
+  wire pcie_dram_M_AXI_REGS_RREADY;
+  wire [1:0]pcie_dram_M_AXI_REGS_RRESP;
+  wire pcie_dram_M_AXI_REGS_RVALID;
+  wire [31:0]pcie_dram_M_AXI_REGS_WDATA;
+  wire pcie_dram_M_AXI_REGS_WREADY;
+  wire [3:0]pcie_dram_M_AXI_REGS_WSTRB;
+  wire pcie_dram_M_AXI_REGS_WVALID;
   wire pcie_dram_ddr4_sdram_c0_ACT_N;
   wire [16:0]pcie_dram_ddr4_sdram_c0_ADR;
   wire [1:0]pcie_dram_ddr4_sdram_c0_BA;
@@ -582,6 +617,11 @@ module bd_eth10_capture
   wire [0:0]reset_1;
   wire resetn_1;
   wire [0:0]rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn;
+  wire [11:0]xgmii_to_axis_CAP_PUSH;
+  wire [7:0]xgmii_to_axis_ERR_FCS;
+  wire [7:0]xgmii_to_axis_ERR_FULL;
+  wire [7:0]xgmii_to_axis_ERR_LONG;
+  wire [0:0]xlconstant_0_dout;
 
   assign MGTCLK0_1_CLK_N = MGTCLK0_0_clk_n;
   assign MGTCLK0_1_CLK_P = MGTCLK0_0_clk_p;
@@ -610,17 +650,96 @@ module bd_eth10_capture
   assign pcie_refclk_1_CLK_N = pcie_refclk_clk_n;
   assign pcie_refclk_1_CLK_P = pcie_refclk_clk_p;
   assign resetn_1 = resetn;
+  axis_wrmem_imp_1DB1J91 axis_wrmem
+       (.CAP_CNT(axis_wrmem_CAP_CNT),
+        .CAP_DELIM(axis_wrmem_CAP_DELIM),
+        .CAP_WCMD(axis_wrmem_CAP_WCMD),
+        .CAP_WDATA(axis_wrmem_CAP_WDATA),
+        .CAP_WORDCNT(axis_wrmem_CAP_WORDCNT),
+        .CUR_ADDR(axis_wrmem_CUR_ADDR),
+        .CUR_WADDR(axis_wrmem_CUR_WADDR),
+        .ERR_DELIM(axis_wrmem_ERR_DELIM),
+        .ERR_FATAL(axis_wrmem_ERR_FATAL),
+        .ERR_STS(axis_wrmem_ERR_STS),
+        .M_AXI_S2MM_awaddr(S_AXI_S2MM_1_AWADDR),
+        .M_AXI_S2MM_awburst(S_AXI_S2MM_1_AWBURST),
+        .M_AXI_S2MM_awcache(S_AXI_S2MM_1_AWCACHE),
+        .M_AXI_S2MM_awid(S_AXI_S2MM_1_AWID),
+        .M_AXI_S2MM_awlen(S_AXI_S2MM_1_AWLEN),
+        .M_AXI_S2MM_awprot(S_AXI_S2MM_1_AWPROT),
+        .M_AXI_S2MM_awready(S_AXI_S2MM_1_AWREADY),
+        .M_AXI_S2MM_awsize(S_AXI_S2MM_1_AWSIZE),
+        .M_AXI_S2MM_awuser(S_AXI_S2MM_1_AWUSER),
+        .M_AXI_S2MM_awvalid(S_AXI_S2MM_1_AWVALID),
+        .M_AXI_S2MM_bready(S_AXI_S2MM_1_BREADY),
+        .M_AXI_S2MM_bresp(S_AXI_S2MM_1_BRESP),
+        .M_AXI_S2MM_bvalid(S_AXI_S2MM_1_BVALID),
+        .M_AXI_S2MM_wdata(S_AXI_S2MM_1_WDATA),
+        .M_AXI_S2MM_wlast(S_AXI_S2MM_1_WLAST),
+        .M_AXI_S2MM_wready(S_AXI_S2MM_1_WREADY),
+        .M_AXI_S2MM_wstrb(S_AXI_S2MM_1_WSTRB),
+        .M_AXI_S2MM_wvalid(S_AXI_S2MM_1_WVALID),
+        .S_AXIS_tdata(S_AXIS_1_TDATA),
+        .S_AXIS_tlast(S_AXIS_1_TLAST),
+        .S_AXIS_tready(S_AXIS_1_TREADY),
+        .S_AXIS_tvalid(S_AXIS_1_TVALID),
+        .XGMII_CLK(eth_quad0_XGMII_CLK),
+        .XGMII_RESETN(rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn),
+        .s2mm_err(axis_wrmem_s2mm_err));
+  eth10_capt_ctrl_imp_1T6HTOG eth10_capt_ctrl
+       (.CAP_CNT(axis_wrmem_CAP_CNT),
+        .CAP_DELIM(axis_wrmem_CAP_DELIM),
+        .CAP_PKT(xgmii_to_axis_CAP_PUSH),
+        .CAP_WCMD(axis_wrmem_CAP_WCMD),
+        .CAP_WDATA(axis_wrmem_CAP_WDATA),
+        .CAP_WORDCNT(axis_wrmem_CAP_WORDCNT),
+        .CLEAR_ERR(CLEAR_ERR_1),
+        .CLK(eth_quad0_XGMII_CLK),
+        .ERR_DELIM(axis_wrmem_ERR_DELIM),
+        .ERR_FCS(xgmii_to_axis_ERR_FCS),
+        .ERR_FULL(xgmii_to_axis_ERR_FULL),
+        .ERR_LONG(xgmii_to_axis_ERR_LONG),
+        .ERR_S2MM(axis_wrmem_s2mm_err),
+        .ERR_STS(axis_wrmem_ERR_STS),
+        .ERR_WCMD(axis_wrmem_ERR_FATAL),
+        .KEEP_ERROR_PACKET(KEEP_ERROR_PACKET_1),
+        .RESETN(rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn),
+        .TEST_GAP_SIZE(GAPLEN_1),
+        .TEST_PKT(STARTBTN_1),
+        .TEST_PKT_SIZE(eth10_capt_ctrl_TEST_PKT_SIZE),
+        .WADDR_POST(axis_wrmem_CUR_WADDR),
+        .WADDR_PRE(axis_wrmem_CUR_ADDR),
+        .s_axi_AXILiteS_araddr(pcie_dram_M_AXI_REGS_ARADDR),
+        .s_axi_AXILiteS_arready(pcie_dram_M_AXI_REGS_ARREADY),
+        .s_axi_AXILiteS_arvalid(pcie_dram_M_AXI_REGS_ARVALID),
+        .s_axi_AXILiteS_awaddr(pcie_dram_M_AXI_REGS_AWADDR),
+        .s_axi_AXILiteS_awready(pcie_dram_M_AXI_REGS_AWREADY),
+        .s_axi_AXILiteS_awvalid(pcie_dram_M_AXI_REGS_AWVALID),
+        .s_axi_AXILiteS_bready(pcie_dram_M_AXI_REGS_BREADY),
+        .s_axi_AXILiteS_bresp(pcie_dram_M_AXI_REGS_BRESP),
+        .s_axi_AXILiteS_bvalid(pcie_dram_M_AXI_REGS_BVALID),
+        .s_axi_AXILiteS_rdata(pcie_dram_M_AXI_REGS_RDATA),
+        .s_axi_AXILiteS_rready(pcie_dram_M_AXI_REGS_RREADY),
+        .s_axi_AXILiteS_rresp(pcie_dram_M_AXI_REGS_RRESP),
+        .s_axi_AXILiteS_rvalid(pcie_dram_M_AXI_REGS_RVALID),
+        .s_axi_AXILiteS_wdata(pcie_dram_M_AXI_REGS_WDATA),
+        .s_axi_AXILiteS_wready(pcie_dram_M_AXI_REGS_WREADY),
+        .s_axi_AXILiteS_wstrb(pcie_dram_M_AXI_REGS_WSTRB),
+        .s_axi_AXILiteS_wvalid(pcie_dram_M_AXI_REGS_WVALID));
   eth_quad0_imp_QA9G1G eth_quad0
        (.FCS_CORRECT_0(eth_quad0_FCS_CORRECT_0),
-        .FCS_EN_0(eth_quad0_FCS_EN),
+        .FCS_EN_0(eth_quad0_FCS_EN_0),
+        .GAPLEN(GAPLEN_1),
         .MGTCLK0_clk_n(MGTCLK0_1_CLK_N),
         .MGTCLK0_clk_p(MGTCLK0_1_CLK_P),
+        .PKTLEN(eth10_capt_ctrl_TEST_PKT_SIZE),
         .RXD_0(eth_quad0_RXD_0),
         .RXLEN_0(eth_quad0_RXLEN_0),
         .SFP1_RX_N(SFP1_RX_N_0_1),
         .SFP1_RX_P(SFP1_RX_P_0_1),
         .SFP1_TX_N(eth_quad_SFP1_TX_N),
         .SFP1_TX_P(eth_quad_SFP1_TX_P),
+        .STARTBTN(STARTBTN_1),
         .XGMII_CLK(eth_quad0_XGMII_CLK),
         .XGMII_RESET(eth_quad0_XGMII_RESET),
         .dclk(CLK_1),
@@ -631,41 +750,41 @@ module bd_eth10_capture
         .I2C_SDA(I2C_SDA),
         .RESET_N(RESET_N_1));
   pcie_dram_imp_1W99HGN pcie_dram
-       (.M_AXI_REGS_araddr(pcie_dram_M02_AXI_ARADDR),
-        .M_AXI_REGS_arready(pcie_dram_M02_AXI_ARREADY),
-        .M_AXI_REGS_arvalid(pcie_dram_M02_AXI_ARVALID),
-        .M_AXI_REGS_awaddr(pcie_dram_M02_AXI_AWADDR),
-        .M_AXI_REGS_awready(pcie_dram_M02_AXI_AWREADY),
-        .M_AXI_REGS_awvalid(pcie_dram_M02_AXI_AWVALID),
-        .M_AXI_REGS_bready(pcie_dram_M02_AXI_BREADY),
-        .M_AXI_REGS_bresp(pcie_dram_M02_AXI_BRESP),
-        .M_AXI_REGS_bvalid(pcie_dram_M02_AXI_BVALID),
-        .M_AXI_REGS_rdata(pcie_dram_M02_AXI_RDATA),
-        .M_AXI_REGS_rready(pcie_dram_M02_AXI_RREADY),
-        .M_AXI_REGS_rresp(pcie_dram_M02_AXI_RRESP),
-        .M_AXI_REGS_rvalid(pcie_dram_M02_AXI_RVALID),
-        .M_AXI_REGS_wdata(pcie_dram_M02_AXI_WDATA),
-        .M_AXI_REGS_wready(pcie_dram_M02_AXI_WREADY),
-        .M_AXI_REGS_wstrb(pcie_dram_M02_AXI_WSTRB),
-        .M_AXI_REGS_wvalid(pcie_dram_M02_AXI_WVALID),
-        .S_AXI_S2MM_awaddr(S01_AXI_1_AWADDR),
-        .S_AXI_S2MM_awburst(S01_AXI_1_AWBURST),
-        .S_AXI_S2MM_awcache(S01_AXI_1_AWCACHE),
-        .S_AXI_S2MM_awid(S01_AXI_1_AWID),
-        .S_AXI_S2MM_awlen(S01_AXI_1_AWLEN),
-        .S_AXI_S2MM_awprot(S01_AXI_1_AWPROT),
-        .S_AXI_S2MM_awready(S01_AXI_1_AWREADY),
-        .S_AXI_S2MM_awsize(S01_AXI_1_AWSIZE),
-        .S_AXI_S2MM_awuser(S01_AXI_1_AWUSER),
-        .S_AXI_S2MM_awvalid(S01_AXI_1_AWVALID),
-        .S_AXI_S2MM_bready(S01_AXI_1_BREADY),
-        .S_AXI_S2MM_bresp(S01_AXI_1_BRESP),
-        .S_AXI_S2MM_bvalid(S01_AXI_1_BVALID),
-        .S_AXI_S2MM_wdata(S01_AXI_1_WDATA),
-        .S_AXI_S2MM_wlast(S01_AXI_1_WLAST),
-        .S_AXI_S2MM_wready(S01_AXI_1_WREADY),
-        .S_AXI_S2MM_wstrb(S01_AXI_1_WSTRB),
-        .S_AXI_S2MM_wvalid(S01_AXI_1_WVALID),
+       (.M_AXI_REGS_araddr(pcie_dram_M_AXI_REGS_ARADDR),
+        .M_AXI_REGS_arready(pcie_dram_M_AXI_REGS_ARREADY),
+        .M_AXI_REGS_arvalid(pcie_dram_M_AXI_REGS_ARVALID),
+        .M_AXI_REGS_awaddr(pcie_dram_M_AXI_REGS_AWADDR),
+        .M_AXI_REGS_awready(pcie_dram_M_AXI_REGS_AWREADY),
+        .M_AXI_REGS_awvalid(pcie_dram_M_AXI_REGS_AWVALID),
+        .M_AXI_REGS_bready(pcie_dram_M_AXI_REGS_BREADY),
+        .M_AXI_REGS_bresp(pcie_dram_M_AXI_REGS_BRESP),
+        .M_AXI_REGS_bvalid(pcie_dram_M_AXI_REGS_BVALID),
+        .M_AXI_REGS_rdata(pcie_dram_M_AXI_REGS_RDATA),
+        .M_AXI_REGS_rready(pcie_dram_M_AXI_REGS_RREADY),
+        .M_AXI_REGS_rresp(pcie_dram_M_AXI_REGS_RRESP),
+        .M_AXI_REGS_rvalid(pcie_dram_M_AXI_REGS_RVALID),
+        .M_AXI_REGS_wdata(pcie_dram_M_AXI_REGS_WDATA),
+        .M_AXI_REGS_wready(pcie_dram_M_AXI_REGS_WREADY),
+        .M_AXI_REGS_wstrb(pcie_dram_M_AXI_REGS_WSTRB),
+        .M_AXI_REGS_wvalid(pcie_dram_M_AXI_REGS_WVALID),
+        .S_AXI_S2MM_awaddr(S_AXI_S2MM_1_AWADDR),
+        .S_AXI_S2MM_awburst(S_AXI_S2MM_1_AWBURST),
+        .S_AXI_S2MM_awcache(S_AXI_S2MM_1_AWCACHE),
+        .S_AXI_S2MM_awid(S_AXI_S2MM_1_AWID),
+        .S_AXI_S2MM_awlen(S_AXI_S2MM_1_AWLEN),
+        .S_AXI_S2MM_awprot(S_AXI_S2MM_1_AWPROT),
+        .S_AXI_S2MM_awready(S_AXI_S2MM_1_AWREADY),
+        .S_AXI_S2MM_awsize(S_AXI_S2MM_1_AWSIZE),
+        .S_AXI_S2MM_awuser(S_AXI_S2MM_1_AWUSER),
+        .S_AXI_S2MM_awvalid(S_AXI_S2MM_1_AWVALID),
+        .S_AXI_S2MM_bready(S_AXI_S2MM_1_BREADY),
+        .S_AXI_S2MM_bresp(S_AXI_S2MM_1_BRESP),
+        .S_AXI_S2MM_bvalid(S_AXI_S2MM_1_BVALID),
+        .S_AXI_S2MM_wdata(S_AXI_S2MM_1_WDATA),
+        .S_AXI_S2MM_wlast(S_AXI_S2MM_1_WLAST),
+        .S_AXI_S2MM_wready(S_AXI_S2MM_1_WREADY),
+        .S_AXI_S2MM_wstrb(S_AXI_S2MM_1_WSTRB),
+        .S_AXI_S2MM_wvalid(S_AXI_S2MM_1_WVALID),
         .XGMII_CLK(eth_quad0_XGMII_CLK),
         .XGMII_RESETN(rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn),
         .clk_100(CLK_1),
@@ -702,51 +821,30 @@ module bd_eth10_capture
         .peripheral_aresetn(RESET_N_1),
         .peripheral_reset(reset_1),
         .slowest_sync_clk(CLK_1));
-  rx_wrmem_imp_1TQ7JQD rx_wrmem
-       (.AXILITE_REGS_araddr(pcie_dram_M02_AXI_ARADDR),
-        .AXILITE_REGS_arready(pcie_dram_M02_AXI_ARREADY),
-        .AXILITE_REGS_arvalid(pcie_dram_M02_AXI_ARVALID),
-        .AXILITE_REGS_awaddr(pcie_dram_M02_AXI_AWADDR),
-        .AXILITE_REGS_awready(pcie_dram_M02_AXI_AWREADY),
-        .AXILITE_REGS_awvalid(pcie_dram_M02_AXI_AWVALID),
-        .AXILITE_REGS_bready(pcie_dram_M02_AXI_BREADY),
-        .AXILITE_REGS_bresp(pcie_dram_M02_AXI_BRESP),
-        .AXILITE_REGS_bvalid(pcie_dram_M02_AXI_BVALID),
-        .AXILITE_REGS_rdata(pcie_dram_M02_AXI_RDATA),
-        .AXILITE_REGS_rready(pcie_dram_M02_AXI_RREADY),
-        .AXILITE_REGS_rresp(pcie_dram_M02_AXI_RRESP),
-        .AXILITE_REGS_rvalid(pcie_dram_M02_AXI_RVALID),
-        .AXILITE_REGS_wdata(pcie_dram_M02_AXI_WDATA),
-        .AXILITE_REGS_wready(pcie_dram_M02_AXI_WREADY),
-        .AXILITE_REGS_wstrb(pcie_dram_M02_AXI_WSTRB),
-        .AXILITE_REGS_wvalid(pcie_dram_M02_AXI_WVALID),
-        .FCS_CORRECT(eth_quad0_FCS_CORRECT_0),
-        .FCS_EN(eth_quad0_FCS_EN),
-        .IN_RXD(eth_quad0_RXD_0),
-        .IN_RXLEN(eth_quad0_RXLEN_0),
-        .M_AXI_S2MM_awaddr(S01_AXI_1_AWADDR),
-        .M_AXI_S2MM_awburst(S01_AXI_1_AWBURST),
-        .M_AXI_S2MM_awcache(S01_AXI_1_AWCACHE),
-        .M_AXI_S2MM_awid(S01_AXI_1_AWID),
-        .M_AXI_S2MM_awlen(S01_AXI_1_AWLEN),
-        .M_AXI_S2MM_awprot(S01_AXI_1_AWPROT),
-        .M_AXI_S2MM_awready(S01_AXI_1_AWREADY),
-        .M_AXI_S2MM_awsize(S01_AXI_1_AWSIZE),
-        .M_AXI_S2MM_awuser(S01_AXI_1_AWUSER),
-        .M_AXI_S2MM_awvalid(S01_AXI_1_AWVALID),
-        .M_AXI_S2MM_bready(S01_AXI_1_BREADY),
-        .M_AXI_S2MM_bresp(S01_AXI_1_BRESP),
-        .M_AXI_S2MM_bvalid(S01_AXI_1_BVALID),
-        .M_AXI_S2MM_wdata(S01_AXI_1_WDATA),
-        .M_AXI_S2MM_wlast(S01_AXI_1_WLAST),
-        .M_AXI_S2MM_wready(S01_AXI_1_WREADY),
-        .M_AXI_S2MM_wstrb(S01_AXI_1_WSTRB),
-        .M_AXI_S2MM_wvalid(S01_AXI_1_WVALID),
-        .XGMII_CLK(eth_quad0_XGMII_CLK),
-        .XGMII_RESETN(rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn));
   bd_eth10_capture_util_vector_logic_0_0 util_vector_logic_0
        (.Op1(eth_quad0_XGMII_RESET),
         .Res(rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn));
+  xgmii_to_axis_imp_GIHUUE xgmii_to_axis
+       (.CAP_PUSH(xgmii_to_axis_CAP_PUSH),
+        .CLEAR_ERR(CLEAR_ERR_1),
+        .ERR_FCS(xgmii_to_axis_ERR_FCS),
+        .ERR_FULL(xgmii_to_axis_ERR_FULL),
+        .ERR_LONG(xgmii_to_axis_ERR_LONG),
+        .FCS_CORRECT(eth_quad0_FCS_CORRECT_0),
+        .FCS_EN(eth_quad0_FCS_EN_0),
+        .IN_RXD(eth_quad0_RXD_0),
+        .IN_RXLEN(eth_quad0_RXLEN_0),
+        .KEEP_ERROR_PACKET(KEEP_ERROR_PACKET_1),
+        .OV_tdata(S_AXIS_1_TDATA),
+        .OV_tlast(S_AXIS_1_TLAST),
+        .OV_tready(S_AXIS_1_TREADY),
+        .OV_tvalid(S_AXIS_1_TVALID),
+        .TEST_PKT(xlconstant_0_dout),
+        .TEST_PKT_SIZE(eth10_capt_ctrl_TEST_PKT_SIZE),
+        .XGMII_CLK(eth_quad0_XGMII_CLK),
+        .XGMII_RESETN(rst_ten_gig_eth_pcs_pma_0_156M_peripheral_aresetn));
+  bd_eth10_capture_xlconstant_0_0 xlconstant_0
+       (.dout(xlconstant_0_dout));
 endmodule
 
 module bd_eth10_capture_xdma_0_axi_periph_0
@@ -1350,19 +1448,264 @@ module bd_eth10_capture_xdma_0_axi_periph_0
         .s_axi_wvalid(s00_couplers_to_xbar_WVALID));
 endmodule
 
+module eth10_capt_ctrl_imp_1T6HTOG
+   (CAP_CNT,
+    CAP_DELIM,
+    CAP_PKT,
+    CAP_WCMD,
+    CAP_WDATA,
+    CAP_WORDCNT,
+    CLEAR_ERR,
+    CLK,
+    ERR_DELIM,
+    ERR_FCS,
+    ERR_FULL,
+    ERR_LONG,
+    ERR_S2MM,
+    ERR_STS,
+    ERR_WCMD,
+    KEEP_ERROR_PACKET,
+    RESETN,
+    TEST_GAP_SIZE,
+    TEST_PKT,
+    TEST_PKT_SIZE,
+    WADDR_POST,
+    WADDR_PRE,
+    s_axi_AXILiteS_araddr,
+    s_axi_AXILiteS_arready,
+    s_axi_AXILiteS_arvalid,
+    s_axi_AXILiteS_awaddr,
+    s_axi_AXILiteS_awready,
+    s_axi_AXILiteS_awvalid,
+    s_axi_AXILiteS_bready,
+    s_axi_AXILiteS_bresp,
+    s_axi_AXILiteS_bvalid,
+    s_axi_AXILiteS_rdata,
+    s_axi_AXILiteS_rready,
+    s_axi_AXILiteS_rresp,
+    s_axi_AXILiteS_rvalid,
+    s_axi_AXILiteS_wdata,
+    s_axi_AXILiteS_wready,
+    s_axi_AXILiteS_wstrb,
+    s_axi_AXILiteS_wvalid);
+  input [3:0]CAP_CNT;
+  input [3:0]CAP_DELIM;
+  input [11:0]CAP_PKT;
+  input [3:0]CAP_WCMD;
+  input [14:0]CAP_WDATA;
+  input [4:0]CAP_WORDCNT;
+  output CLEAR_ERR;
+  input CLK;
+  input ERR_DELIM;
+  input [7:0]ERR_FCS;
+  input [7:0]ERR_FULL;
+  input [7:0]ERR_LONG;
+  input ERR_S2MM;
+  input [7:0]ERR_STS;
+  input [1:0]ERR_WCMD;
+  output KEEP_ERROR_PACKET;
+  input RESETN;
+  output [15:0]TEST_GAP_SIZE;
+  output TEST_PKT;
+  output [15:0]TEST_PKT_SIZE;
+  input [63:0]WADDR_POST;
+  input [63:0]WADDR_PRE;
+  input [7:0]s_axi_AXILiteS_araddr;
+  output s_axi_AXILiteS_arready;
+  input s_axi_AXILiteS_arvalid;
+  input [7:0]s_axi_AXILiteS_awaddr;
+  output s_axi_AXILiteS_awready;
+  input s_axi_AXILiteS_awvalid;
+  input s_axi_AXILiteS_bready;
+  output [1:0]s_axi_AXILiteS_bresp;
+  output s_axi_AXILiteS_bvalid;
+  output [31:0]s_axi_AXILiteS_rdata;
+  input s_axi_AXILiteS_rready;
+  output [1:0]s_axi_AXILiteS_rresp;
+  output s_axi_AXILiteS_rvalid;
+  input [31:0]s_axi_AXILiteS_wdata;
+  output s_axi_AXILiteS_wready;
+  input [3:0]s_axi_AXILiteS_wstrb;
+  input s_axi_AXILiteS_wvalid;
+
+  wire [3:0]CAP_CNT_1;
+  wire [3:0]CAP_DELIM_1;
+  wire [11:0]CAP_PKT_1;
+  wire [3:0]CAP_WCMD_1;
+  wire [14:0]CAP_WDATA_1;
+  wire [4:0]CAP_WORDCNT_1;
+  wire CLK_1;
+  wire [7:0]Conn1_ARADDR;
+  wire Conn1_ARREADY;
+  wire Conn1_ARVALID;
+  wire [7:0]Conn1_AWADDR;
+  wire Conn1_AWREADY;
+  wire Conn1_AWVALID;
+  wire Conn1_BREADY;
+  wire [1:0]Conn1_BRESP;
+  wire Conn1_BVALID;
+  wire [31:0]Conn1_RDATA;
+  wire Conn1_RREADY;
+  wire [1:0]Conn1_RRESP;
+  wire Conn1_RVALID;
+  wire [31:0]Conn1_WDATA;
+  wire Conn1_WREADY;
+  wire [3:0]Conn1_WSTRB;
+  wire Conn1_WVALID;
+  wire ERR_DELIM_1;
+  wire [7:0]ERR_FCS_1;
+  wire [7:0]ERR_FULL_1;
+  wire [7:0]ERR_LONG_1;
+  wire ERR_S2MM_1;
+  wire [7:0]ERR_STS_1;
+  wire [1:0]ERR_WCMD_1;
+  wire RESETN_1;
+  wire [63:0]WADDR_POST_1;
+  wire [63:0]WADDR_PRE_1;
+  wire [7:0]axilite_regs_0_RD_ADDR;
+  wire axilite_regs_0_RD_ADDR_EN;
+  wire [7:0]axilite_regs_0_WR_ADDR;
+  wire [31:0]axilite_regs_0_WR_DATA;
+  wire axilite_regs_0_WR_EN;
+  wire rx_wrmem_regs_0_CLEAR_ERR;
+  wire rx_wrmem_regs_0_KEEP_ERROR_PACKET;
+  wire [31:0]rx_wrmem_regs_0_RD_DATA;
+  wire rx_wrmem_regs_0_RD_DATA_EN;
+  wire [15:0]rx_wrmem_regs_0_TEST_GAP_SIZE;
+  wire rx_wrmem_regs_0_TEST_PKT;
+  wire [15:0]rx_wrmem_regs_0_TEST_PKT_SIZE;
+  wire [0:0]vio_0_probe_out0;
+  wire [0:0]vio_0_probe_out1;
+  wire [15:0]vio_0_probe_out2;
+  wire [15:0]vio_0_probe_out3;
+  wire [0:0]vio_0_probe_out4;
+
+  assign CAP_CNT_1 = CAP_CNT[3:0];
+  assign CAP_DELIM_1 = CAP_DELIM[3:0];
+  assign CAP_PKT_1 = CAP_PKT[11:0];
+  assign CAP_WCMD_1 = CAP_WCMD[3:0];
+  assign CAP_WDATA_1 = CAP_WDATA[14:0];
+  assign CAP_WORDCNT_1 = CAP_WORDCNT[4:0];
+  assign CLEAR_ERR = rx_wrmem_regs_0_CLEAR_ERR;
+  assign CLK_1 = CLK;
+  assign Conn1_ARADDR = s_axi_AXILiteS_araddr[7:0];
+  assign Conn1_ARVALID = s_axi_AXILiteS_arvalid;
+  assign Conn1_AWADDR = s_axi_AXILiteS_awaddr[7:0];
+  assign Conn1_AWVALID = s_axi_AXILiteS_awvalid;
+  assign Conn1_BREADY = s_axi_AXILiteS_bready;
+  assign Conn1_RREADY = s_axi_AXILiteS_rready;
+  assign Conn1_WDATA = s_axi_AXILiteS_wdata[31:0];
+  assign Conn1_WSTRB = s_axi_AXILiteS_wstrb[3:0];
+  assign Conn1_WVALID = s_axi_AXILiteS_wvalid;
+  assign ERR_DELIM_1 = ERR_DELIM;
+  assign ERR_FCS_1 = ERR_FCS[7:0];
+  assign ERR_FULL_1 = ERR_FULL[7:0];
+  assign ERR_LONG_1 = ERR_LONG[7:0];
+  assign ERR_S2MM_1 = ERR_S2MM;
+  assign ERR_STS_1 = ERR_STS[7:0];
+  assign ERR_WCMD_1 = ERR_WCMD[1:0];
+  assign KEEP_ERROR_PACKET = rx_wrmem_regs_0_KEEP_ERROR_PACKET;
+  assign RESETN_1 = RESETN;
+  assign TEST_GAP_SIZE[15:0] = rx_wrmem_regs_0_TEST_GAP_SIZE;
+  assign TEST_PKT = rx_wrmem_regs_0_TEST_PKT;
+  assign TEST_PKT_SIZE[15:0] = rx_wrmem_regs_0_TEST_PKT_SIZE;
+  assign WADDR_POST_1 = WADDR_POST[63:0];
+  assign WADDR_PRE_1 = WADDR_PRE[63:0];
+  assign s_axi_AXILiteS_arready = Conn1_ARREADY;
+  assign s_axi_AXILiteS_awready = Conn1_AWREADY;
+  assign s_axi_AXILiteS_bresp[1:0] = Conn1_BRESP;
+  assign s_axi_AXILiteS_bvalid = Conn1_BVALID;
+  assign s_axi_AXILiteS_rdata[31:0] = Conn1_RDATA;
+  assign s_axi_AXILiteS_rresp[1:0] = Conn1_RRESP;
+  assign s_axi_AXILiteS_rvalid = Conn1_RVALID;
+  assign s_axi_AXILiteS_wready = Conn1_WREADY;
+  bd_eth10_capture_axilite_regs_0_0 axilite_regs_0
+       (.CLK(CLK_1),
+        .RD_ADDR(axilite_regs_0_RD_ADDR),
+        .RD_ADDR_EN(axilite_regs_0_RD_ADDR_EN),
+        .RD_DATA(rx_wrmem_regs_0_RD_DATA),
+        .RD_DATA_EN(rx_wrmem_regs_0_RD_DATA_EN),
+        .RESETN(RESETN_1),
+        .WR_ADDR(axilite_regs_0_WR_ADDR),
+        .WR_DATA(axilite_regs_0_WR_DATA),
+        .WR_EN(axilite_regs_0_WR_EN),
+        .s_axi_AXILiteS_ARADDR(Conn1_ARADDR),
+        .s_axi_AXILiteS_ARREADY(Conn1_ARREADY),
+        .s_axi_AXILiteS_ARVALID(Conn1_ARVALID),
+        .s_axi_AXILiteS_AWADDR(Conn1_AWADDR),
+        .s_axi_AXILiteS_AWREADY(Conn1_AWREADY),
+        .s_axi_AXILiteS_AWVALID(Conn1_AWVALID),
+        .s_axi_AXILiteS_BREADY(Conn1_BREADY),
+        .s_axi_AXILiteS_BRESP(Conn1_BRESP),
+        .s_axi_AXILiteS_BVALID(Conn1_BVALID),
+        .s_axi_AXILiteS_RDATA(Conn1_RDATA),
+        .s_axi_AXILiteS_RREADY(Conn1_RREADY),
+        .s_axi_AXILiteS_RRESP(Conn1_RRESP),
+        .s_axi_AXILiteS_RVALID(Conn1_RVALID),
+        .s_axi_AXILiteS_WDATA(Conn1_WDATA),
+        .s_axi_AXILiteS_WREADY(Conn1_WREADY),
+        .s_axi_AXILiteS_WSTRB(Conn1_WSTRB),
+        .s_axi_AXILiteS_WVALID(Conn1_WVALID));
+  bd_eth10_capture_rx_wrmem_regs_0_0 rx_wrmem_regs_0
+       (.CAP_CNT(CAP_CNT_1),
+        .CAP_DELIM(CAP_DELIM_1),
+        .CAP_PKT(CAP_PKT_1),
+        .CAP_WCMD(CAP_WCMD_1),
+        .CAP_WDATA(CAP_WDATA_1),
+        .CAP_WORDCNT(CAP_WORDCNT_1),
+        .CLEAR_ERR(rx_wrmem_regs_0_CLEAR_ERR),
+        .CLK(CLK_1),
+        .ERR_DELIM(ERR_DELIM_1),
+        .ERR_FCS(ERR_FCS_1),
+        .ERR_FULL(ERR_FULL_1),
+        .ERR_LONG(ERR_LONG_1),
+        .ERR_S2MM(ERR_S2MM_1),
+        .ERR_STS(ERR_STS_1),
+        .ERR_WCMD(ERR_WCMD_1[0]),
+        .KEEP_ERROR_PACKET(rx_wrmem_regs_0_KEEP_ERROR_PACKET),
+        .RD_ADDR(axilite_regs_0_RD_ADDR),
+        .RD_ADDR_EN(axilite_regs_0_RD_ADDR_EN),
+        .RD_DATA(rx_wrmem_regs_0_RD_DATA),
+        .RD_DATA_EN(rx_wrmem_regs_0_RD_DATA_EN),
+        .RESETN(RESETN_1),
+        .TEST_GAP_SIZE(rx_wrmem_regs_0_TEST_GAP_SIZE),
+        .TEST_PKT(rx_wrmem_regs_0_TEST_PKT),
+        .TEST_PKT_SIZE(rx_wrmem_regs_0_TEST_PKT_SIZE),
+        .VIO_CLEAR(vio_0_probe_out0),
+        .VIO_GAP_SIZE(vio_0_probe_out3),
+        .VIO_KEEP_ERROR_PACKET(vio_0_probe_out4),
+        .VIO_PKT(vio_0_probe_out1),
+        .VIO_PKT_SIZE(vio_0_probe_out2),
+        .WADDR_POST(WADDR_POST_1),
+        .WADDR_PRE(WADDR_PRE_1),
+        .WR_ADDR(axilite_regs_0_WR_ADDR),
+        .WR_DATA(axilite_regs_0_WR_DATA),
+        .WR_EN(axilite_regs_0_WR_EN));
+  bd_eth10_capture_vio_0_0 vio_0
+       (.clk(CLK_1),
+        .probe_out0(vio_0_probe_out0),
+        .probe_out1(vio_0_probe_out1),
+        .probe_out2(vio_0_probe_out2),
+        .probe_out3(vio_0_probe_out3),
+        .probe_out4(vio_0_probe_out4));
+endmodule
+
 module eth_0_imp_1FPILL0
    (DBG_CLK,
     DEBUG_OUT,
     FCS_CORRECT,
     FCS_EN,
+    GAPLEN,
     MGTCLK0_clk_n,
     MGTCLK0_clk_p,
+    PKTLEN,
     RXD,
     RXLEN,
     SFP1_RX_N,
     SFP1_RX_P,
     SFP1_TX_N,
     SFP1_TX_P,
+    STARTBTN,
     areset_coreclk_out,
     areset_datapathclk_out,
     coreclk_out,
@@ -1381,14 +1724,17 @@ module eth_0_imp_1FPILL0
   output [1:0]DEBUG_OUT;
   output FCS_CORRECT;
   output FCS_EN;
+  input [15:0]GAPLEN;
   input MGTCLK0_clk_n;
   input MGTCLK0_clk_p;
+  input [15:0]PKTLEN;
   output [63:0]RXD;
   output [3:0]RXLEN;
   input SFP1_RX_N;
   input SFP1_RX_P;
   output SFP1_TX_N;
   output SFP1_TX_P;
+  input STARTBTN;
   output areset_coreclk_out;
   output areset_datapathclk_out;
   output coreclk_out;
@@ -1407,8 +1753,11 @@ module eth_0_imp_1FPILL0
   wire CLK_1;
   wire Conn1_CLK_N;
   wire Conn1_CLK_P;
+  wire [15:0]GAPLEN_0_1;
+  wire [15:0]PKTLEN_0_1;
   wire SFP1_RX_N_1;
   wire SFP1_RX_P_1;
+  wire STARTBTN_0_1;
   wire [31:0]address_mac_ip_0_IP_ADDR;
   wire [47:0]address_mac_ip_0_MAC_ADDR;
   wire dclk_1;
@@ -1443,7 +1792,9 @@ module eth_0_imp_1FPILL0
   wire ten_gig_eth_pcs_pma_0_txuserrdy_out;
   wire ten_gig_eth_pcs_pma_0_txusrclk_out;
   wire [7:0]ten_gig_eth_pcs_pma_0_xgmii_rxc;
+  wire [7:0]ten_gig_eth_pcs_pma_0_xgmii_rxc1;
   wire [63:0]ten_gig_eth_pcs_pma_0_xgmii_rxd;
+  wire [63:0]ten_gig_eth_pcs_pma_0_xgmii_rxd1;
   wire [1:0]xgmii_fcs_0_DEBUG_ALIGN;
   wire xgmii_fcs_0_FCS_CORRECT;
   wire xgmii_fcs_0_FCS_EN;
@@ -1461,12 +1812,15 @@ module eth_0_imp_1FPILL0
   assign DEBUG_OUT[1:0] = xgmii_fcs_0_DEBUG_ALIGN;
   assign FCS_CORRECT = xgmii_fcs_0_FCS_CORRECT;
   assign FCS_EN = xgmii_fcs_0_FCS_EN;
+  assign GAPLEN_0_1 = GAPLEN[15:0];
+  assign PKTLEN_0_1 = PKTLEN[15:0];
   assign RXD[63:0] = xgmii_fcs_0_RXD_OUT;
   assign RXLEN[3:0] = xgmii_fcs_0_RXLEN_OUT;
   assign SFP1_RX_N_1 = SFP1_RX_N;
   assign SFP1_RX_P_1 = SFP1_RX_P;
   assign SFP1_TX_N = ten_gig_eth_pcs_pma_0_txn;
   assign SFP1_TX_P = ten_gig_eth_pcs_pma_0_txp;
+  assign STARTBTN_0_1 = STARTBTN;
   assign areset_coreclk_out = ten_gig_eth_pcs_pma_0_areset_coreclk_out;
   assign areset_datapathclk_out = ten_gig_eth_pcs_pma_0_areset_datapathclk_out;
   assign coreclk_out = ten_gig_eth_pcs_pma_0_coreclk_out;
@@ -1545,10 +1899,20 @@ module eth_0_imp_1FPILL0
         .txuserrdy_out(ten_gig_eth_pcs_pma_0_txuserrdy_out),
         .txusrclk2_out(CLK_1),
         .txusrclk_out(ten_gig_eth_pcs_pma_0_txusrclk_out),
-        .xgmii_rxc(ten_gig_eth_pcs_pma_0_xgmii_rxc),
-        .xgmii_rxd(ten_gig_eth_pcs_pma_0_xgmii_rxd),
+        .xgmii_rxc(ten_gig_eth_pcs_pma_0_xgmii_rxc1),
+        .xgmii_rxd(ten_gig_eth_pcs_pma_0_xgmii_rxd1),
         .xgmii_txc(xgmii_fcs_0_XGMII_TXC),
         .xgmii_txd(xgmii_fcs_0_XGMII_TXD));
+  bd_eth10_capture_testpat_xgmii_rx_0_0 testpat_xgmii_rx_0
+       (.CLK(CLK_1),
+        .GAPLEN(GAPLEN_0_1),
+        .IN_RXC(ten_gig_eth_pcs_pma_0_xgmii_rxc1),
+        .IN_RXD(ten_gig_eth_pcs_pma_0_xgmii_rxd1),
+        .OUT_RXC(ten_gig_eth_pcs_pma_0_xgmii_rxc),
+        .OUT_RXD(ten_gig_eth_pcs_pma_0_xgmii_rxd),
+        .PKTLEN(PKTLEN_0_1),
+        .RESET(ten_gig_eth_pcs_pma_0_areset_datapathclk_out),
+        .STARTBTN(STARTBTN_0_1));
   bd_eth10_capture_xgmii_fcs_0_0 xgmii_fcs_0
        (.CLK(CLK_1),
         .DEBUG_ALIGN(xgmii_fcs_0_DEBUG_ALIGN),
@@ -1573,35 +1937,41 @@ module eth_0_imp_1FPILL0
         .RXLEN_IN(xgmii_fcs_0_RXLEN_OUT),
         .TXD_OUT(xgmii_test_server_0_TXD_OUT),
         .TXLEN_OUT(xgmii_test_server_0_TXLEN_OUT));
-  bd_eth10_capture_xlconstant_0_2 xlconstant_0
+  bd_eth10_capture_xlconstant_0_3 xlconstant_0
        (.dout(xlconstant_0_dout));
 endmodule
 
 module eth_quad0_imp_QA9G1G
    (FCS_CORRECT_0,
     FCS_EN_0,
+    GAPLEN,
     MGTCLK0_clk_n,
     MGTCLK0_clk_p,
+    PKTLEN,
     RXD_0,
     RXLEN_0,
     SFP1_RX_N,
     SFP1_RX_P,
     SFP1_TX_N,
     SFP1_TX_P,
+    STARTBTN,
     XGMII_CLK,
     XGMII_RESET,
     dclk,
     reset);
   output FCS_CORRECT_0;
   output FCS_EN_0;
+  input [15:0]GAPLEN;
   input MGTCLK0_clk_n;
   input MGTCLK0_clk_p;
+  input [15:0]PKTLEN;
   output [63:0]RXD_0;
   output [3:0]RXLEN_0;
   input SFP1_RX_N;
   input SFP1_RX_P;
   output SFP1_TX_N;
   output SFP1_TX_P;
+  input STARTBTN;
   output XGMII_CLK;
   output XGMII_RESET;
   input dclk;
@@ -1609,8 +1979,11 @@ module eth_quad0_imp_QA9G1G
 
   wire Conn1_CLK_N;
   wire Conn1_CLK_P;
+  wire [15:0]GAPLEN_0_1;
+  wire [15:0]PKTLEN_0_1;
   wire SFP1_RX_N_1;
   wire SFP1_RX_P_1;
+  wire STARTBTN_0_1;
   wire dclk_1;
   wire eth_0_FCS_CORRECT;
   wire eth_0_FCS_EN_0;
@@ -1626,12 +1999,15 @@ module eth_quad0_imp_QA9G1G
   assign Conn1_CLK_P = MGTCLK0_clk_p;
   assign FCS_CORRECT_0 = eth_0_FCS_CORRECT;
   assign FCS_EN_0 = eth_0_FCS_EN_0;
+  assign GAPLEN_0_1 = GAPLEN[15:0];
+  assign PKTLEN_0_1 = PKTLEN[15:0];
   assign RXD_0[63:0] = eth_0_RXD;
   assign RXLEN_0[3:0] = eth_0_RXLEN;
   assign SFP1_RX_N_1 = SFP1_RX_N;
   assign SFP1_RX_P_1 = SFP1_RX_P;
   assign SFP1_TX_N = eth_0_SFP1_TX_N;
   assign SFP1_TX_P = eth_0_SFP1_TX_P;
+  assign STARTBTN_0_1 = STARTBTN;
   assign XGMII_CLK = eth_0_txusrclk2_out;
   assign XGMII_RESET = eth_0_areset_datapathclk_out;
   assign dclk_1 = dclk;
@@ -1639,14 +2015,17 @@ module eth_quad0_imp_QA9G1G
   eth_0_imp_1FPILL0 eth_0
        (.FCS_CORRECT(eth_0_FCS_CORRECT),
         .FCS_EN(eth_0_FCS_EN_0),
+        .GAPLEN(GAPLEN_0_1),
         .MGTCLK0_clk_n(Conn1_CLK_N),
         .MGTCLK0_clk_p(Conn1_CLK_P),
+        .PKTLEN(PKTLEN_0_1),
         .RXD(eth_0_RXD),
         .RXLEN(eth_0_RXLEN),
         .SFP1_RX_N(SFP1_RX_N_1),
         .SFP1_RX_P(SFP1_RX_P_1),
         .SFP1_TX_N(eth_0_SFP1_TX_N),
         .SFP1_TX_P(eth_0_SFP1_TX_P),
+        .STARTBTN(STARTBTN_0_1),
         .areset_datapathclk_out(eth_0_areset_datapathclk_out),
         .dclk(dclk_1),
         .reset(reset_1),
@@ -2975,341 +3354,8 @@ module pcie_dram_imp_1W99HGN
         .S00_AXI_wready(xdma_0_M_AXI_LITE_WREADY),
         .S00_AXI_wstrb(xdma_0_M_AXI_LITE_WSTRB),
         .S00_AXI_wvalid(xdma_0_M_AXI_LITE_WVALID));
-  bd_eth10_capture_xlconstant_0_1 xlconstant_0
+  bd_eth10_capture_xlconstant_0_2 xlconstant_0
        (.dout(xlconstant_0_dout));
-endmodule
-
-module rx_wrmem_imp_1TQ7JQD
-   (AXILITE_REGS_araddr,
-    AXILITE_REGS_arready,
-    AXILITE_REGS_arvalid,
-    AXILITE_REGS_awaddr,
-    AXILITE_REGS_awready,
-    AXILITE_REGS_awvalid,
-    AXILITE_REGS_bready,
-    AXILITE_REGS_bresp,
-    AXILITE_REGS_bvalid,
-    AXILITE_REGS_rdata,
-    AXILITE_REGS_rready,
-    AXILITE_REGS_rresp,
-    AXILITE_REGS_rvalid,
-    AXILITE_REGS_wdata,
-    AXILITE_REGS_wready,
-    AXILITE_REGS_wstrb,
-    AXILITE_REGS_wvalid,
-    FCS_CORRECT,
-    FCS_EN,
-    IN_RXD,
-    IN_RXLEN,
-    M_AXI_S2MM_awaddr,
-    M_AXI_S2MM_awburst,
-    M_AXI_S2MM_awcache,
-    M_AXI_S2MM_awid,
-    M_AXI_S2MM_awlen,
-    M_AXI_S2MM_awprot,
-    M_AXI_S2MM_awready,
-    M_AXI_S2MM_awsize,
-    M_AXI_S2MM_awuser,
-    M_AXI_S2MM_awvalid,
-    M_AXI_S2MM_bready,
-    M_AXI_S2MM_bresp,
-    M_AXI_S2MM_bvalid,
-    M_AXI_S2MM_wdata,
-    M_AXI_S2MM_wlast,
-    M_AXI_S2MM_wready,
-    M_AXI_S2MM_wstrb,
-    M_AXI_S2MM_wvalid,
-    XGMII_CLK,
-    XGMII_RESETN);
-  input [7:0]AXILITE_REGS_araddr;
-  output AXILITE_REGS_arready;
-  input AXILITE_REGS_arvalid;
-  input [7:0]AXILITE_REGS_awaddr;
-  output AXILITE_REGS_awready;
-  input AXILITE_REGS_awvalid;
-  input AXILITE_REGS_bready;
-  output [1:0]AXILITE_REGS_bresp;
-  output AXILITE_REGS_bvalid;
-  output [31:0]AXILITE_REGS_rdata;
-  input AXILITE_REGS_rready;
-  output [1:0]AXILITE_REGS_rresp;
-  output AXILITE_REGS_rvalid;
-  input [31:0]AXILITE_REGS_wdata;
-  output AXILITE_REGS_wready;
-  input [3:0]AXILITE_REGS_wstrb;
-  input AXILITE_REGS_wvalid;
-  input FCS_CORRECT;
-  input FCS_EN;
-  input [63:0]IN_RXD;
-  input [3:0]IN_RXLEN;
-  output [63:0]M_AXI_S2MM_awaddr;
-  output [1:0]M_AXI_S2MM_awburst;
-  output [3:0]M_AXI_S2MM_awcache;
-  output [3:0]M_AXI_S2MM_awid;
-  output [7:0]M_AXI_S2MM_awlen;
-  output [2:0]M_AXI_S2MM_awprot;
-  input M_AXI_S2MM_awready;
-  output [2:0]M_AXI_S2MM_awsize;
-  output [3:0]M_AXI_S2MM_awuser;
-  output M_AXI_S2MM_awvalid;
-  output M_AXI_S2MM_bready;
-  input [1:0]M_AXI_S2MM_bresp;
-  input M_AXI_S2MM_bvalid;
-  output [127:0]M_AXI_S2MM_wdata;
-  output M_AXI_S2MM_wlast;
-  input M_AXI_S2MM_wready;
-  output [15:0]M_AXI_S2MM_wstrb;
-  output M_AXI_S2MM_wvalid;
-  input XGMII_CLK;
-  input XGMII_RESETN;
-
-  wire CLEAR_ERR_1;
-  wire [63:0]Conn_AWADDR;
-  wire [1:0]Conn_AWBURST;
-  wire [3:0]Conn_AWCACHE;
-  wire [3:0]Conn_AWID;
-  wire [7:0]Conn_AWLEN;
-  wire [2:0]Conn_AWPROT;
-  wire Conn_AWREADY;
-  wire [2:0]Conn_AWSIZE;
-  wire [3:0]Conn_AWUSER;
-  wire Conn_AWVALID;
-  wire Conn_BREADY;
-  wire [1:0]Conn_BRESP;
-  wire Conn_BVALID;
-  wire [127:0]Conn_WDATA;
-  wire Conn_WLAST;
-  wire Conn_WREADY;
-  wire [15:0]Conn_WSTRB;
-  wire Conn_WVALID;
-  wire FCS_CORRECT_1;
-  wire FCS_EN_1;
-  wire [63:0]IN_RXD_1;
-  wire [3:0]IN_RXLEN_1;
-  wire TEST_PKT_1;
-  wire [15:0]TEST_PKT_SIZE_1;
-  wire [7:0]axilite_regs_0_RD_ADDR;
-  wire axilite_regs_0_RD_ADDR_EN;
-  wire [7:0]axilite_regs_0_WR_ADDR;
-  wire [31:0]axilite_regs_0_WR_DATA;
-  wire axilite_regs_0_WR_EN;
-  wire [127:0]axis_dwidth_converter_0_M_AXIS_TDATA;
-  wire axis_dwidth_converter_0_M_AXIS_TLAST;
-  wire axis_dwidth_converter_0_M_AXIS_TREADY;
-  wire axis_dwidth_converter_0_M_AXIS_TVALID;
-  wire [3:0]axis_wrmem_CAP_CNT;
-  wire [3:0]axis_wrmem_CAP_DELIM;
-  wire [4:0]axis_wrmem_CAP_WORDCNT;
-  wire [63:0]axis_wrmem_CUR_ADDR;
-  wire [63:0]axis_wrmem_CUR_WADDR;
-  wire axis_wrmem_ERR_DELIM;
-  wire [7:0]axis_wrmem_ERR_STS;
-  wire clk_1;
-  wire probe14_1;
-  wire [1:0]probe15_1;
-  wire [14:0]probe4_1;
-  wire [3:0]probe9_1;
-  wire [31:0]rx_wrmem_regs_0_RD_DATA;
-  wire rx_wrmem_regs_0_RD_DATA_EN;
-  wire [7:0]s_axi_AXILiteS_1_ARADDR;
-  wire s_axi_AXILiteS_1_ARREADY;
-  wire s_axi_AXILiteS_1_ARVALID;
-  wire [7:0]s_axi_AXILiteS_1_AWADDR;
-  wire s_axi_AXILiteS_1_AWREADY;
-  wire s_axi_AXILiteS_1_AWVALID;
-  wire s_axi_AXILiteS_1_BREADY;
-  wire [1:0]s_axi_AXILiteS_1_BRESP;
-  wire s_axi_AXILiteS_1_BVALID;
-  wire [31:0]s_axi_AXILiteS_1_RDATA;
-  wire s_axi_AXILiteS_1_RREADY;
-  wire [1:0]s_axi_AXILiteS_1_RRESP;
-  wire s_axi_AXILiteS_1_RVALID;
-  wire [31:0]s_axi_AXILiteS_1_WDATA;
-  wire s_axi_AXILiteS_1_WREADY;
-  wire [3:0]s_axi_AXILiteS_1_WSTRB;
-  wire s_axi_AXILiteS_1_WVALID;
-  wire util_vector_logic_0_Res;
-  wire [0:0]vio_0_probe_out0;
-  wire [0:0]vio_0_probe_out1;
-  wire [15:0]vio_0_probe_out2;
-  wire [11:0]xgmii_to_axis_CAP_PUSH;
-  wire [7:0]xgmii_to_axis_ERR_FCS;
-  wire [7:0]xgmii_to_axis_ERR_FULL;
-  wire [7:0]xgmii_to_axis_ERR_LONG;
-  wire [63:0]xgmii_to_axis_OV_TDATA;
-  wire [0:0]xgmii_to_axis_OV_TLAST;
-  wire xgmii_to_axis_OV_TREADY;
-  wire xgmii_to_axis_OV_TVALID;
-
-  assign AXILITE_REGS_arready = s_axi_AXILiteS_1_ARREADY;
-  assign AXILITE_REGS_awready = s_axi_AXILiteS_1_AWREADY;
-  assign AXILITE_REGS_bresp[1:0] = s_axi_AXILiteS_1_BRESP;
-  assign AXILITE_REGS_bvalid = s_axi_AXILiteS_1_BVALID;
-  assign AXILITE_REGS_rdata[31:0] = s_axi_AXILiteS_1_RDATA;
-  assign AXILITE_REGS_rresp[1:0] = s_axi_AXILiteS_1_RRESP;
-  assign AXILITE_REGS_rvalid = s_axi_AXILiteS_1_RVALID;
-  assign AXILITE_REGS_wready = s_axi_AXILiteS_1_WREADY;
-  assign Conn_AWREADY = M_AXI_S2MM_awready;
-  assign Conn_BRESP = M_AXI_S2MM_bresp[1:0];
-  assign Conn_BVALID = M_AXI_S2MM_bvalid;
-  assign Conn_WREADY = M_AXI_S2MM_wready;
-  assign FCS_CORRECT_1 = FCS_CORRECT;
-  assign FCS_EN_1 = FCS_EN;
-  assign IN_RXD_1 = IN_RXD[63:0];
-  assign IN_RXLEN_1 = IN_RXLEN[3:0];
-  assign M_AXI_S2MM_awaddr[63:0] = Conn_AWADDR;
-  assign M_AXI_S2MM_awburst[1:0] = Conn_AWBURST;
-  assign M_AXI_S2MM_awcache[3:0] = Conn_AWCACHE;
-  assign M_AXI_S2MM_awid[3:0] = Conn_AWID;
-  assign M_AXI_S2MM_awlen[7:0] = Conn_AWLEN;
-  assign M_AXI_S2MM_awprot[2:0] = Conn_AWPROT;
-  assign M_AXI_S2MM_awsize[2:0] = Conn_AWSIZE;
-  assign M_AXI_S2MM_awuser[3:0] = Conn_AWUSER;
-  assign M_AXI_S2MM_awvalid = Conn_AWVALID;
-  assign M_AXI_S2MM_bready = Conn_BREADY;
-  assign M_AXI_S2MM_wdata[127:0] = Conn_WDATA;
-  assign M_AXI_S2MM_wlast = Conn_WLAST;
-  assign M_AXI_S2MM_wstrb[15:0] = Conn_WSTRB;
-  assign M_AXI_S2MM_wvalid = Conn_WVALID;
-  assign clk_1 = XGMII_CLK;
-  assign s_axi_AXILiteS_1_ARADDR = AXILITE_REGS_araddr[7:0];
-  assign s_axi_AXILiteS_1_ARVALID = AXILITE_REGS_arvalid;
-  assign s_axi_AXILiteS_1_AWADDR = AXILITE_REGS_awaddr[7:0];
-  assign s_axi_AXILiteS_1_AWVALID = AXILITE_REGS_awvalid;
-  assign s_axi_AXILiteS_1_BREADY = AXILITE_REGS_bready;
-  assign s_axi_AXILiteS_1_RREADY = AXILITE_REGS_rready;
-  assign s_axi_AXILiteS_1_WDATA = AXILITE_REGS_wdata[31:0];
-  assign s_axi_AXILiteS_1_WSTRB = AXILITE_REGS_wstrb[3:0];
-  assign s_axi_AXILiteS_1_WVALID = AXILITE_REGS_wvalid;
-  assign util_vector_logic_0_Res = XGMII_RESETN;
-  bd_eth10_capture_axilite_regs_0_0 axilite_regs_0
-       (.CLK(clk_1),
-        .RD_ADDR(axilite_regs_0_RD_ADDR),
-        .RD_ADDR_EN(axilite_regs_0_RD_ADDR_EN),
-        .RD_DATA(rx_wrmem_regs_0_RD_DATA),
-        .RD_DATA_EN(rx_wrmem_regs_0_RD_DATA_EN),
-        .RESETN(util_vector_logic_0_Res),
-        .WR_ADDR(axilite_regs_0_WR_ADDR),
-        .WR_DATA(axilite_regs_0_WR_DATA),
-        .WR_EN(axilite_regs_0_WR_EN),
-        .s_axi_AXILiteS_ARADDR(s_axi_AXILiteS_1_ARADDR),
-        .s_axi_AXILiteS_ARREADY(s_axi_AXILiteS_1_ARREADY),
-        .s_axi_AXILiteS_ARVALID(s_axi_AXILiteS_1_ARVALID),
-        .s_axi_AXILiteS_AWADDR(s_axi_AXILiteS_1_AWADDR),
-        .s_axi_AXILiteS_AWREADY(s_axi_AXILiteS_1_AWREADY),
-        .s_axi_AXILiteS_AWVALID(s_axi_AXILiteS_1_AWVALID),
-        .s_axi_AXILiteS_BREADY(s_axi_AXILiteS_1_BREADY),
-        .s_axi_AXILiteS_BRESP(s_axi_AXILiteS_1_BRESP),
-        .s_axi_AXILiteS_BVALID(s_axi_AXILiteS_1_BVALID),
-        .s_axi_AXILiteS_RDATA(s_axi_AXILiteS_1_RDATA),
-        .s_axi_AXILiteS_RREADY(s_axi_AXILiteS_1_RREADY),
-        .s_axi_AXILiteS_RRESP(s_axi_AXILiteS_1_RRESP),
-        .s_axi_AXILiteS_RVALID(s_axi_AXILiteS_1_RVALID),
-        .s_axi_AXILiteS_WDATA(s_axi_AXILiteS_1_WDATA),
-        .s_axi_AXILiteS_WREADY(s_axi_AXILiteS_1_WREADY),
-        .s_axi_AXILiteS_WSTRB(s_axi_AXILiteS_1_WSTRB),
-        .s_axi_AXILiteS_WVALID(s_axi_AXILiteS_1_WVALID));
-  bd_eth10_capture_axis_dwidth_converter_0_0 axis_dwidth_converter_0
-       (.aclk(clk_1),
-        .aresetn(util_vector_logic_0_Res),
-        .m_axis_tdata(axis_dwidth_converter_0_M_AXIS_TDATA),
-        .m_axis_tlast(axis_dwidth_converter_0_M_AXIS_TLAST),
-        .m_axis_tready(axis_dwidth_converter_0_M_AXIS_TREADY),
-        .m_axis_tvalid(axis_dwidth_converter_0_M_AXIS_TVALID),
-        .s_axis_tdata(xgmii_to_axis_OV_TDATA),
-        .s_axis_tlast(xgmii_to_axis_OV_TLAST),
-        .s_axis_tready(xgmii_to_axis_OV_TREADY),
-        .s_axis_tvalid(xgmii_to_axis_OV_TVALID));
-  axis_wrmem_imp_1H5WZDN axis_wrmem
-       (.CAP_CNT(axis_wrmem_CAP_CNT),
-        .CAP_DELIM(axis_wrmem_CAP_DELIM),
-        .CAP_WCMD(probe9_1),
-        .CAP_WDATA(probe4_1),
-        .CAP_WORDCNT(axis_wrmem_CAP_WORDCNT),
-        .CUR_ADDR(axis_wrmem_CUR_ADDR),
-        .CUR_WADDR(axis_wrmem_CUR_WADDR),
-        .ERR_DELIM(axis_wrmem_ERR_DELIM),
-        .ERR_FATAL(probe15_1),
-        .ERR_STS(axis_wrmem_ERR_STS),
-        .IV_tdata(axis_dwidth_converter_0_M_AXIS_TDATA),
-        .IV_tlast(axis_dwidth_converter_0_M_AXIS_TLAST),
-        .IV_tready(axis_dwidth_converter_0_M_AXIS_TREADY),
-        .IV_tvalid(axis_dwidth_converter_0_M_AXIS_TVALID),
-        .M_AXI_S2MM_awaddr(Conn_AWADDR),
-        .M_AXI_S2MM_awburst(Conn_AWBURST),
-        .M_AXI_S2MM_awcache(Conn_AWCACHE),
-        .M_AXI_S2MM_awid(Conn_AWID),
-        .M_AXI_S2MM_awlen(Conn_AWLEN),
-        .M_AXI_S2MM_awprot(Conn_AWPROT),
-        .M_AXI_S2MM_awready(Conn_AWREADY),
-        .M_AXI_S2MM_awsize(Conn_AWSIZE),
-        .M_AXI_S2MM_awuser(Conn_AWUSER),
-        .M_AXI_S2MM_awvalid(Conn_AWVALID),
-        .M_AXI_S2MM_bready(Conn_BREADY),
-        .M_AXI_S2MM_bresp(Conn_BRESP),
-        .M_AXI_S2MM_bvalid(Conn_BVALID),
-        .M_AXI_S2MM_wdata(Conn_WDATA),
-        .M_AXI_S2MM_wlast(Conn_WLAST),
-        .M_AXI_S2MM_wready(Conn_WREADY),
-        .M_AXI_S2MM_wstrb(Conn_WSTRB),
-        .M_AXI_S2MM_wvalid(Conn_WVALID),
-        .XGMII_CLK(clk_1),
-        .XGMII_RESETN(util_vector_logic_0_Res),
-        .s2mm_err(probe14_1));
-  bd_eth10_capture_rx_wrmem_regs_0_0 rx_wrmem_regs_0
-       (.CAP_CNT(axis_wrmem_CAP_CNT),
-        .CAP_DELIM(axis_wrmem_CAP_DELIM),
-        .CAP_PKT(xgmii_to_axis_CAP_PUSH),
-        .CAP_WCMD(probe9_1),
-        .CAP_WDATA(probe4_1),
-        .CAP_WORDCNT(axis_wrmem_CAP_WORDCNT),
-        .CLEAR_ERR(CLEAR_ERR_1),
-        .CLK(clk_1),
-        .ERR_DELIM(axis_wrmem_ERR_DELIM),
-        .ERR_FCS(xgmii_to_axis_ERR_FCS),
-        .ERR_FULL(xgmii_to_axis_ERR_FULL),
-        .ERR_LONG(xgmii_to_axis_ERR_LONG),
-        .ERR_S2MM(probe14_1),
-        .ERR_STS(axis_wrmem_ERR_STS),
-        .ERR_WCMD(probe15_1[0]),
-        .RD_ADDR(axilite_regs_0_RD_ADDR),
-        .RD_ADDR_EN(axilite_regs_0_RD_ADDR_EN),
-        .RD_DATA(rx_wrmem_regs_0_RD_DATA),
-        .RD_DATA_EN(rx_wrmem_regs_0_RD_DATA_EN),
-        .RESETN(util_vector_logic_0_Res),
-        .TEST_PKT(TEST_PKT_1),
-        .TEST_PKT_SIZE(TEST_PKT_SIZE_1),
-        .VIO_CLEAR(vio_0_probe_out0),
-        .VIO_PKT(vio_0_probe_out1),
-        .VIO_PKT_SIZE(vio_0_probe_out2),
-        .WADDR_POST(axis_wrmem_CUR_WADDR),
-        .WADDR_PRE(axis_wrmem_CUR_ADDR),
-        .WR_ADDR(axilite_regs_0_WR_ADDR),
-        .WR_DATA(axilite_regs_0_WR_DATA),
-        .WR_EN(axilite_regs_0_WR_EN));
-  bd_eth10_capture_vio_0_0 vio_0
-       (.clk(clk_1),
-        .probe_out0(vio_0_probe_out0),
-        .probe_out1(vio_0_probe_out1),
-        .probe_out2(vio_0_probe_out2));
-  xgmii_to_axis_imp_S33SKK xgmii_to_axis
-       (.CAP_PUSH(xgmii_to_axis_CAP_PUSH),
-        .CLEAR_ERR(CLEAR_ERR_1),
-        .ERR_FCS(xgmii_to_axis_ERR_FCS),
-        .ERR_FULL(xgmii_to_axis_ERR_FULL),
-        .ERR_LONG(xgmii_to_axis_ERR_LONG),
-        .FCS_CORRECT(FCS_CORRECT_1),
-        .FCS_EN(FCS_EN_1),
-        .IN_RXD(IN_RXD_1),
-        .IN_RXLEN(IN_RXLEN_1),
-        .OV_tdata(xgmii_to_axis_OV_TDATA),
-        .OV_tlast(xgmii_to_axis_OV_TLAST),
-        .OV_tready(xgmii_to_axis_OV_TREADY),
-        .OV_tvalid(xgmii_to_axis_OV_TVALID),
-        .TEST_PKT(TEST_PKT_1),
-        .TEST_PKT_SIZE(TEST_PKT_SIZE_1),
-        .XGMII_CLK(clk_1),
-        .XGMII_RESETN(util_vector_logic_0_Res));
 endmodule
 
 module s00_couplers_imp_1FM3V25
@@ -3458,7 +3504,7 @@ module s00_couplers_imp_1FM3V25
   assign s00_couplers_to_s00_couplers_WVALID = S_AXI_wvalid[0];
 endmodule
 
-module xgmii_to_axis_imp_S33SKK
+module xgmii_to_axis_imp_GIHUUE
    (CAP_PUSH,
     CLEAR_ERR,
     ERR_FCS,
@@ -3468,6 +3514,7 @@ module xgmii_to_axis_imp_S33SKK
     FCS_EN,
     IN_RXD,
     IN_RXLEN,
+    KEEP_ERROR_PACKET,
     OV_tdata,
     OV_tlast,
     OV_tready,
@@ -3485,6 +3532,7 @@ module xgmii_to_axis_imp_S33SKK
   input FCS_EN;
   input [63:0]IN_RXD;
   input [3:0]IN_RXLEN;
+  input KEEP_ERROR_PACKET;
   output [63:0]OV_tdata;
   output [0:0]OV_tlast;
   input OV_tready;
@@ -3499,6 +3547,7 @@ module xgmii_to_axis_imp_S33SKK
   wire FCS_EN_1;
   wire [63:0]IN_RXD_1;
   wire [3:0]IN_RXLEN_1;
+  wire KEEP_ERROR_PACKET_0_1;
   wire [15:0]PKTLEN_1;
   wire STARTBTN_1;
   wire XGMII_CLK_1;
@@ -3545,6 +3594,7 @@ module xgmii_to_axis_imp_S33SKK
   assign FCS_EN_1 = FCS_EN;
   assign IN_RXD_1 = IN_RXD[63:0];
   assign IN_RXLEN_1 = IN_RXLEN[3:0];
+  assign KEEP_ERROR_PACKET_0_1 = KEEP_ERROR_PACKET;
   assign OV_tdata[63:0] = axis_fifo_0_OV1_TDATA;
   assign OV_tlast[0] = axis_fifo_0_OV1_TLAST;
   assign OV_tvalid = axis_fifo_0_OV1_TVALID;
@@ -3561,6 +3611,7 @@ module xgmii_to_axis_imp_S33SKK
         .INFO_TDATA(axis_fifo_pinfo_OV_TDATA),
         .INFO_TREADY(axis_fifo_pinfo_OV_TREADY),
         .INFO_TVALID(axis_fifo_pinfo_OV_TVALID),
+        .KEEP_ERROR_PACKET(KEEP_ERROR_PACKET_0_1),
         .PKT_TDATA(add_packet_header_0_PKT_TDATA),
         .PKT_TLAST(add_packet_header_0_PKT_TLAST),
         .PKT_TREADY(add_packet_header_0_PKT_TREADY),
@@ -3652,6 +3703,6 @@ module xgmii_to_axis_imp_S33SKK
        (.Op1(get_packet_info_0_ERR_DROP),
         .Op2(get_packet_info_0_ERR_INCOMPLETE),
         .Res(util_vector_logic_0_Res));
-  bd_eth10_capture_xlconstant_0_0 xlconstant_0
+  bd_eth10_capture_xlconstant_0_1 xlconstant_0
        (.dout(xlconstant_0_dout));
 endmodule

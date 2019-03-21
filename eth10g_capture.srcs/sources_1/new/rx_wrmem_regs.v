@@ -1,6 +1,6 @@
 
 // Copyright (C) Akira Higuchi  ( https://github.com/ahiguti )
-// Copyright (C) DeNA Co., Ltd. ( https://dena.com )
+// Copyright (C) DeNA Co.,Ltd. ( https://dena.com )
 // All rights reserved.
 // See COPYRIGHT.txt for details
 
@@ -33,9 +33,13 @@ input [3:0] CAP_DELIM,
 input VIO_CLEAR,
 input VIO_PKT,
 input [15:0] VIO_PKT_SIZE,
+input [15:0] VIO_GAP_SIZE,
+input VIO_KEEP_ERROR_PACKET,
 output CLEAR_ERR,
 output TEST_PKT,
-output [15:0] TEST_PKT_SIZE
+output [15:0] TEST_PKT_SIZE,
+output [15:0] TEST_GAP_SIZE,
+output KEEP_ERROR_PACKET
 );
 
 reg rd_data_en;
@@ -53,6 +57,8 @@ reg [3:0] cap_delim;
 
 reg test_pkt;
 reg [15:0] test_pkt_size;
+reg [15:0] test_gap_size;
+reg keep_error_packet;
 
 wire clear_err = (WR_EN && (WR_ADDR == 0) && WR_DATA[0]) || VIO_CLEAR;
 
@@ -76,6 +82,8 @@ assign RD_DATA_EN = rd_data_en;
 assign CLEAR_ERR = clear_err;
 assign TEST_PKT = test_pkt;
 assign TEST_PKT_SIZE = test_pkt_size;
+assign TEST_GAP_SIZE = test_gap_size;
+assign KEEP_ERROR_PACKET = keep_error_packet;
 
 always @(posedge CLK) begin
     if (!RESETN) begin
@@ -91,10 +99,16 @@ always @(posedge CLK) begin
         cap_delim <= 4'hf;
         test_pkt <= 0;
         test_pkt_size <= 0;
+        test_gap_size <= 0;
+        keep_error_packet <= 0;
     end else begin
         if (WR_EN && (WR_ADDR == 1)) begin
             test_pkt <= WR_DATA[15:0] != 0;
             test_pkt_size <= WR_DATA[15:0];
+            test_gap_size <= WR_DATA[31:15];
+        end
+        if (WR_EN && (WR_ADDR == 2)) begin
+            keep_error_packet <= WR_DATA[0];
         end
         rd_data_en <= 0;
         rd_data <= 0;
@@ -108,6 +122,16 @@ always @(posedge CLK) begin
         if (VIO_PKT) begin
             test_pkt <= VIO_PKT_SIZE != 0;
             test_pkt_size <= VIO_PKT_SIZE;
+            test_gap_size <= VIO_GAP_SIZE;
+        end
+        if (VIO_KEEP_ERROR_PACKET) begin
+            keep_error_packet <= 1;
+        end
+        if (VIO_CLEAR) begin
+            test_pkt <= 0;
+            test_pkt_size <= 0;
+            test_gap_size <= 0;
+            keep_error_packet <= 0;
         end
         if (clear_err) begin
             cap_pkt <= 16'hffff;

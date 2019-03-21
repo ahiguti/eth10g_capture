@@ -1,0 +1,70 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port s2mm_err -pg 1 -y 140 -defaultsOSRD
+preplace port XGMII_RESETN -pg 1 -y 500 -defaultsOSRD
+preplace port S_AXIS -pg 1 -y 800 -defaultsOSRD
+preplace port M_AXI_S2MM -pg 1 -y 100 -defaultsOSRD
+preplace port XGMII_CLK -pg 1 -y 480 -defaultsOSRD
+preplace port ERR_DELIM -pg 1 -y 710 -defaultsOSRD
+preplace portBus CAP_WDATA -pg 1 -y 840 -defaultsOSRD
+preplace portBus CAP_DELIM -pg 1 -y 630 -defaultsOSRD
+preplace portBus CUR_WADDR -pg 1 -y 460 -defaultsOSRD
+preplace portBus ERR_STS -pg 1 -y 440 -defaultsOSRD
+preplace portBus CAP_WCMD -pg 1 -y 320 -defaultsOSRD
+preplace portBus CUR_ADDR -pg 1 -y 1180 -defaultsOSRD
+preplace portBus ERR_FATAL -pg 1 -y 1160 -defaultsOSRD
+preplace portBus CAP_CNT -pg 1 -y 540 -defaultsOSRD
+preplace portBus CAP_WORDCNT -pg 1 -y 1000 -defaultsOSRD
+preplace inst rx_wrmem_status_0 -pg 1 -lvl 4 -y 450 -defaultsOSRD
+preplace inst gen_datamover_wcmd_0 -pg 1 -lvl 4 -y 1180 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 2 -y 80 -defaultsOSRD
+preplace inst axis_fifo_wdata -pg 1 -lvl 4 -y 840 -defaultsOSRD
+preplace inst axis_fifo_wcmd_delim -pg 1 -lvl 4 -y 630 -defaultsOSRD
+preplace inst axis_dwidth_converter_0 -pg 1 -lvl 2 -y 820 -defaultsOSRD
+preplace inst axis_fifo_wcmd_cnt -pg 1 -lvl 3 -y 460 -defaultsOSRD
+preplace inst axi_datamover_0 -pg 1 -lvl 3 -y 120 -defaultsOSRD
+preplace inst axis_fifo_wcmd -pg 1 -lvl 3 -y 320 -defaultsOSRD
+preplace inst get_word_count_0 -pg 1 -lvl 3 -y 840 -defaultsOSRD
+preplace inst axis_fork_0 -pg 1 -lvl 1 -y 480 -defaultsOSRD
+preplace inst update_packet_delim_1 -pg 1 -lvl 3 -y 670 -defaultsOSRD
+preplace inst axis_fork_1 -pg 1 -lvl 2 -y 570 -defaultsOSRD
+preplace inst groupify_wordcnt_0 -pg 1 -lvl 3 -y 1000 -defaultsOSRD
+preplace inst axis_fifo_wordcnt -pg 1 -lvl 4 -y 1000 -defaultsOSRD
+preplace netloc Conn1 1 0 2 NJ 800 NJ
+preplace netloc axi_datamover_0_M_AXIS_S2MM_STS 1 3 1 970
+preplace netloc xlconstant_1_dout 1 2 1 NJ
+preplace netloc Conn2 1 3 2 NJ 100 NJ
+preplace netloc get_word_count_0_WORDCNT 1 3 1 960
+preplace netloc groupify_wordcnt_0_OV 1 3 1 960
+preplace netloc axis_fifo_wcmd_cnt_CAP_PUSH 1 3 2 960J 540 NJ
+preplace netloc axis_dwidth_converter_0_M_AXIS 1 2 1 N
+preplace netloc rx_wrmem_status_0_CUR_WADDR 1 4 1 NJ
+preplace netloc axis_fifo_wdata_CAP_PUSH 1 4 1 NJ
+preplace netloc axis_fifo_wcmd_CAP_PUSH 1 3 2 NJ 320 NJ
+preplace netloc axis_fifo_wordcnt_CAP_PUSH 1 4 1 NJ
+preplace netloc XGMII_CLK_1 1 0 4 30 810 270 650 510 540 970
+preplace netloc axis_fifo_wcmd_delim_OV 1 2 3 540 550 NJ 550 1350
+preplace netloc get_word_count_0_OV 1 3 1 990
+preplace netloc axis_fifo_wcmd_delim_CAP_PUSH 1 4 1 NJ
+preplace netloc axis_fifo_wcmd_OV 1 2 2 540 240 960
+preplace netloc gen_datamover_wcmd_0_CUR_ADDR 1 4 1 NJ
+preplace netloc XGMII_RESETN_1 1 0 4 20 820 260 660 520 560 980
+preplace netloc gen_datamover_wcmd_0_ERR_FATAL 1 4 1 NJ
+preplace netloc axi_datamover_0_s2mm_err 1 3 2 NJ 140 NJ
+preplace netloc axis_fifo_wdata_OV 1 2 3 540 760 NJ 760 1350
+preplace netloc axis_fifo_wordcnt_OV 1 2 3 540 920 NJ 920 1350
+preplace netloc rx_wrmem_status_0_ERR_STS 1 4 1 NJ
+preplace netloc update_packet_delim_1_ERR_DELIM 1 3 2 960J 710 NJ
+preplace netloc axis_fork_0_OV0 1 1 1 270
+preplace netloc axis_fork_0_OV1 1 1 2 NJ 490 490
+preplace netloc gen_datamover_wcmd_0_WCMD 1 0 5 40 1080 NJ 1080 NJ 1080 NJ 1080 1350
+preplace netloc axis_fifo_wcmd_cnt_OV 1 3 1 N
+preplace netloc axis_fork_1_OV0 1 2 1 500
+preplace netloc update_packet_delim_1_OWDATA 1 2 2 530 570 960
+preplace netloc axis_fork_1_OV1 1 2 2 NJ 580 990
+levelinfo -pg 1 0 150 380 750 1170 1370 -top 0 -bot 1280
+",
+}
+
