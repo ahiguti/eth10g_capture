@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-//Date        : Fri Mar 22 01:48:09 2019
+//Date        : Sat Mar 23 05:01:24 2019
 //Host        : habuild running 64-bit Ubuntu 16.04.6 LTS
 //Command     : generate_target bd_eth10_capture.bd
 //Design      : bd_eth10_capture
@@ -521,6 +521,7 @@ module bd_eth10_capture
 
   wire CLEAR_ERR_1;
   wire CLK_1;
+  wire [63:0]CLOCK_CNT_1;
   wire [15:0]GAPLEN_1;
   wire KEEP_ERROR_PACKET_1;
   wire MGTCLK0_1_CLK_N;
@@ -695,6 +696,7 @@ module bd_eth10_capture
         .CAP_WORDCNT(axis_wrmem_CAP_WORDCNT),
         .CLEAR_ERR(CLEAR_ERR_1),
         .CLK(eth_quad0_XGMII_CLK),
+        .CLOCK_CNT(CLOCK_CNT_1),
         .ERR_DELIM(axis_wrmem_ERR_DELIM),
         .ERR_FCS(xgmii_to_axis_ERR_FCS),
         .ERR_FULL(xgmii_to_axis_ERR_FULL),
@@ -827,6 +829,7 @@ module bd_eth10_capture
   xgmii_to_axis_imp_GIHUUE xgmii_to_axis
        (.CAP_PUSH(xgmii_to_axis_CAP_PUSH),
         .CLEAR_ERR(CLEAR_ERR_1),
+        .CLOCK_CNT(CLOCK_CNT_1),
         .ERR_FCS(xgmii_to_axis_ERR_FCS),
         .ERR_FULL(xgmii_to_axis_ERR_FULL),
         .ERR_LONG(xgmii_to_axis_ERR_LONG),
@@ -1457,6 +1460,7 @@ module eth10_capt_ctrl_imp_1T6HTOG
     CAP_WORDCNT,
     CLEAR_ERR,
     CLK,
+    CLOCK_CNT,
     ERR_DELIM,
     ERR_FCS,
     ERR_FULL,
@@ -1496,6 +1500,7 @@ module eth10_capt_ctrl_imp_1T6HTOG
   input [4:0]CAP_WORDCNT;
   output CLEAR_ERR;
   input CLK;
+  output [63:0]CLOCK_CNT;
   input ERR_DELIM;
   input [7:0]ERR_FCS;
   input [7:0]ERR_FULL;
@@ -1568,6 +1573,7 @@ module eth10_capt_ctrl_imp_1T6HTOG
   wire [31:0]axilite_regs_0_WR_DATA;
   wire axilite_regs_0_WR_EN;
   wire rx_wrmem_regs_0_CLEAR_ERR;
+  wire [63:0]rx_wrmem_regs_0_CLOCK_CNT;
   wire rx_wrmem_regs_0_KEEP_ERROR_PACKET;
   wire [31:0]rx_wrmem_regs_0_RD_DATA;
   wire rx_wrmem_regs_0_RD_DATA_EN;
@@ -1588,6 +1594,7 @@ module eth10_capt_ctrl_imp_1T6HTOG
   assign CAP_WORDCNT_1 = CAP_WORDCNT[4:0];
   assign CLEAR_ERR = rx_wrmem_regs_0_CLEAR_ERR;
   assign CLK_1 = CLK;
+  assign CLOCK_CNT[63:0] = rx_wrmem_regs_0_CLOCK_CNT;
   assign Conn1_ARADDR = s_axi_AXILiteS_araddr[7:0];
   assign Conn1_ARVALID = s_axi_AXILiteS_arvalid;
   assign Conn1_AWADDR = s_axi_AXILiteS_awaddr[7:0];
@@ -1655,6 +1662,7 @@ module eth10_capt_ctrl_imp_1T6HTOG
         .CAP_WORDCNT(CAP_WORDCNT_1),
         .CLEAR_ERR(rx_wrmem_regs_0_CLEAR_ERR),
         .CLK(CLK_1),
+        .CLOCK_CNT(rx_wrmem_regs_0_CLOCK_CNT),
         .ERR_DELIM(ERR_DELIM_1),
         .ERR_FCS(ERR_FCS_1),
         .ERR_FULL(ERR_FULL_1),
@@ -3507,6 +3515,7 @@ endmodule
 module xgmii_to_axis_imp_GIHUUE
    (CAP_PUSH,
     CLEAR_ERR,
+    CLOCK_CNT,
     ERR_FCS,
     ERR_FULL,
     ERR_LONG,
@@ -3525,6 +3534,7 @@ module xgmii_to_axis_imp_GIHUUE
     XGMII_RESETN);
   output [11:0]CAP_PUSH;
   input CLEAR_ERR;
+  input [63:0]CLOCK_CNT;
   output [7:0]ERR_FCS;
   output [7:0]ERR_FULL;
   output [7:0]ERR_LONG;
@@ -3543,6 +3553,7 @@ module xgmii_to_axis_imp_GIHUUE
   input XGMII_RESETN;
 
   wire CLEAR_ERR_1;
+  wire [63:0]CLOCK_CNT_0_1;
   wire FCS_CORRECT_1;
   wire FCS_EN_1;
   wire [63:0]IN_RXD_1;
@@ -3564,7 +3575,7 @@ module xgmii_to_axis_imp_GIHUUE
   wire axis_fifo_0_OV_TREADY;
   wire axis_fifo_0_OV_TVALID;
   wire [11:0]axis_fifo_pdata_CAP_PUSH;
-  wire [23:0]axis_fifo_pinfo_OV_TDATA;
+  wire [63:0]axis_fifo_pinfo_OV_TDATA;
   wire axis_fifo_pinfo_OV_TREADY;
   wire axis_fifo_pinfo_OV_TVALID;
   wire [7:0]err_counter_fcs_OVAL;
@@ -3575,7 +3586,7 @@ module xgmii_to_axis_imp_GIHUUE
   wire get_packet_info_0_ERR_DROP;
   wire get_packet_info_0_ERR_FCS;
   wire get_packet_info_0_ERR_INCOMPLETE;
-  wire [23:0]get_packet_info_0_INFO_TDATA;
+  wire [63:0]get_packet_info_0_INFO_TDATA;
   wire get_packet_info_0_INFO_TREADY;
   wire get_packet_info_0_INFO_TVALID;
   wire testpat_rx_0_OUT_FCS_CORRECT;
@@ -3587,6 +3598,7 @@ module xgmii_to_axis_imp_GIHUUE
 
   assign CAP_PUSH[11:0] = axis_fifo_pdata_CAP_PUSH;
   assign CLEAR_ERR_1 = CLEAR_ERR;
+  assign CLOCK_CNT_0_1 = CLOCK_CNT[63:0];
   assign ERR_FCS[7:0] = err_counter_fcs_OVAL;
   assign ERR_FULL[7:0] = err_counter_full_OVAL;
   assign ERR_LONG[7:0] = xlconstant_0_dout;
@@ -3672,6 +3684,7 @@ module xgmii_to_axis_imp_GIHUUE
         .RESETN(XGMII_RESETN_1));
   bd_eth10_capture_get_packet_info_0_0 get_packet_info_0
        (.CLK(XGMII_CLK_1),
+        .CLOCK_CNT(CLOCK_CNT_0_1),
         .DATA_TDATA(get_packet_info_0_DATA_TDATA),
         .DATA_TREADY(get_packet_info_0_DATA_TREADY),
         .DATA_TVALID(get_packet_info_0_DATA_TVALID),

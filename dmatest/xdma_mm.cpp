@@ -93,11 +93,15 @@ struct eth_capture {
   void capture_start();
   size_t capture_one();
   uint32_t capture_get_err() const { return err; }
+  void update_clock(bool init_flag = false);
 private:
   xdma_aximm xdma;
   uint64_t cur_addr = 0;
-  const uint64_t addr_mask = 0x0fffffffu; // ワード単位のDRAMバッファの大きさ
-  const uint64_t addr_word_l2 = 4; // フレームはワード(16byte)境界にalign
+  static constexpr uint64_t addr_mask = 0x0fffffffu;
+    // ワード単位のDRAMバッファの大きさ
+  static constexpr uint64_t addr_word_l2 = 4;
+    // フレームはワード(16byte)境界にalign
+  static constexpr uint64_t CLOCK_COUNT_MASK = (1ull << 46ull) - 1ull;
   scoped_fd ofile;
   uint32_t err = 0;
   std::vector<uint8_t> buf_dma;
@@ -106,18 +110,24 @@ private:
   uint32_t overrun_count = 0;
   uint64_t interval_nbytes = 0;
   uint64_t interval_npackets = 0;
+  uint64_t last_clock_cnt = 0;
+  typedef std::chrono::system_clock clock_type;
+  clock_type::time_point last_sys_clock;
+  std::pair<uint32_t, uint32_t> last_pcap_ts = { 0, 0 };
 private:
   /*
    * 制御用レジスタマップ (rx_wrmem_regs.v)
-   * wire [31:0] rd0 = { ERR_FULL[7:0], ERR_LONG[7:0], ERR_STS[7:0],
-        5'b0, ERR_DELIM, ERR_WCMD, ERR_S2MM };
-   * wire [31:0] rd1 = 0;
-   * wire [31:0] rd2 = { WADDR_PRE[35:4] };
-   * wire [31:0] rd3 = { 4'b0, WADDR_PRE[63:36] };
-   * wire [31:0] rd4 = { WADDR_POST[35:4] };
-   * wire [31:0] rd5 = { 4'b0, WADDR_POST[63:36] };;
-   * wire [31:0] rd6 = { cap_pkt[15:0], cap_wdata[15:0] };
-   * wire [31:0] rd7 = { 16'b0, cap_delim, cap_cnt, cap_wcmd, cap_wordcnt };
+   * 8'h00: get_rd = { ERR_FULL[7:0], ERR_LONG[7:0], ERR_STS[7:0], 5'b0,
+   *   ERR_DELIM, ERR_WCMD, ERR_S2MM };
+   * 8'h01: get_rd = { 24'b0, ERR_FCS[7:0] };
+   * 8'h02: get_rd = { WADDR_PRE[35:4] };
+   * 8'h03: get_rd = { 4'b0, waddr_pre[63:36] };
+   * 8'h04: get_rd = { WADDR_POST[35:4] };
+   * 8'h05: get_rd = { 4'b0, waddr_post[63:36] };
+   * 8'h06: get_rd = { cap_pkt[15:0], 1'b0, cap_wdata[14:0] };
+   * 8'h07: get_rd = { 16'b0, cap_delim, cap_cnt, cap_wcmd, cap_wordcnt };
+   * 8'h08: get_rd = { clock_cnt[31:0] };
+   * 8'h09: get_rd = { clock_cnt_high_latch };
    */
   uint32_t get_err_stat() const {
     return ((volatile uint32_t *)xdma.get_user())[0];
@@ -139,12 +149,19 @@ private:
     // waddr_post: 書き込んだ後に、書き込んだ領域の次のアドレスがセットされる。
     return (uint64_t(ah) << 32u) | al;
   }
+  uint64_t get_clock_cnt() const {
+    // 下位32bitを読むと上位32bitがラッチされるようにしてあるので下位から読む
+    uint32_t vl = ((volatile uint32_t *)xdma.get_user())[8];
+    uint32_t vh = ((volatile uint32_t *)xdma.get_user())[9];
+    return (uint64_t(vh) << 32u) | vl;
+  }
   uint32_t get_capa0() const {
     return ((volatile uint32_t *)xdma.get_user())[6];
   }
   uint32_t get_capa1() const {
     return ((volatile uint32_t *)xdma.get_user())[7];
   }
+  std::pair<uint32_t, uint32_t> to_pcap_ts(uint64_t clk_cnt);
   void write_pcap();
 };
 
@@ -181,6 +198,31 @@ eth_capture::capture_start()
   if (::write(ofile, &pcap_hdr[0], sizeof(pcap_hdr)) < 0) {
     fprintf(stderr, "failed to write pcap header\n");
   }
+  update_clock(true);
+}
+
+std::pair<uint32_t, uint32_t>
+eth_capture::to_pcap_ts(uint64_t clk_cnt)
+{
+  auto const cnt_diff = (last_clock_cnt - clk_cnt) & CLOCK_COUNT_MASK;
+  auto const cnt_diff_us = (double)(cnt_diff) / 156.25;
+  auto const ts = last_sys_clock - std::chrono::microseconds(
+    uint64_t(cnt_diff_us));
+  auto const ts_us = std::chrono::duration_cast<std::chrono::microseconds>(
+    ts.time_since_epoch()).count();
+  uint32_t ts_sec = ts_us / 1000000;
+  uint32_t ts_usec = ts_us % 1000000;
+  if (verbose > 1) {
+    fprintf(stderr, "clk_cnt=%llu last_clk_cnt=%llu diff=%llu %f\n",
+      (unsigned long long)clk_cnt,
+      (unsigned long long)last_clock_cnt,
+      (unsigned long long)cnt_diff, cnt_diff_us);
+  }
+  auto const r = std::pair<uint32_t, uint32_t>(ts_sec, ts_usec);
+  // if (r > last_pcap_ts) {
+    last_pcap_ts = r;
+  // }
+  return last_pcap_ts;
 }
 
 void
@@ -192,17 +234,13 @@ eth_capture::write_pcap()
   while (i + 8 <= len) {
     /*
      * buf_dmaのフォーマット(フレーム境界はワード(16byte)にalign)
-     * (+00) plen
-     * (+02) 未使用
-     * (+04) マジック 0xdeadbeef
-     * (+08) パケット(長さplen)
+     * +0: header
+     *   { CLOCK_CNT[45:0], !packet_incomplete, fcs_correct, packet_len[15:0] }
+     * +8: data
      */
-    uint64_t phdr = *(uint64_t const *)(buf_dma.data() + i);
-    if ((phdr >> 32u) != 0xdeadbeef) {
-      fprintf(stderr, "unexpected packet header %llx\n",
-        (unsigned long long)phdr);
-      throw std::runtime_error("unexpected packet header");
-    }
+    uint64_t const phdr = *(uint64_t const *)(buf_dma.data() + i);
+    uint64_t const clk_cnt = phdr >> 18u;
+    auto const ts = to_pcap_ts(clk_cnt);
     i += 8; // パケットヘッダ8byteの次へ移動
     uint32_t plen = phdr & 0xffffu;
     if (i + plen > len) {
@@ -217,8 +255,8 @@ eth_capture::write_pcap()
     if (j + plen + 16 >= buf_pcap.size()) {
       buf_pcap.resize(j + plen + 16);
     }
-    *(uint32_t *)(buf_pcap.data() + j) = 0;
-    *(uint32_t *)(buf_pcap.data() + j + 4) = 0;
+    *(uint32_t *)(buf_pcap.data() + j) = ts.first;
+    *(uint32_t *)(buf_pcap.data() + j + 4) = ts.second;
     *(uint32_t *)(buf_pcap.data() + j + 8) = plen;
     *(uint32_t *)(buf_pcap.data() + j + 12) = plen;
     j += 16; // pcapヘッダの次へ移動
@@ -247,6 +285,31 @@ eth_capture::write_pcap()
   if (buf_dma_offset != 0) {
     memmove(buf_dma.data(), buf_dma.data() + i, buf_dma_offset);
   }
+}
+
+void
+eth_capture::update_clock(bool init_flag)
+{
+  auto const clock_cnt = get_clock_cnt() & CLOCK_COUNT_MASK;
+  auto const sys_clock = clock_type::now();
+  if (init_flag) {
+    last_clock_cnt = clock_cnt;
+    last_sys_clock = sys_clock;
+    return;
+  }
+  uint64_t const cnt_diff = (clock_cnt - last_clock_cnt) & CLOCK_COUNT_MASK;
+  auto const cnt_diff_ns = (double)(cnt_diff) * (1000.0 / 156.25);
+  auto const est_sys_clock = last_sys_clock + std::chrono::nanoseconds(
+    uint64_t(cnt_diff_ns));
+  auto const diff = sys_clock - est_sys_clock;
+  auto const diff_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
+    diff).count();
+  if (verbose > 2) {
+    fprintf(stderr, "sysclk_diff_ns=%lld\n", (long long)diff_ns);
+  }
+  last_clock_cnt = clock_cnt;
+  auto const diff_ns_delta = diff_ns / 8; /* ズレの1/8だけ反映させる */
+  last_sys_clock = est_sys_clock + std::chrono::nanoseconds(diff_ns_delta);
 }
 
 size_t
@@ -290,6 +353,7 @@ eth_capture::capture_one()
     }
     return len;
   }
+  update_clock();
   if (verbose > 0) {
     fprintf(stderr, "waddr_diff=%llx mask=%llx pre=%llx\n",
       (unsigned long long)waddr_diff, (unsigned long long)addr_mask,
@@ -336,6 +400,7 @@ int main(int argc, char **argv)
       size_t len = capt.capture_one();
       if (len == 0) {
         std::this_thread::sleep_for(std::chrono::microseconds(10000));
+        capt.update_clock();
       } else {
         if (verbose > 0) {
           fprintf(stderr, "capture len=%zu\n", len);

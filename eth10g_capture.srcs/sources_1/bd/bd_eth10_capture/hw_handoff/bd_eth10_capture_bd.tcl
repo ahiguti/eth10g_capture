@@ -370,6 +370,7 @@ proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
   # Create pins
   create_bd_pin -dir O -from 11 -to 0 CAP_PUSH
   create_bd_pin -dir I CLEAR_ERR
+  create_bd_pin -dir I -from 63 -to 0 CLOCK_CNT
   create_bd_pin -dir O -from 7 -to 0 ERR_FCS
   create_bd_pin -dir O -from 7 -to 0 ERR_FULL
   create_bd_pin -dir O -from 7 -to 0 ERR_LONG
@@ -421,7 +422,7 @@ proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
    }
     set_property -dict [ list \
    CONFIG.FIFO_SIZE_L2 {10} \
-   CONFIG.WIDTH_DATA {24} \
+   CONFIG.WIDTH_DATA {64} \
    CONFIG.WIDTH_LAST {0} \
  ] $axis_fifo_pinfo
 
@@ -507,6 +508,7 @@ proc create_hier_cell_xgmii_to_axis { parentCell nameHier } {
 
   # Create port connections
   connect_bd_net -net CLEAR_ERR_1 [get_bd_pins CLEAR_ERR] [get_bd_pins err_counter_fcs/CLEAR_ERR] [get_bd_pins err_counter_full/CLEAR_ERR]
+  connect_bd_net -net CLOCK_CNT_0_1 [get_bd_pins CLOCK_CNT] [get_bd_pins get_packet_info_0/CLOCK_CNT]
   connect_bd_net -net FCS_CORRECT_1 [get_bd_pins FCS_CORRECT] [get_bd_pins testpat_rx_0/IN_FCS_CORRECT]
   connect_bd_net -net FCS_EN_1 [get_bd_pins FCS_EN] [get_bd_pins testpat_rx_0/IN_FCS_EN]
   connect_bd_net -net IN_RXD_1 [get_bd_pins IN_RXD] [get_bd_pins testpat_rx_0/IN_RXD]
@@ -915,6 +917,7 @@ proc create_hier_cell_eth10_capt_ctrl { parentCell nameHier } {
   create_bd_pin -dir I -from 4 -to 0 CAP_WORDCNT
   create_bd_pin -dir O CLEAR_ERR
   create_bd_pin -dir I -type clk CLK
+  create_bd_pin -dir O -from 63 -to 0 CLOCK_CNT
   create_bd_pin -dir I ERR_DELIM
   create_bd_pin -dir I -from 7 -to 0 ERR_FCS
   create_bd_pin -dir I -from 7 -to 0 ERR_FULL
@@ -992,6 +995,7 @@ proc create_hier_cell_eth10_capt_ctrl { parentCell nameHier } {
   connect_bd_net -net axilite_regs_0_WR_DATA [get_bd_pins axilite_regs_0/WR_DATA] [get_bd_pins rx_wrmem_regs_0/WR_DATA]
   connect_bd_net -net axilite_regs_0_WR_EN [get_bd_pins axilite_regs_0/WR_EN] [get_bd_pins rx_wrmem_regs_0/WR_EN]
   connect_bd_net -net rx_wrmem_regs_0_CLEAR_ERR [get_bd_pins CLEAR_ERR] [get_bd_pins rx_wrmem_regs_0/CLEAR_ERR]
+  connect_bd_net -net rx_wrmem_regs_0_CLOCK_CNT [get_bd_pins CLOCK_CNT] [get_bd_pins rx_wrmem_regs_0/CLOCK_CNT]
   connect_bd_net -net rx_wrmem_regs_0_KEEP_ERROR_PACKET [get_bd_pins KEEP_ERROR_PACKET] [get_bd_pins rx_wrmem_regs_0/KEEP_ERROR_PACKET]
   connect_bd_net -net rx_wrmem_regs_0_RD_DATA [get_bd_pins axilite_regs_0/RD_DATA] [get_bd_pins rx_wrmem_regs_0/RD_DATA]
   connect_bd_net -net rx_wrmem_regs_0_RD_DATA_EN [get_bd_pins axilite_regs_0/RD_DATA_EN] [get_bd_pins rx_wrmem_regs_0/RD_DATA_EN]
@@ -1420,6 +1424,7 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net CLEAR_ERR_1 [get_bd_pins eth10_capt_ctrl/CLEAR_ERR] [get_bd_pins xgmii_to_axis/CLEAR_ERR]
   connect_bd_net -net CLK_1 [get_bd_pins eth_quad0/dclk] [get_bd_pins fanctrl/CLK] [get_bd_pins pcie_dram/clk_100] [get_bd_pins reset_100M/slowest_sync_clk]
+  connect_bd_net -net CLOCK_CNT_1 [get_bd_pins eth10_capt_ctrl/CLOCK_CNT] [get_bd_pins xgmii_to_axis/CLOCK_CNT]
   connect_bd_net -net GAPLEN_1 [get_bd_pins eth10_capt_ctrl/TEST_GAP_SIZE] [get_bd_pins eth_quad0/GAPLEN]
   connect_bd_net -net KEEP_ERROR_PACKET_1 [get_bd_pins eth10_capt_ctrl/KEEP_ERROR_PACKET] [get_bd_pins xgmii_to_axis/KEEP_ERROR_PACKET]
   connect_bd_net -net Net [get_bd_ports I2C_SDA] [get_bd_pins fanctrl/I2C_SDA]

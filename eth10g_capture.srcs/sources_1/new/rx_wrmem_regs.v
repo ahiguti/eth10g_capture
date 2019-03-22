@@ -39,7 +39,8 @@ output CLEAR_ERR,
 output TEST_PKT,
 output [15:0] TEST_PKT_SIZE,
 output [15:0] TEST_GAP_SIZE,
-output KEEP_ERROR_PACKET
+output KEEP_ERROR_PACKET,
+output [63:0] CLOCK_CNT
 );
 
 reg rd_data_en;
@@ -47,6 +48,9 @@ reg [31:0] rd_data;
 
 reg [63:0] waddr_pre;
 reg [63:0] waddr_post;
+
+reg [63:0] clock_cnt;
+reg [31:0] clock_cnt_high_latch;
 
 reg [15:0] cap_pkt;
 reg [15:0] cap_wdata;
@@ -73,6 +77,8 @@ case (addr)
 8'h05: get_rd = { 4'b0, waddr_post[63:36] };
 8'h06: get_rd = { cap_pkt[15:0], 1'b0, cap_wdata[14:0] };
 8'h07: get_rd = { 16'b0, cap_delim, cap_cnt, cap_wcmd, cap_wordcnt };
+8'h08: get_rd = { clock_cnt[31:0] };
+8'h09: get_rd = { clock_cnt_high_latch };
 default: get_rd = 0;
 endcase
 endfunction
@@ -84,6 +90,7 @@ assign TEST_PKT = test_pkt;
 assign TEST_PKT_SIZE = test_pkt_size;
 assign TEST_GAP_SIZE = test_gap_size;
 assign KEEP_ERROR_PACKET = keep_error_packet;
+assign CLOCK_CNT = clock_cnt;
 
 always @(posedge CLK) begin
     if (!RESETN) begin
@@ -101,6 +108,7 @@ always @(posedge CLK) begin
         test_pkt_size <= 0;
         test_gap_size <= 0;
         keep_error_packet <= 0;
+        clock_cnt <= 0;
     end else begin
         if (WR_EN && (WR_ADDR == 1)) begin
             test_pkt <= WR_DATA[15:0] != 0;
@@ -118,6 +126,7 @@ always @(posedge CLK) begin
             // latch 64bit values
             if (RD_ADDR == 2) waddr_pre <= WADDR_PRE;
             if (RD_ADDR == 4) waddr_post <= WADDR_POST;
+            if (RD_ADDR == 8) clock_cnt_high_latch <= clock_cnt[63:32];
         end
         if (VIO_PKT) begin
             test_pkt <= VIO_PKT_SIZE != 0;
@@ -148,6 +157,7 @@ always @(posedge CLK) begin
             if (CAP_CNT < cap_cnt) cap_cnt <= CAP_CNT;
             if (CAP_DELIM < cap_delim) cap_delim <= CAP_DELIM;
         end
+        clock_cnt <= clock_cnt + 1;
     end
 end
 

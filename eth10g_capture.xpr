@@ -85,13 +85,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/get_packet_info.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/testpat_rx.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -100,6 +93,13 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/add_packet_header.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/get_packet_info.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -292,47 +292,101 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_reset_100M_0/bd_eth10_capture_reset_100M_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_reset_100M_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_util_vector_logic_0_0/bd_eth10_capture_util_vector_logic_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_util_vector_logic_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_0/bd_eth10_capture_xlconstant_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_1/bd_eth10_capture_xlconstant_0_1.xci">
-          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_1"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_util_vector_logic_0_1/bd_eth10_capture_util_vector_logic_0_1.xci">
           <Proxy FileSetName="bd_eth10_capture_util_vector_logic_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axi_datamover_0_0/bd_eth10_capture_axi_datamover_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_axi_datamover_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_1_0/bd_eth10_capture_xlconstant_1_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_xlconstant_1_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_dwidth_converter_0_0/bd_eth10_capture_axis_dwidth_converter_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_axis_dwidth_converter_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_vio_0_0/bd_eth10_capture_vio_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_vio_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xdma_0_0/bd_eth10_capture_xdma_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_xdma_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_util_ds_buf_0/bd_eth10_capture_util_ds_buf_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_util_ds_buf_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_2/bd_eth10_capture_xlconstant_0_2.xci">
-          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_2"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axi_gpio_0_0/bd_eth10_capture_axi_gpio_0_0.xci">
           <Proxy FileSetName="bd_eth10_capture_axi_gpio_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_ddr4_0_0/bd_eth10_capture_ddr4_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_ddr4_0_0"/>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_rx_wrmem_status_0_0/bd_eth10_capture_rx_wrmem_status_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_rx_wrmem_status_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_wcmd_0/bd_eth10_capture_axis_fifo_wcmd_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_wcmd_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_wcmd_cnt_0/bd_eth10_capture_axis_fifo_wcmd_cnt_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_wcmd_cnt_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_wcmd_delim_0/bd_eth10_capture_axis_fifo_wcmd_delim_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_wcmd_delim_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_wdata_0/bd_eth10_capture_axis_fifo_wdata_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_wdata_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_wordcnt_0/bd_eth10_capture_axis_fifo_wordcnt_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_wordcnt_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_1_0/bd_eth10_capture_xlconstant_1_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_xlconstant_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_pdata_0/bd_eth10_capture_axis_fifo_pdata_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_pdata_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_pinfo_0/bd_eth10_capture_axis_fifo_pinfo_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_pinfo_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_0/bd_eth10_capture_xlconstant_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_util_vector_logic_0_0/bd_eth10_capture_util_vector_logic_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_util_vector_logic_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_reset_100M_0/bd_eth10_capture_reset_100M_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_reset_100M_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_1/bd_eth10_capture_xlconstant_0_1.xci">
+          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_err_counter_full_0/bd_eth10_capture_err_counter_full_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_err_counter_full_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_testpat_rx_0_0/bd_eth10_capture_testpat_rx_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_testpat_rx_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_add_packet_header_0_0/bd_eth10_capture_add_packet_header_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_add_packet_header_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_get_packet_info_0_0/bd_eth10_capture_get_packet_info_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_get_packet_info_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axi_datamover_0_0/bd_eth10_capture_axi_datamover_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axi_datamover_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fifo_pkt_0/bd_eth10_capture_axis_fifo_pkt_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fifo_pkt_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_err_counter_fcs_0/bd_eth10_capture_err_counter_fcs_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_err_counter_fcs_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fork_0_0/bd_eth10_capture_axis_fork_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fork_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_fork_1_0/bd_eth10_capture_axis_fork_1_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_fork_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_vio_0_0/bd_eth10_capture_vio_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_vio_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axilite_regs_0_0/bd_eth10_capture_axilite_regs_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axilite_regs_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_rx_wrmem_regs_0_0/bd_eth10_capture_rx_wrmem_regs_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_rx_wrmem_regs_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_axis_dwidth_converter_0_0/bd_eth10_capture_axis_dwidth_converter_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_axis_dwidth_converter_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_update_packet_delim_1_0/bd_eth10_capture_update_packet_delim_1_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_update_packet_delim_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_groupify_wordcnt_0_0/bd_eth10_capture_groupify_wordcnt_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_groupify_wordcnt_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_get_word_count_0_0/bd_eth10_capture_get_word_count_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_get_word_count_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_gen_datamover_wcmd_0_0/bd_eth10_capture_gen_datamover_wcmd_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_gen_datamover_wcmd_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_util_vector_logic_0_2/bd_eth10_capture_util_vector_logic_0_2.xci">
           <Proxy FileSetName="bd_eth10_capture_util_vector_logic_0_2"/>
@@ -346,20 +400,53 @@
         <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xbar_0/bd_eth10_capture_xbar_0.xci">
           <Proxy FileSetName="bd_eth10_capture_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0"/>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_util_ds_buf_0/bd_eth10_capture_util_ds_buf_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_util_ds_buf_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_3/bd_eth10_capture_xlconstant_0_3.xci">
-          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_3"/>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_2/bd_eth10_capture_xlconstant_0_2.xci">
+          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_2"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_system_ila_0_0/bd_eth10_capture_system_ila_0_0.xci">
-          <Proxy FileSetName="bd_eth10_capture_system_ila_0_0"/>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xdma_0_0/bd_eth10_capture_xdma_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_xdma_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_auto_cc_1/bd_eth10_capture_auto_cc_1.xci">
           <Proxy FileSetName="bd_eth10_capture_auto_cc_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_auto_cc_0/bd_eth10_capture_auto_cc_0.xci">
           <Proxy FileSetName="bd_eth10_capture_auto_cc_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_ddr4_0_0/bd_eth10_capture_ddr4_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_ddr4_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_fanctrl_init_0_0/bd_eth10_capture_fanctrl_init_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_fanctrl_init_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xlconstant_0_3/bd_eth10_capture_xlconstant_0_3.xci">
+          <Proxy FileSetName="bd_eth10_capture_xlconstant_0_3"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_i2c_master_0_0/bd_eth10_capture_i2c_master_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_i2c_master_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_testpat_xgmii_rx_0_0/bd_eth10_capture_testpat_xgmii_rx_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_testpat_xgmii_rx_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xgmii_fcs_0_0/bd_eth10_capture_xgmii_fcs_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_xgmii_fcs_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_eth_ctrl_0_0/bd_eth10_capture_eth_ctrl_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_eth_ctrl_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_address_mac_ip_0_0/bd_eth10_capture_address_mac_ip_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_address_mac_ip_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_xgmii_test_server_0_0/bd_eth10_capture_xgmii_test_server_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_xgmii_test_server_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="bd_eth10_capture.bd" FileRelPathName="ip/bd_eth10_capture_system_ila_0_0/bd_eth10_capture_system_ila_0_0.xci">
+          <Proxy FileSetName="bd_eth10_capture_system_ila_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/bd_eth10_capture/hdl/bd_eth10_capture_wrapper.v">
@@ -458,15 +545,69 @@
         <Option Name="XSimWcfgFile" Val="$PPRDIR/sim_test_xgmii_to_axis_behav.wcfg"/>
       </Config>
     </FileSet>
+    <FileSet Name="bd_eth10_capture_util_vector_logic_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_util_vector_logic_0_1">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_util_vector_logic_0_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
     <FileSet Name="bd_eth10_capture_axi_gpio_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axi_gpio_0_0">
       <Config>
         <Option Name="TopModule" Val="bd_eth10_capture_axi_gpio_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_eth10_capture_vio_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_vio_0_0">
+    <FileSet Name="bd_eth10_capture_rx_wrmem_status_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_rx_wrmem_status_0_0">
       <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_vio_0_0"/>
+        <Option Name="TopModule" Val="bd_eth10_capture_rx_wrmem_status_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_wcmd_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_wcmd_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_wcmd_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_wcmd_cnt_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_wcmd_cnt_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_wcmd_cnt_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_wcmd_delim_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_wcmd_delim_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_wcmd_delim_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_wdata_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_wdata_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_wdata_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_wordcnt_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_wordcnt_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_wordcnt_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_xlconstant_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xlconstant_1_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_xlconstant_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_pdata_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_pdata_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_pdata_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_pinfo_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_pinfo_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_pinfo_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -482,27 +623,87 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="bd_eth10_capture_reset_100M_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_reset_100M_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_reset_100M_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
     <FileSet Name="bd_eth10_capture_xlconstant_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xlconstant_0_1">
       <Config>
         <Option Name="TopModule" Val="bd_eth10_capture_xlconstant_0_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_eth10_capture_util_vector_logic_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_util_vector_logic_0_1">
+    <FileSet Name="bd_eth10_capture_err_counter_full_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_err_counter_full_0">
       <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_util_vector_logic_0_1"/>
+        <Option Name="TopModule" Val="bd_eth10_capture_err_counter_full_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_eth10_capture_xlconstant_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xlconstant_1_0">
+    <FileSet Name="bd_eth10_capture_testpat_rx_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_testpat_rx_0_0">
       <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_xlconstant_1_0"/>
+        <Option Name="TopModule" Val="bd_eth10_capture_testpat_rx_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_eth10_capture_reset_100M_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_reset_100M_0">
+    <FileSet Name="bd_eth10_capture_add_packet_header_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_add_packet_header_0_0">
       <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_reset_100M_0"/>
+        <Option Name="TopModule" Val="bd_eth10_capture_add_packet_header_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_get_packet_info_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_get_packet_info_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_get_packet_info_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axi_datamover_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axi_datamover_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axi_datamover_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fifo_pkt_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fifo_pkt_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fifo_pkt_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_err_counter_fcs_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_err_counter_fcs_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_err_counter_fcs_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fork_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fork_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fork_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axis_fork_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axis_fork_1_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axis_fork_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_vio_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_vio_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_vio_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_axilite_regs_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axilite_regs_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_axilite_regs_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_rx_wrmem_regs_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_rx_wrmem_regs_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_rx_wrmem_regs_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -512,9 +713,27 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_eth10_capture_axi_datamover_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_axi_datamover_0_0">
+    <FileSet Name="bd_eth10_capture_update_packet_delim_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_update_packet_delim_1_0">
       <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_axi_datamover_0_0"/>
+        <Option Name="TopModule" Val="bd_eth10_capture_update_packet_delim_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_groupify_wordcnt_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_groupify_wordcnt_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_groupify_wordcnt_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_get_word_count_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_get_word_count_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_get_word_count_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_gen_datamover_wcmd_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_gen_datamover_wcmd_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_gen_datamover_wcmd_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -542,6 +761,12 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="bd_eth10_capture_util_ds_buf_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_util_ds_buf_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_util_ds_buf_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
     <FileSet Name="bd_eth10_capture_xlconstant_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xlconstant_0_2">
       <Config>
         <Option Name="TopModule" Val="bd_eth10_capture_xlconstant_0_2"/>
@@ -554,36 +779,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_eth10_capture_util_ds_buf_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_util_ds_buf_0">
-      <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_util_ds_buf_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="bd_eth10_capture_ddr4_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_ddr4_0_0">
-      <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_ddr4_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="bd_eth10_capture_xlconstant_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xlconstant_0_3">
-      <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_xlconstant_0_3"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0">
-      <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="bd_eth10_capture_system_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_system_ila_0_0">
-      <Config>
-        <Option Name="TopModule" Val="bd_eth10_capture_system_ila_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="bd_eth10_capture_auto_cc_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_auto_cc_1">
       <Config>
         <Option Name="TopModule" Val="bd_eth10_capture_auto_cc_1"/>
@@ -593,6 +788,72 @@
     <FileSet Name="bd_eth10_capture_auto_cc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_auto_cc_0">
       <Config>
         <Option Name="TopModule" Val="bd_eth10_capture_auto_cc_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_ddr4_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_ddr4_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_ddr4_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_fanctrl_init_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_fanctrl_init_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_fanctrl_init_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_xlconstant_0_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xlconstant_0_3">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_xlconstant_0_3"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_i2c_master_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_i2c_master_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_i2c_master_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_testpat_xgmii_rx_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_testpat_xgmii_rx_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_testpat_xgmii_rx_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_xgmii_fcs_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xgmii_fcs_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_xgmii_fcs_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_eth_ctrl_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_eth_ctrl_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_eth_ctrl_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_address_mac_ip_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_address_mac_ip_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_address_mac_ip_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_xgmii_test_server_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_xgmii_test_server_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_xgmii_test_server_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_eth10_capture_system_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_eth10_capture_system_ila_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_eth10_capture_system_ila_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -631,54 +892,88 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2017"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_axi_gpio_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axi_gpio_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_gpio_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axi_gpio_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_vio_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_vio_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_vio_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_vio_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_util_vector_logic_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_util_vector_logic_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_util_vector_logic_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_1_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_1" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_1" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_1_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="bd_eth10_capture_util_vector_logic_0_1_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_util_vector_logic_0_1" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_1" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_util_vector_logic_0_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axi_gpio_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axi_gpio_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_gpio_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axi_gpio_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_rx_wrmem_status_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_rx_wrmem_status_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_rx_wrmem_status_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_rx_wrmem_status_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wcmd_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_wcmd_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wcmd_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_wcmd_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wcmd_cnt_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_wcmd_cnt_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wcmd_cnt_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_wcmd_cnt_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wcmd_delim_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_wcmd_delim_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wcmd_delim_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_wcmd_delim_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wdata_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_wdata_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wdata_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_wdata_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wordcnt_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_wordcnt_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wordcnt_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_wordcnt_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -687,7 +982,53 @@
     </Run>
     <Run Id="bd_eth10_capture_xlconstant_1_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_1_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_1_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_1_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_pdata_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_pdata_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_pdata_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_pdata_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_pinfo_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_pinfo_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_pinfo_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_pinfo_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xlconstant_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_util_vector_logic_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_util_vector_logic_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_util_vector_logic_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -696,16 +1037,64 @@
     </Run>
     <Run Id="bd_eth10_capture_reset_100M_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_reset_100M_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_reset_100M_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_reset_100M_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_axis_dwidth_converter_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_dwidth_converter_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_dwidth_converter_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_dwidth_converter_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="bd_eth10_capture_xlconstant_0_1_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_1" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_1" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_err_counter_full_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_err_counter_full_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_err_counter_full_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_err_counter_full_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_testpat_rx_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_testpat_rx_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_testpat_rx_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_testpat_rx_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_add_packet_header_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_add_packet_header_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_add_packet_header_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_add_packet_header_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_get_packet_info_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_get_packet_info_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_get_packet_info_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_get_packet_info_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -714,7 +1103,141 @@
     </Run>
     <Run Id="bd_eth10_capture_axi_datamover_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axi_datamover_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_datamover_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axi_datamover_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_pkt_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fifo_pkt_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_pkt_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fifo_pkt_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_err_counter_fcs_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_err_counter_fcs_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_err_counter_fcs_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_err_counter_fcs_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fork_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fork_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fork_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fork_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fork_1_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_fork_1_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fork_1_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_fork_1_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_vio_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_vio_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_vio_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_vio_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axilite_regs_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axilite_regs_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axilite_regs_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axilite_regs_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_rx_wrmem_regs_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_rx_wrmem_regs_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_rx_wrmem_regs_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_rx_wrmem_regs_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_dwidth_converter_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axis_dwidth_converter_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_dwidth_converter_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axis_dwidth_converter_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_update_packet_delim_1_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_update_packet_delim_1_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_update_packet_delim_1_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_update_packet_delim_1_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_groupify_wordcnt_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_groupify_wordcnt_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_groupify_wordcnt_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_groupify_wordcnt_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_get_word_count_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_get_word_count_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_get_word_count_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_get_word_count_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_gen_datamover_wcmd_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_gen_datamover_wcmd_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_gen_datamover_wcmd_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_gen_datamover_wcmd_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -723,7 +1246,9 @@
     </Run>
     <Run Id="bd_eth10_capture_util_vector_logic_0_2_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_util_vector_logic_0_2" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_2" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_util_vector_logic_0_2_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -732,7 +1257,9 @@
     </Run>
     <Run Id="bd_eth10_capture_reset_ddr4_0_300m_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_reset_ddr4_0_300m_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_reset_ddr4_0_300m_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_reset_ddr4_0_300m_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -741,7 +1268,9 @@
     </Run>
     <Run Id="bd_eth10_capture_axi_smc_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_axi_smc_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_smc_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_axi_smc_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -750,25 +1279,9 @@
     </Run>
     <Run Id="bd_eth10_capture_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xbar_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xbar_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xbar_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_2_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_2" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_2" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_2_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xdma_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xdma_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xdma_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xdma_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -777,43 +1290,31 @@
     </Run>
     <Run Id="bd_eth10_capture_util_ds_buf_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_util_ds_buf_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_ds_buf_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_util_ds_buf_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_ddr4_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_ddr4_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ddr4_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_ddr4_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="bd_eth10_capture_xlconstant_0_2_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_2" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_2" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_2_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_3_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_3" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_3" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_3_synth_1" IncludeInArchive="true">
+    <Run Id="bd_eth10_capture_xdma_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xdma_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xdma_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xdma_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_system_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_system_ila_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_system_ila_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_system_ila_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -822,7 +1323,9 @@
     </Run>
     <Run Id="bd_eth10_capture_auto_cc_1_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_auto_cc_1" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_auto_cc_1" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_auto_cc_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -831,7 +1334,130 @@
     </Run>
     <Run Id="bd_eth10_capture_auto_cc_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_auto_cc_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_auto_cc_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_auto_cc_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_ddr4_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_ddr4_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ddr4_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_ddr4_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_fanctrl_init_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_fanctrl_init_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_fanctrl_init_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_fanctrl_init_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xlconstant_0_3_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xlconstant_0_3" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_3" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xlconstant_0_3_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_i2c_master_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_i2c_master_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_i2c_master_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_i2c_master_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_testpat_xgmii_rx_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_testpat_xgmii_rx_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_testpat_xgmii_rx_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_testpat_xgmii_rx_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xgmii_fcs_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xgmii_fcs_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xgmii_fcs_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xgmii_fcs_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_eth_ctrl_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_eth_ctrl_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_eth_ctrl_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_eth_ctrl_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_address_mac_ip_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_address_mac_ip_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_address_mac_ip_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_address_mac_ip_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xgmii_test_server_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_xgmii_test_server_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xgmii_test_server_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_xgmii_test_server_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_system_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_eth10_capture_system_ila_0_0" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_system_ila_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_eth10_capture_system_ila_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -857,89 +1483,137 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2017"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_axi_gpio_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_gpio_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axi_gpio_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_vio_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_vio_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_vio_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_util_vector_logic_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_util_vector_logic_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_1_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="bd_eth10_capture_util_vector_logic_0_1_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_util_vector_logic_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axi_gpio_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_gpio_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axi_gpio_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_rx_wrmem_status_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_rx_wrmem_status_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_rx_wrmem_status_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wcmd_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wcmd_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_wcmd_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wcmd_cnt_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wcmd_cnt_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_wcmd_cnt_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wcmd_delim_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wcmd_delim_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_wcmd_delim_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wdata_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wdata_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_wdata_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_wordcnt_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_wordcnt_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_wordcnt_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -955,7 +1629,81 @@
     </Run>
     <Run Id="bd_eth10_capture_xlconstant_1_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_1_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_pdata_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_pdata_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_pdata_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_pinfo_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_pinfo_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_pinfo_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xlconstant_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_util_vector_logic_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_util_vector_logic_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -971,7 +1719,9 @@
     </Run>
     <Run Id="bd_eth10_capture_reset_100M_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_reset_100M_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_reset_100M_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -985,9 +1735,83 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_axis_dwidth_converter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_dwidth_converter_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_dwidth_converter_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="bd_eth10_capture_xlconstant_0_1_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_err_counter_full_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_err_counter_full_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_err_counter_full_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_testpat_rx_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_testpat_rx_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_testpat_rx_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_add_packet_header_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_add_packet_header_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_add_packet_header_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_get_packet_info_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_get_packet_info_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_get_packet_info_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1003,7 +1827,225 @@
     </Run>
     <Run Id="bd_eth10_capture_axi_datamover_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_datamover_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axi_datamover_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fifo_pkt_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fifo_pkt_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fifo_pkt_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_err_counter_fcs_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_err_counter_fcs_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_err_counter_fcs_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fork_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fork_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fork_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_fork_1_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_fork_1_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_fork_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_vio_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_vio_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_vio_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axilite_regs_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axilite_regs_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axilite_regs_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_rx_wrmem_regs_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_rx_wrmem_regs_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_rx_wrmem_regs_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_axis_dwidth_converter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axis_dwidth_converter_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axis_dwidth_converter_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_update_packet_delim_1_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_update_packet_delim_1_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_update_packet_delim_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_groupify_wordcnt_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_groupify_wordcnt_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_groupify_wordcnt_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_get_word_count_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_get_word_count_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_get_word_count_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_gen_datamover_wcmd_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_gen_datamover_wcmd_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_gen_datamover_wcmd_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1019,7 +2061,9 @@
     </Run>
     <Run Id="bd_eth10_capture_util_vector_logic_0_2_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_vector_logic_0_2" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_util_vector_logic_0_2_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1035,7 +2079,9 @@
     </Run>
     <Run Id="bd_eth10_capture_reset_ddr4_0_300m_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_reset_ddr4_0_300m_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_reset_ddr4_0_300m_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1051,7 +2097,9 @@
     </Run>
     <Run Id="bd_eth10_capture_axi_smc_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_axi_smc_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_axi_smc_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1067,39 +2115,9 @@
     </Run>
     <Run Id="bd_eth10_capture_xbar_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xbar_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xbar_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_2_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_2" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_2_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_xdma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xdma_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xdma_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1115,7 +2133,9 @@
     </Run>
     <Run Id="bd_eth10_capture_util_ds_buf_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_util_ds_buf_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_util_ds_buf_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1129,9 +2149,11 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_ddr4_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ddr4_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_ddr4_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="bd_eth10_capture_xlconstant_0_2_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_2" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_2_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1145,41 +2167,11 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="bd_eth10_capture_xlconstant_0_3_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_3" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_3_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="bd_eth10_capture_xdma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xdma_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xdma_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="bd_eth10_capture_system_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_system_ila_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_system_ila_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1195,7 +2187,9 @@
     </Run>
     <Run Id="bd_eth10_capture_auto_cc_1_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_auto_cc_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_auto_cc_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1211,7 +2205,207 @@
     </Run>
     <Run Id="bd_eth10_capture_auto_cc_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_auto_cc_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_auto_cc_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_ddr4_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ddr4_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_ddr4_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_fanctrl_init_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_fanctrl_init_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_fanctrl_init_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xlconstant_0_3_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xlconstant_0_3" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xlconstant_0_3_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_i2c_master_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_i2c_master_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_i2c_master_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_ten_gig_eth_pcs_pma_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_testpat_xgmii_rx_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_testpat_xgmii_rx_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_testpat_xgmii_rx_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xgmii_fcs_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xgmii_fcs_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xgmii_fcs_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_eth_ctrl_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_eth_ctrl_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_eth_ctrl_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_address_mac_ip_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_address_mac_ip_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_address_mac_ip_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_xgmii_test_server_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_xgmii_test_server_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_xgmii_test_server_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="bd_eth10_capture_system_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku115-flvb2104-2-e" ConstrsSet="bd_eth10_capture_system_ila_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="bd_eth10_capture_system_ila_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

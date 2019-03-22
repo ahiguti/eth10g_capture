@@ -5,7 +5,7 @@
 // See COPYRIGHT.txt for details
 
 module get_packet_info(
-  CLK, RESETN, XGMII_D, XGMII_LEN, FCS_EN, FCS_CORRECT,
+  CLK, RESETN, XGMII_D, XGMII_LEN, FCS_EN, FCS_CORRECT, CLOCK_CNT,
   DATA_TDATA, DATA_TVALID, DATA_TREADY, INFO_TDATA, INFO_TVALID, INFO_TREADY,
   ERR_DROP, ERR_INCOMPLETE, ERR_FCS);
 input CLK;
@@ -14,10 +14,11 @@ input RESETN;
 (* mark_debug = "true" *) input [3:0] XGMII_LEN;
 (* mark_debug = "true" *) input FCS_EN;
 (* mark_debug = "true" *) input FCS_CORRECT;
+(* mark_debug = "true" *) input [63:0] CLOCK_CNT;
 (* mark_debug = "true" *) output [63:0] DATA_TDATA;
 (* mark_debug = "true" *) output DATA_TVALID;
 (* mark_debug = "true" *) input DATA_TREADY;
-(* mark_debug = "true" *) output [23:0] INFO_TDATA;
+(* mark_debug = "true" *) output [63:0] INFO_TDATA;
 (* mark_debug = "true" *) output INFO_TVALID;
 (* mark_debug = "true" *) input INFO_TREADY;
 (* mark_debug = "true" *) output ERR_DROP;
@@ -33,7 +34,7 @@ reg packet_incomplete; // DATAが詰まって不完全になった
 reg data_tvalid;
 reg [63:0] data_tdata;
 reg info_tvalid;
-reg [17:0] info_tdata;
+reg [63:0] info_tdata;
 reg err_drop;
 reg err_incomplete;
 reg err_fcs;
@@ -48,7 +49,7 @@ wire packet_incomplete_next = packet_incomplete && data_out_ready;
 
 assign DATA_TDATA = data_tdata;
 assign DATA_TVALID = data_tvalid;
-assign INFO_TDATA = { 6'b0, info_tdata };
+assign INFO_TDATA = { CLOCK_CNT[39:0], 6'b0, info_tdata };
 assign INFO_TVALID = info_tvalid;
 assign ERR_DROP = err_drop;
 assign ERR_INCOMPLETE = err_incomplete;
@@ -96,7 +97,7 @@ always @(posedge CLK) begin
       if (!packet_drop) begin
         // assert(info_out_ready);
         info_tvalid <= 1;
-        info_tdata <= { !packet_incomplete_next, fcs_correct, packet_len_next };
+        info_tdata <= { CLOCK_CNT[45:0], !packet_incomplete_next, fcs_correct, packet_len_next[15:0] };
         err_incomplete <= packet_incomplete_next;
         err_fcs <= !fcs_correct;
         if (data_out_ready && xgmii_len_r != 0) begin

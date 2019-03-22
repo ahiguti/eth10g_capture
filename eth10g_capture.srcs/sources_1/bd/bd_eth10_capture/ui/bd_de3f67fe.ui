@@ -22,8 +22,8 @@ preplace inst gen_datamover_wcmd_0 -pg 1 -lvl 4 -y 1180 -defaultsOSRD
 preplace inst xlconstant_1 -pg 1 -lvl 2 -y 80 -defaultsOSRD
 preplace inst axis_fifo_wdata -pg 1 -lvl 4 -y 840 -defaultsOSRD
 preplace inst axis_fifo_wcmd_delim -pg 1 -lvl 4 -y 630 -defaultsOSRD
-preplace inst axis_dwidth_converter_0 -pg 1 -lvl 2 -y 820 -defaultsOSRD
 preplace inst axis_fifo_wcmd_cnt -pg 1 -lvl 3 -y 460 -defaultsOSRD
+preplace inst axis_dwidth_converter_0 -pg 1 -lvl 2 -y 820 -defaultsOSRD
 preplace inst axi_datamover_0 -pg 1 -lvl 3 -y 120 -defaultsOSRD
 preplace inst axis_fifo_wcmd -pg 1 -lvl 3 -y 320 -defaultsOSRD
 preplace inst get_word_count_0 -pg 1 -lvl 3 -y 840 -defaultsOSRD
@@ -67,4 +67,4 @@ preplace netloc axis_fork_1_OV1 1 2 2 NJ 580 990
 levelinfo -pg 1 0 150 380 750 1170 1370 -top 0 -bot 1280
 ",
 }
-
+0

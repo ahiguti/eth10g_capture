@@ -16,7 +16,7 @@ input KEEP_ERROR_PACKET;
 (* mark_debug = "true" *) input [63:0] DATA_TDATA;
 (* mark_debug = "true" *) input DATA_TVALID;
 (* mark_debug = "true" *) output DATA_TREADY;
-(* mark_debug = "true" *) input [23:0] INFO_TDATA;
+(* mark_debug = "true" *) input [63:0] INFO_TDATA;
 (* mark_debug = "true" *) input INFO_TVALID;
 (* mark_debug = "true" *) output INFO_TREADY;
 (* mark_debug = "true" *) output [63:0] PKT_TDATA;
@@ -58,7 +58,7 @@ always @(posedge CLK) begin
       end else begin
         drop_flag <= 0;
         pkt_tvalid <= 1;
-        pkt_tdata <= { 32'hdeadbeef, 14'b0, INFO_TDATA[17:0] };
+        pkt_tdata <= INFO_TDATA;
         pkt_tlast <= 0;
       end
     end

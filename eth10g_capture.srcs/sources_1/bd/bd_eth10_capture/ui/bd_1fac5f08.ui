@@ -28,21 +28,21 @@ preplace inst xdma_0 -pg 1 -lvl 2 -y 830 -defaultsOSRD
 preplace netloc Conn1 1 0 4 NJ 210 NJ 210 NJ 210 NJ
 preplace netloc Conn2 1 4 1 NJ
 preplace netloc Conn3 1 2 3 730J 680 NJ 680 NJ
-preplace netloc xdma_0_axi_periph_M01_AXI 1 3 1 1080
-preplace netloc reset_ddr4_0_300m_peripheral_aresetn 1 2 2 770 200 1130
+preplace netloc xdma_0_axi_periph_M01_AXI 1 3 1 1070
+preplace netloc reset_ddr4_0_300m_peripheral_aresetn 1 2 2 770 330 1090
 preplace netloc util_ds_buf_IBUF_DS_ODIV2 1 1 1 330
 preplace netloc util_ds_buf_IBUF_OUT 1 1 1 340
 preplace netloc Conn4 1 0 1 NJ
 preplace netloc Conn5 1 4 1 NJ
-preplace netloc axi_smc_M00_AXI 1 3 1 1110
-preplace netloc ddr4_0_c0_ddr4_ui_clk_sync_rst 1 1 4 340 340 NJ 340 1090J 390 1530
-preplace netloc util_vector_logic_0_Res 1 3 1 1120J
-preplace netloc xdma_0_axi_aclk 1 2 2 750 660 1080J
+preplace netloc axi_smc_M00_AXI 1 3 1 1100
+preplace netloc ddr4_0_c0_ddr4_ui_clk_sync_rst 1 1 4 340 200 700J 120 NJ 120 1540
+preplace netloc util_vector_logic_0_Res 1 3 1 1080J
+preplace netloc xdma_0_axi_aclk 1 2 2 750 660 1110J
 preplace netloc Conn6 1 0 3 NJ 680 NJ 680 710J
 preplace netloc ddr4_0_addn_ui_clkout1 1 4 1 NJ
-preplace netloc xdma_0_axi_aresetn 1 2 2 760 670 1130J
+preplace netloc xdma_0_axi_aresetn 1 2 2 760 670 1120J
 preplace netloc pcie_perstn_1 1 0 2 NJ 800 320J
-preplace netloc xdma_0_axi_periph_M00_AXI 1 3 1 1070
+preplace netloc xdma_0_axi_periph_M00_AXI 1 3 1 1090
 preplace netloc M02_ARESETN_1 1 0 3 NJ 540 NJ 540 730J
 preplace netloc resetn_1 1 0 3 NJ 270 NJ 270 NJ
 preplace netloc aclk2_1 1 0 3 NJ 520 NJ 520 720
@@ -50,7 +50,7 @@ preplace netloc xlconstant_0_dout 1 1 1 NJ
 preplace netloc xdma_0_M_AXI 1 2 1 N
 preplace netloc xdma_0_M_AXI_LITE 1 2 1 700
 preplace netloc xdma_0_axi_periph_M02_AXI 1 3 2 NJ 520 NJ
-preplace netloc ddr4_0_c0_ddr4_ui_clk 1 1 4 320 200 740 330 1100J 380 1540
+preplace netloc ddr4_0_c0_ddr4_ui_clk 1 1 4 320 280 740 340 1090J 380 1530
 levelinfo -pg 1 0 170 520 920 1330 1560 -top 0 -bot 980
 ",
 }

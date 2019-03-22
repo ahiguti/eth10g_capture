@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Mar 22 01:48:55 2019" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Mar 23 05:01:58 2019" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintexu" BOARD="xilinx.com:kcu1500:part0:1.1" DEVICE="xcku115" NAME="bd_eth10_capture" PACKAGE="flvb2104" SPEEDGRADE="-2"/>
 
@@ -2645,6 +2645,11 @@
         <PORT DIR="O" NAME="KEEP_ERROR_PACKET" SIGIS="undef" SIGNAME="eth10_capt_ctrl_rx_wrmem_regs_0_KEEP_ERROR_PACKET">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xgmii_to_axis_add_packet_header_0" PORT="KEEP_ERROR_PACKET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="CLOCK_CNT" RIGHT="0" SIGIS="undef" SIGNAME="eth10_capt_ctrl_rx_wrmem_regs_0_CLOCK_CNT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="CLOCK_CNT"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -7528,6 +7533,7 @@
             <CONNECTION INSTANCE="pcie_dram_xdma_0_axi_periph" PORT="M02_ACLK"/>
             <CONNECTION INSTANCE="axis_wrmem_axi_datamover_0" PORT="m_axis_s2mm_cmdsts_awclk"/>
             <CONNECTION INSTANCE="axis_wrmem_axi_datamover_0" PORT="m_axi_s2mm_aclk"/>
+            <CONNECTION INSTANCE="axis_wrmem_axis_dwidth_converter_0" PORT="aclk"/>
             <CONNECTION INSTANCE="axis_wrmem_update_packet_delim_1" PORT="CLK"/>
             <CONNECTION INSTANCE="axis_wrmem_groupify_wordcnt_0" PORT="CLK"/>
             <CONNECTION INSTANCE="axis_wrmem_get_word_count_0" PORT="CLK"/>
@@ -7540,17 +7546,16 @@
             <CONNECTION INSTANCE="axis_wrmem_axis_fifo_wordcnt" PORT="CLK"/>
             <CONNECTION INSTANCE="axis_wrmem_axis_fork_0" PORT="CLK"/>
             <CONNECTION INSTANCE="axis_wrmem_axis_fork_1" PORT="CLK"/>
-            <CONNECTION INSTANCE="axis_wrmem_axis_dwidth_converter_0" PORT="aclk"/>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pdata" PORT="CLK"/>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pinfo" PORT="CLK"/>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pkt" PORT="CLK"/>
             <CONNECTION INSTANCE="xgmii_to_axis_err_counter_fcs" PORT="CLK"/>
             <CONNECTION INSTANCE="xgmii_to_axis_err_counter_full" PORT="CLK"/>
-            <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="CLK"/>
             <CONNECTION INSTANCE="xgmii_to_axis_testpat_rx_0" PORT="CLK"/>
             <CONNECTION INSTANCE="xgmii_to_axis_add_packet_header_0" PORT="CLK"/>
-            <CONNECTION INSTANCE="eth10_capt_ctrl_axilite_regs_0" PORT="CLK"/>
+            <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="CLK"/>
             <CONNECTION INSTANCE="eth10_capt_ctrl_vio_0" PORT="clk"/>
+            <CONNECTION INSTANCE="eth10_capt_ctrl_axilite_regs_0" PORT="CLK"/>
             <CONNECTION INSTANCE="eth10_capt_ctrl_rx_wrmem_regs_0" PORT="CLK"/>
             <CONNECTION INSTANCE="eth_quad0_eth_0_system_ila_0" PORT="clk"/>
             <CONNECTION INSTANCE="eth_quad0_eth_0_xgmii_test_server_0" PORT="CLK"/>
@@ -12263,6 +12268,7 @@
             <CONNECTION INSTANCE="pcie_dram_xdma_0_axi_periph" PORT="M02_ARESETN"/>
             <CONNECTION INSTANCE="axis_wrmem_axi_datamover_0" PORT="m_axis_s2mm_cmdsts_aresetn"/>
             <CONNECTION INSTANCE="axis_wrmem_axi_datamover_0" PORT="m_axi_s2mm_aresetn"/>
+            <CONNECTION INSTANCE="axis_wrmem_axis_dwidth_converter_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="axis_wrmem_update_packet_delim_1" PORT="RESETN"/>
             <CONNECTION INSTANCE="axis_wrmem_groupify_wordcnt_0" PORT="RESETN"/>
             <CONNECTION INSTANCE="axis_wrmem_get_word_count_0" PORT="RESETN"/>
@@ -12275,15 +12281,14 @@
             <CONNECTION INSTANCE="axis_wrmem_axis_fifo_wordcnt" PORT="RESETN"/>
             <CONNECTION INSTANCE="axis_wrmem_axis_fork_0" PORT="RESETN"/>
             <CONNECTION INSTANCE="axis_wrmem_axis_fork_1" PORT="RESETN"/>
-            <CONNECTION INSTANCE="axis_wrmem_axis_dwidth_converter_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pdata" PORT="RESETN"/>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pinfo" PORT="RESETN"/>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pkt" PORT="RESETN"/>
             <CONNECTION INSTANCE="xgmii_to_axis_err_counter_fcs" PORT="RESETN"/>
             <CONNECTION INSTANCE="xgmii_to_axis_err_counter_full" PORT="RESETN"/>
-            <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="RESETN"/>
             <CONNECTION INSTANCE="xgmii_to_axis_testpat_rx_0" PORT="RESETN"/>
             <CONNECTION INSTANCE="xgmii_to_axis_add_packet_header_0" PORT="RESETN"/>
+            <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="RESETN"/>
             <CONNECTION INSTANCE="eth10_capt_ctrl_axilite_regs_0" PORT="RESETN"/>
             <CONNECTION INSTANCE="eth10_capt_ctrl_rx_wrmem_regs_0" PORT="RESETN"/>
           </CONNECTIONS>
@@ -12328,7 +12333,7 @@
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pdata" PORT="OV_TREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="23" NAME="INFO_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_add_packet_header_0_INFO_TDATA">
+        <PORT DIR="I" LEFT="63" NAME="INFO_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_add_packet_header_0_INFO_TDATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pinfo" PORT="OV_TDATA"/>
           </CONNECTIONS>
@@ -12385,7 +12390,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="xgmii_to_axis_axis_fifo_pinfo_OV" NAME="INFO" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -12547,7 +12552,7 @@
     <MODULE FULLNAME="/xgmii_to_axis/axis_fifo_pinfo" HWVERSION="1.0" INSTANCE="xgmii_to_axis_axis_fifo_pinfo" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axis_fifo" VLNV="xilinx.com:module_ref:axis_fifo:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="WIDTH_DATA" VALUE="24"/>
+        <PARAMETER NAME="WIDTH_DATA" VALUE="64"/>
         <PARAMETER NAME="WIDTH_LAST" VALUE="0"/>
         <PARAMETER NAME="WIDTH_KEEP" VALUE="0"/>
         <PARAMETER NAME="WIDTH_USER" VALUE="0"/>
@@ -12579,7 +12584,7 @@
             <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="INFO_TREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="23" NAME="IV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_axis_fifo_pinfo_IV_TDATA">
+        <PORT DIR="I" LEFT="63" NAME="IV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_axis_fifo_pinfo_IV_TDATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xgmii_to_axis_get_packet_info_0" PORT="INFO_TDATA"/>
           </CONNECTIONS>
@@ -12598,7 +12603,7 @@
             <CONNECTION INSTANCE="xgmii_to_axis_add_packet_header_0" PORT="INFO_TREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="23" NAME="OV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_add_packet_header_0_INFO_TDATA">
+        <PORT DIR="O" LEFT="63" NAME="OV_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_add_packet_header_0_INFO_TDATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xgmii_to_axis_add_packet_header_0" PORT="INFO_TDATA"/>
           </CONNECTIONS>
@@ -12612,7 +12617,7 @@
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="xgmii_to_axis_get_packet_info_0_INFO" NAME="IV" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
@@ -12635,7 +12640,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="xgmii_to_axis_axis_fifo_pinfo_OV" NAME="OV" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="1"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
@@ -12889,6 +12894,11 @@
             <CONNECTION INSTANCE="xgmii_to_axis_testpat_rx_0" PORT="OUT_FCS_CORRECT"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="63" NAME="CLOCK_CNT" RIGHT="0" SIGIS="undef" SIGNAME="eth10_capt_ctrl_rx_wrmem_regs_0_CLOCK_CNT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="eth10_capt_ctrl_rx_wrmem_regs_0" PORT="CLOCK_CNT"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="63" NAME="DATA_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_axis_fifo_pdata_IV_TDATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pdata" PORT="IV_TDATA"/>
@@ -12904,7 +12914,7 @@
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pdata" PORT="IV_TREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="23" NAME="INFO_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_axis_fifo_pinfo_IV_TDATA">
+        <PORT DIR="O" LEFT="63" NAME="INFO_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="xgmii_to_axis_axis_fifo_pinfo_IV_TDATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xgmii_to_axis_axis_fifo_pinfo" PORT="IV_TDATA"/>
           </CONNECTIONS>
@@ -12956,7 +12966,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="xgmii_to_axis_get_packet_info_0_INFO" NAME="INFO" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>

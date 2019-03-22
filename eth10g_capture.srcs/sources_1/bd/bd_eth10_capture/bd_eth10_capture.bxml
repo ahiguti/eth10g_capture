@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="bd_eth10_capture" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1553195852"/>
-    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1553195852"/>
-    <Generation Name="SIMULATION" State="RESET" Timestamp="1553195852"/>
-    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1553195852"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1553284918"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1553284918"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1553284918"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1553284918"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth/bd_eth10_capture.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
@@ -98,14 +98,6 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/bd_eth10_capture_get_packet_info_0_0/bd_eth10_capture_get_packet_info_0_0.xci" Type="IP">
-        <Instance HierarchyPath="xgmii_to_axis/get_packet_info_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip/bd_eth10_capture_testpat_rx_0_0/bd_eth10_capture_testpat_rx_0_0.xci" Type="IP">
         <Instance HierarchyPath="xgmii_to_axis/testpat_rx_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -122,6 +114,14 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip/bd_eth10_capture_get_packet_info_0_0/bd_eth10_capture_get_packet_info_0_0.xci" Type="IP">
+        <Instance HierarchyPath="xgmii_to_axis/get_packet_info_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip/bd_eth10_capture_axi_datamover_0_0/bd_eth10_capture_axi_datamover_0_0.xci" Type="IP">
         <Instance HierarchyPath="axis_wrmem/axi_datamover_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -132,6 +132,14 @@
       </File>
       <File Name="ip/bd_eth10_capture_xlconstant_1_0/bd_eth10_capture_xlconstant_1_0.xci" Type="IP">
         <Instance HierarchyPath="axis_wrmem/xlconstant_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/bd_eth10_capture_axis_dwidth_converter_0_0/bd_eth10_capture_axis_dwidth_converter_0_0.xci" Type="IP">
+        <Instance HierarchyPath="axis_wrmem/axis_dwidth_converter_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -234,8 +242,8 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/bd_eth10_capture_axis_dwidth_converter_0_0/bd_eth10_capture_axis_dwidth_converter_0_0.xci" Type="IP">
-        <Instance HierarchyPath="axis_wrmem/axis_dwidth_converter_0"/>
+      <File Name="ip/bd_eth10_capture_vio_0_0/bd_eth10_capture_vio_0_0.xci" Type="IP">
+        <Instance HierarchyPath="eth10_capt_ctrl/vio_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -244,14 +252,6 @@
       </File>
       <File Name="ip/bd_eth10_capture_axilite_regs_0_0/bd_eth10_capture_axilite_regs_0_0.xci" Type="IP">
         <Instance HierarchyPath="eth10_capt_ctrl/axilite_regs_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/bd_eth10_capture_vio_0_0/bd_eth10_capture_vio_0_0.xci" Type="IP">
-        <Instance HierarchyPath="eth10_capt_ctrl/vio_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
